@@ -1,3 +1,4 @@
+using System.Collections;
 using Noah.Scripts.Input;
 using UnityEngine;
 
@@ -5,17 +6,20 @@ namespace Noah.Scripts.Player
 {
     public class PlayerController : MonoBehaviour
     {
-        
         [Header("Movement")]
         [SerializeField] private float _moveSpeed = 7.5f;
         
         [Header("Jump")]
-        [SerializeField] private float _jumpForce = 5f;
-        [SerializeField] private float _jumpTime = 0.5f;
+        [SerializeField] private float _jumpForce = 12f;
+        [SerializeField] private float _jumpTime = 0.35f;
         
         [Header("Turn Check")]
         [SerializeField] private GameObject _leftLeg;
         [SerializeField] private GameObject _rightLeg;
+
+        [Header("Ground Check")] 
+        [SerializeField] private float extraHeight = 0.25f;
+        [SerializeField] private LayerMask _whatIsGround;
         
         private bool _isFacingRight;
         private bool _isFalling;
@@ -23,17 +27,74 @@ namespace Noah.Scripts.Player
         private float _jumpTimeCounter;
         
         private Rigidbody2D _rb;
+        private Animator _anim;
+        private Collider2D _coll;
+        private RaycastHit2D _groundHit;
+        
         private float _moveInput;
+
+        private Coroutine _resetTriggerCoroutine;
 
         private void Start()
         {
             _rb = GetComponent<Rigidbody2D>();
+      //      _anim = GetComponent<Animator>();
+            _coll = GetComponent<Collider2D>();
             StartDirectionCheck();
         }
         private void Update()
         {
             Move();
+            Jump();
         }
+
+        private void Jump()
+        {
+            if (UserInput.Instance.Controls.Jumping.Jump.WasPressedThisFrame() && IsGrounded())
+            {
+                _isJumping = true;
+                _jumpTimeCounter = _jumpTime;
+                _rb.velocity = new Vector2(_rb.velocity.x, _jumpForce);
+                
+    //            _anim.SetTrigger("jump");
+            }
+
+            if (UserInput.Instance.Controls.Jumping.Jump.IsPressed())
+            {
+                if (_jumpTimeCounter > 0 && _isJumping)
+                {
+                    _rb.velocity = new Vector2(_rb.velocity.x, _jumpForce);
+                    _jumpTimeCounter -= Time.deltaTime;
+                }
+
+                else if (_jumpTimeCounter == 0)
+                {
+                    _isFalling = true;
+                    _isJumping = false;
+                }
+
+                else
+                {
+                    _isJumping = false;
+                }
+                
+            }
+            
+            if (UserInput.Instance.Controls.Jumping.Jump.WasReleasedThisFrame())
+            {
+                _isJumping = false;
+                _isFalling = true;
+            }
+
+            if (!_isJumping && CheckForLand())
+            {
+    //            _anim.SetTrigger("land");
+                _resetTriggerCoroutine = StartCoroutine(Reset());
+            }
+            DrawGroundCheck();
+        }
+
+        #region Movement Functions
         private void Move()
         {
             _moveInput = UserInput.Instance.MoveInput.x;
@@ -45,7 +106,54 @@ namespace Noah.Scripts.Player
             
             _rb.velocity = new Vector2(_moveInput * _moveSpeed, _rb.velocity.y);
         }
+        #endregion
 
+        #region Ground/Landed Check
+        private bool IsGrounded()
+        {
+            _groundHit = Physics2D.BoxCast(_coll.bounds.center, _coll.bounds.size, 0f, Vector2.down,extraHeight, _whatIsGround);
+            if (_groundHit.collider != null)
+            {
+                return true;
+            }
+
+            else
+            {
+                return false;
+            }
+        }
+
+        private bool CheckForLand()
+        {
+            if (_isFalling)
+            {
+                if (IsGrounded())
+                {
+                    _isFalling = false;
+                    return true;
+                }
+
+                else
+                {
+                    return false;
+                }
+            }
+
+            else
+            {
+                return false;
+            }
+        }
+
+        private IEnumerator Reset()
+        {
+            yield return null;
+            
+//            _anim.ResetTrigger("land");
+        }
+        #endregion
+
+        #region Turn Checks
         private void StartDirectionCheck()
         {
             if (_rightLeg.transform.position.x > _leftLeg.transform.position.x)
@@ -88,5 +196,28 @@ namespace Noah.Scripts.Player
                 _isFacingRight = !_isFacingRight;
             }
         }
+        #endregion
+
+        private void DrawGroundCheck()
+        {
+            Color rayColor;
+
+            if (IsGrounded())
+            {
+                rayColor = Color.green;
+            }
+
+            else
+            {
+                rayColor = Color.red;
+            }
+            
+            Debug.DrawRay(_coll.bounds.center + new Vector3(_coll.bounds.extents.x, 0), Vector2.down * (_coll.bounds.extents.y + extraHeight), rayColor);
+            Debug.DrawRay(_coll.bounds.center - new Vector3(_coll.bounds.extents.x, 0), Vector2.down * (_coll.bounds.extents.y + extraHeight), rayColor);
+            Debug.DrawRay(
+                _coll.bounds.center - new Vector3(_coll.bounds.extents.x, _coll.bounds.extents.y + extraHeight),
+                Vector2.right * (_coll.bounds.extents.x * 2), rayColor);
+        }
+        
     }
 }
