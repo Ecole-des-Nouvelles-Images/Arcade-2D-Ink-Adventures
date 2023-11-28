@@ -21,7 +21,11 @@ namespace Noah.Scripts.Player
         [SerializeField] private float extraHeight = 0.25f;
         [SerializeField] private LayerMask _whatIsGround;
         
-        private bool _isFacingRight;
+        [Header("Camera")] 
+        [SerializeField] private GameObject _cameraFollowGO;
+        
+        [HideInInspector] public bool IsFacingRight;
+        
         private bool _isFalling;
         private bool _isJumping;
         private float _jumpTimeCounter;
@@ -35,11 +39,14 @@ namespace Noah.Scripts.Player
 
         private Coroutine _resetTriggerCoroutine;
 
+        private CameraFollowObject _cameraFollowObject;
+
         private void Start()
         {
             _rb = GetComponent<Rigidbody2D>();
       //      _anim = GetComponent<Animator>();
             _coll = GetComponent<Collider2D>();
+            _cameraFollowObject = _cameraFollowGO.GetComponent<CameraFollowObject>();
             StartDirectionCheck();
         }
         private void Update()
@@ -158,23 +165,23 @@ namespace Noah.Scripts.Player
         {
             if (_rightLeg.transform.position.x > _leftLeg.transform.position.x)
             {
-                _isFacingRight = true;
+                IsFacingRight = true;
             }
         
             else
             {
-                _isFacingRight = false;
+                IsFacingRight = false;
             }
         }
 
         private void TurnCheck()
         {
-            if (UserInput.Instance.MoveInput.x > 0 && !_isFacingRight)
+            if (UserInput.Instance.MoveInput.x > 0 && !IsFacingRight)
             {
                 Turn();
             }
             
-            else if (UserInput.Instance.MoveInput.x < 0 && _isFacingRight)
+            else if (UserInput.Instance.MoveInput.x < 0 && IsFacingRight)
             {
                 Turn();
             }
@@ -182,18 +189,20 @@ namespace Noah.Scripts.Player
 
         private void Turn()
         {
-            if (_isFacingRight)
+            if (IsFacingRight)
             {
                 Vector3 rotator = new Vector3(transform.position.x, 180f, transform.rotation.z);
                 transform.rotation = Quaternion.Euler(rotator);
-                _isFacingRight = !_isFacingRight;
+                IsFacingRight = !IsFacingRight;
+                _cameraFollowObject.CallTurn();
             }
 
             else
             {
                 Vector3 rotator = new Vector3(transform.position.x, 0f, transform.rotation.z);
                 transform.rotation = Quaternion.Euler(rotator);
-                _isFacingRight = !_isFacingRight;
+                IsFacingRight = !IsFacingRight;
+                _cameraFollowObject.CallTurn();
             }
         }
         #endregion
