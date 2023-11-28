@@ -40,6 +40,7 @@ namespace Noah.Scripts.Player
         private Coroutine _resetTriggerCoroutine;
 
         private CameraFollowObject _cameraFollowObject;
+        private float _fallSpeedYDampingChangeThreshold;
 
         private void Start()
         {
@@ -48,11 +49,30 @@ namespace Noah.Scripts.Player
             _coll = GetComponent<Collider2D>();
             _cameraFollowObject = _cameraFollowGO.GetComponent<CameraFollowObject>();
             StartDirectionCheck();
+            _fallSpeedYDampingChangeThreshold = CameraManager.Instance._fallSpeedYDampingChangeThreshold;
         }
         private void Update()
         {
             Move();
             Jump();
+            
+            // A modifier
+            Transform objectTransform = GetComponent<Transform>();
+            Vector3 currentRotation = objectTransform.localEulerAngles;
+            objectTransform.localEulerAngles = new Vector3(0f, currentRotation.y, currentRotation.z);
+
+            
+            
+            if (_rb.velocity.y < _fallSpeedYDampingChangeThreshold && !CameraManager.Instance.IsLerpingYDamping && !CameraManager.Instance.LerpedFromPlayerFalling)
+            {
+                CameraManager.Instance.LerpYDamping(true);
+            }
+
+            if (_rb.velocity.y >= 0f && !CameraManager.Instance.IsLerpingYDamping && CameraManager.Instance.LerpedFromPlayerFalling)
+            {
+                CameraManager.Instance.LerpedFromPlayerFalling = false;
+                CameraManager.Instance.LerpYDamping(false);
+            }
         }
 
         private void Jump()

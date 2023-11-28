@@ -12,7 +12,7 @@ public class CameraFollowObject : MonoBehaviour
     [SerializeField] private Transform _playerTransform;
     
     [Header("Flip Rotation Stats")] 
-    [SerializeField] private float _flipRotationTime = 0.5f;
+    [SerializeField] private float _flipYRotationTime = 0.5f;
 
     private Coroutine _turnCoroutine;
     private PlayerController _playerController;
@@ -31,27 +31,8 @@ public class CameraFollowObject : MonoBehaviour
 
     public void CallTurn()
     {
-        _turnCoroutine = StartCoroutine(FlipYLerp());
+        LeanTween.rotateY(gameObject, DetermineEndRotation(), _flipYRotationTime).setEaseInOutSine();
     }
-
-    private IEnumerator FlipYLerp()
-    {
-        float startRotation = transform.localEulerAngles.y;
-        float endRotationAmount = DetermineEndRotation();
-        float yRotation = 0f;
-
-        float elapsedTime = 0f;
-        while (elapsedTime < _flipRotationTime)
-        {
-            elapsedTime += Time.deltaTime;
-
-            yRotation = Mathf.Lerp(startRotation, endRotationAmount, (elapsedTime / _flipRotationTime));
-            transform.rotation = quaternion.Euler(0f, yRotation, 0f);
-
-            yield return null;
-        }
-    }
-
     private float DetermineEndRotation()
     {
         _isFacingRight = !_isFacingRight;
