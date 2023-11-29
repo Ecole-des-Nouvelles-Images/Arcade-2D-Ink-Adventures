@@ -1,31 +1,52 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 namespace Data
 {
     public class BaseObject : MonoBehaviour
     {
-        public int playerID;
-        public Color objectColor;
-
-        // Méthode d'initialisation pour enregistrer l'observateur
+        //public int playerID;
+        private Light2D _objectLight;
+        private Rigidbody2D _objectRigidbody;
+        private LayerMask playerLayer;
         void Start()
         {
-            // Enregistrement en tant qu'observateur auprès du CharacterController
+            _objectRigidbody = GetComponent<Rigidbody2D>();
+            _objectLight = GetComponent<Light2D>();
+            
+            playerLayer = LayerMask.GetMask("Player");
+            
             FindObjectOfType<PlayerController>().OnColorChange += HandleColorChange;
-
-            // Initialiser la couleur de l'objet en fonction de l'ID
-            objectColor = GetColorByID(playerID);
+            
+            //objectColor = GetColorByID(playerID);
         }
-
-        // Méthode appelée lorsqu'un événement de changement de couleur est déclenché
         private void HandleColorChange(Color newColor)
         {
-            // Mettre à jour la logique de l'objet en fonction de la nouvelle couleur
-            // ...
+            if (newColor == _objectLight.color)
+            {
+                if (_objectRigidbody != null)
+                {
+                    // Exclude the player layer
+                    Physics2D.IgnoreLayerCollision(gameObject.layer, playerLayer,true);
+
+                    Debug.Log("Je collide !");
+                }
+            }
+            else
+            {
+                if (_objectRigidbody != null)
+                {
+                    // Reset collision detection mode and layer collision mask
+                    Physics2D.IgnoreLayerCollision(gameObject.layer, playerLayer,false);
+
+                    Debug.Log("Et non !");
+                }
+            }
         }
-        private static Color GetColorByID(int id)
+        /*private static Color GetColorByID(int id)
         {
             switch (id)
             {
@@ -44,7 +65,7 @@ namespace Data
                 default:
                     return Color.white;
             }
-        }
+        }*/
     }
 }
 
