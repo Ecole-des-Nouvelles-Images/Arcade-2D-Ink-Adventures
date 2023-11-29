@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using Noah.Scripts.Input;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 
 namespace Noah.Scripts.Player
 {
@@ -51,16 +53,18 @@ namespace Noah.Scripts.Player
             StartDirectionCheck();
             _fallSpeedYDampingChangeThreshold = CameraManager.Instance._fallSpeedYDampingChangeThreshold;
         }
+        
         private void Update()
         {
             Move();
             Jump();
             
             // A modifier
+            /*
             Transform objectTransform = GetComponent<Transform>();
             Vector3 currentRotation = objectTransform.localEulerAngles;
             objectTransform.localEulerAngles = new Vector3(0f, currentRotation.y, currentRotation.z);
-
+            */
             
             
             if (_rb.velocity.y < _fallSpeedYDampingChangeThreshold && !CameraManager.Instance.IsLerpingYDamping && !CameraManager.Instance.LerpedFromPlayerFalling)
@@ -211,7 +215,7 @@ namespace Noah.Scripts.Player
         {
             if (IsFacingRight)
             {
-                Vector3 rotator = new Vector3(transform.position.x, 180f, transform.rotation.z);
+                Vector3 rotator = new Vector3(0f, 180f, 0f);
                 transform.rotation = Quaternion.Euler(rotator);
                 IsFacingRight = !IsFacingRight;
                 _cameraFollowObject.CallTurn();
@@ -219,7 +223,7 @@ namespace Noah.Scripts.Player
 
             else
             {
-                Vector3 rotator = new Vector3(transform.position.x, 0f, transform.rotation.z);
+                Vector3 rotator = new Vector3(0f, 0f, 0f);
                 transform.rotation = Quaternion.Euler(rotator);
                 IsFacingRight = !IsFacingRight;
                 _cameraFollowObject.CallTurn();
