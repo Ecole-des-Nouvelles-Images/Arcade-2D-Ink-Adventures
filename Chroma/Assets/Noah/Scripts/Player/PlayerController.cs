@@ -3,11 +3,14 @@ using System.Collections;
 using Noah.Scripts.Input;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
+using UnityEngine.Serialization;
 
 namespace Noah.Scripts.Player
 {
     public class PlayerController : MonoBehaviour
     {
+        [HideInInspector] public bool IsClimbing;
+
         [Header("Movement")]
         [SerializeField] private float _moveSpeed = 7.5f;
         
@@ -37,7 +40,9 @@ namespace Noah.Scripts.Player
         private Collider2D _coll;
         private RaycastHit2D _groundHit;
         
-        private float _moveInput;
+        private float _moveInputx;
+        private float _moveInputy;
+
 
         private Coroutine _resetTriggerCoroutine;
 
@@ -46,26 +51,23 @@ namespace Noah.Scripts.Player
 
         private void Start()
         {
-            _rb = GetComponent<Rigidbody2D>();
-      //      _anim = GetComponent<Animator>();
+            _rb = GetComponent<Rigidbody2D>(); 
+            //     _anim = GetComponent<Animator>();
             _coll = GetComponent<Collider2D>();
             _cameraFollowObject = _cameraFollowGO.GetComponent<CameraFollowObject>();
             StartDirectionCheck();
             _fallSpeedYDampingChangeThreshold = CameraManager.Instance._fallSpeedYDampingChangeThreshold;
         }
-        
+
+        private void FixedUpdate()
+        {
+            Climb();
+            Move();
+        }
+
         private void Update()
         {
-            Move();
             Jump();
-            
-            // A modifier
-            /*
-            Transform objectTransform = GetComponent<Transform>();
-            Vector3 currentRotation = objectTransform.localEulerAngles;
-            objectTransform.localEulerAngles = new Vector3(0f, currentRotation.y, currentRotation.z);
-            */
-            
             
             if (_rb.velocity.y < _fallSpeedYDampingChangeThreshold && !CameraManager.Instance.IsLerpingYDamping && !CameraManager.Instance.LerpedFromPlayerFalling)
             {
@@ -78,7 +80,8 @@ namespace Noah.Scripts.Player
                 CameraManager.Instance.LerpYDamping(false);
             }
         }
-
+        
+        #region Jump Function
         private void Jump()
         {
             if (UserInput.Instance.Controls.Jumping.Jump.WasPressedThisFrame() && IsGrounded())
@@ -124,18 +127,19 @@ namespace Noah.Scripts.Player
             }
             DrawGroundCheck();
         }
-
+        #endregion
+        
         #region Movement Functions
         private void Move()
         {
-            _moveInput = UserInput.Instance.MoveInput.x;
+            _moveInputx = UserInput.Instance.MoveInput.x;
 
-            if (_moveInput > 0 || _moveInput < 0)
+            if (_moveInputx > 0 || _moveInputx < 0)
             {
                 TurnCheck();
             }
             
-            _rb.velocity = new Vector2(_moveInput * _moveSpeed, _rb.velocity.y);
+            _rb.velocity = new Vector2(_moveInputx * _moveSpeed, _rb.velocity.y);
         }
         #endregion
 
@@ -230,6 +234,20 @@ namespace Noah.Scripts.Player
             }
         }
         #endregion
+        
+        #region Climb Function
+        private void Climb()
+        {
+            _moveInputx = UserInput.Instance.MoveInput.x;
+            _moveInputy = UserInput.Instance.MoveInput.y;
+
+            if (IsClimbing)
+            { 
+                _rb.velocity = new Vector2(_moveInputx * _moveSpeed, _moveInputy * _moveSpeed); 
+            }
+        }
+        #endregion
+
 
         private void DrawGroundCheck()
         {

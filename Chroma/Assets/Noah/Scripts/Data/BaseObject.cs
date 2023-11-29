@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Data
 {
-    public class BaseObject : MonoBehaviour
+    public abstract class BaseObject : MonoBehaviour
     {
         public int playerID;
         public Color objectColor;

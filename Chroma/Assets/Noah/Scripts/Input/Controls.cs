@@ -298,6 +298,78 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Climbing"",
+            ""id"": ""c7c47b57-6dd5-4ac2-abfa-d0f150d5b2f1"",
+            ""actions"": [
+                {
+                    ""name"": ""Climb"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""d0408ed2-a4b8-4f5b-9974-8f794f7cc891"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": ""2D Vector"",
+                    ""id"": ""d9863540-2661-4347-bbfe-56911513c78d"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Climb"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""2e1db610-2b73-4fb7-b00d-37c4336ebb01"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Climb"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""6b8570d2-5e65-4edb-8dda-3631743e6a6c"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Climb"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""f0f09762-0799-4216-a5f0-262a50939c6b"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Climb"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""c98ad584-52c5-445d-8c58-c537e5f3e4bf"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Climb"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -319,6 +391,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         // Jumping
         m_Jumping = asset.FindActionMap("Jumping", throwIfNotFound: true);
         m_Jumping_Jump = m_Jumping.FindAction("Jump", throwIfNotFound: true);
+        // Climbing
+        m_Climbing = asset.FindActionMap("Climbing", throwIfNotFound: true);
+        m_Climbing_Climb = m_Climbing.FindAction("Climb", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -468,6 +543,52 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         }
     }
     public JumpingActions @Jumping => new JumpingActions(this);
+
+    // Climbing
+    private readonly InputActionMap m_Climbing;
+    private List<IClimbingActions> m_ClimbingActionsCallbackInterfaces = new List<IClimbingActions>();
+    private readonly InputAction m_Climbing_Climb;
+    public struct ClimbingActions
+    {
+        private @Controls m_Wrapper;
+        public ClimbingActions(@Controls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Climb => m_Wrapper.m_Climbing_Climb;
+        public InputActionMap Get() { return m_Wrapper.m_Climbing; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(ClimbingActions set) { return set.Get(); }
+        public void AddCallbacks(IClimbingActions instance)
+        {
+            if (instance == null || m_Wrapper.m_ClimbingActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_ClimbingActionsCallbackInterfaces.Add(instance);
+            @Climb.started += instance.OnClimb;
+            @Climb.performed += instance.OnClimb;
+            @Climb.canceled += instance.OnClimb;
+        }
+
+        private void UnregisterCallbacks(IClimbingActions instance)
+        {
+            @Climb.started -= instance.OnClimb;
+            @Climb.performed -= instance.OnClimb;
+            @Climb.canceled -= instance.OnClimb;
+        }
+
+        public void RemoveCallbacks(IClimbingActions instance)
+        {
+            if (m_Wrapper.m_ClimbingActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IClimbingActions instance)
+        {
+            foreach (var item in m_Wrapper.m_ClimbingActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_ClimbingActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public ClimbingActions @Climbing => new ClimbingActions(this);
     private int m_KeyboardSchemeIndex = -1;
     public InputControlScheme KeyboardScheme
     {
@@ -493,5 +614,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     public interface IJumpingActions
     {
         void OnJump(InputAction.CallbackContext context);
+    }
+    public interface IClimbingActions
+    {
+        void OnClimb(InputAction.CallbackContext context);
     }
 }
