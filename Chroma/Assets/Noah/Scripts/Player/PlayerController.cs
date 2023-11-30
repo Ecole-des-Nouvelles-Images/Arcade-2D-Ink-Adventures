@@ -87,7 +87,7 @@ namespace Noah.Scripts.Player
         #region Jump Function
         private void Jump()
         {
-            if (UserInput.Instance.Controls.Jumping.Jump.WasPressedThisFrame() && IsGrounded())
+            if (UserInput.Instance.Controls.Jumping.Jump.WasPressedThisFrame() && (IsGrounded() || IsClimbing)) 
             {
                 _isJumping = true;
                 _jumpTimeCounter = _jumpTime;

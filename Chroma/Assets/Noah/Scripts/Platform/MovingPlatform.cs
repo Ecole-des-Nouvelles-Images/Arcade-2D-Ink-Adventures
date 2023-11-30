@@ -10,6 +10,8 @@ public class MovingPlatform : MonoBehaviour
     [SerializeField] private float speed;
     [SerializeField] private GameObject ways; 
     [SerializeField] private Transform[] wayPoints;
+    [SerializeField] private float waitDuration;
+
     private int _pointIndex;
     private int _pointCount;
     private int _direction = 1;
@@ -25,7 +27,7 @@ public class MovingPlatform : MonoBehaviour
         _rb = GetComponent<Rigidbody2D>();
 
         wayPoints = new Transform[ways.transform.childCount];
-        for (int i = 0; i < ways.gameObject.transform.childCount;)
+        for (int i = 0; i < ways.gameObject.transform.childCount; i++)
         {
             wayPoints[i] = ways.transform.GetChild(i).gameObject.transform;
         }
@@ -58,6 +60,7 @@ public class MovingPlatform : MonoBehaviour
     private void NextPoint()
     {
         transform.position = _targetPos;
+        _moveDirection = Vector3.zero;
 
         if (_pointIndex == _pointCount - 1)
         {
@@ -71,6 +74,12 @@ public class MovingPlatform : MonoBehaviour
         
         _pointIndex += _direction;
         _targetPos = wayPoints[_pointIndex].transform.position;
+        StartCoroutine(WaitNextPoint());
+    }
+
+    IEnumerator WaitNextPoint()
+    {
+        yield return new WaitForSeconds(waitDuration);
         DirectionCalculate();
     }
 
