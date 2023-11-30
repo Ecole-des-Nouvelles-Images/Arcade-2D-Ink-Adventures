@@ -10,9 +10,6 @@ namespace Noah.Scripts.Player
     public class PlayerController : MonoBehaviour
     {
         [HideInInspector] public bool IsClimbing;
-        [HideInInspector] public bool IsOnPlatform;
-        public Rigidbody2D PlatformRb;
-
 
         [Header("Movement")]
         [SerializeField] private float _moveSpeed = 7.5f;
@@ -35,7 +32,6 @@ namespace Noah.Scripts.Player
         [HideInInspector] public bool IsFacingRight;
         
         private bool _isFalling;
-        private bool _isMoving;
         private bool _isJumping;
         private float _jumpTimeCounter;
         
@@ -72,6 +68,7 @@ namespace Noah.Scripts.Player
         private void Update()
         {
             Jump();
+            
             if (_rb.velocity.y < _fallSpeedYDampingChangeThreshold && !CameraManager.Instance.IsLerpingYDamping && !CameraManager.Instance.LerpedFromPlayerFalling)
             {
                 CameraManager.Instance.LerpYDamping(true);
@@ -141,30 +138,8 @@ namespace Noah.Scripts.Player
             {
                 TurnCheck();
             }
-            if (IsOnPlatform)
-            {
-                if (IsMoving())
-                {
-                    _rb.velocity = new Vector2(_moveInputx * _moveSpeed, _rb.velocity.y);
-                }
-                else if (IsMoving() == false)
-                { 
-                    _rb.velocity = new Vector2(_moveInputx * _moveSpeed + PlatformRb.velocity.x, _rb.velocity.y);
-                }
-            }
-            else
-            {
-                _rb.velocity = new Vector2(_moveInputx * _moveSpeed, _rb.velocity.y);
-            }
-        }
-
-        private bool IsMoving()
-        {
-            if (_rb.velocity.x != 0 && _rb.velocity.x != PlatformRb.velocity.x) 
-            {
-                return true;
-            }
-            return false;
+            
+            _rb.velocity = new Vector2(_moveInputx * _moveSpeed, _rb.velocity.y);
         }
         #endregion
 
@@ -272,7 +247,8 @@ namespace Noah.Scripts.Player
             }
         }
         #endregion
-        
+
+
         private void DrawGroundCheck()
         {
             Color rayColor;
