@@ -1,37 +1,44 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
+using Elias.Scripts.Managers;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
-namespace Data
+namespace Elias.Scripts.Data
 {
     public class BaseObject : MonoBehaviour
     {
-        //public int playerID;
         private Light2D _objectLight;
         private Rigidbody2D _objectRigidbody;
-        private LayerMask playerLayer;
+        private LayerMask _objectLayer;
+        private LayerMask _playerLayer;
+        //private LayerMask _collisionLayer; // New layer for object collisions
+        private float _colorTolerance = 3f;
+
         void Start()
         {
             _objectRigidbody = GetComponent<Rigidbody2D>();
             _objectLight = GetComponent<Light2D>();
-            
-            playerLayer = LayerMask.GetMask("Player");
-            
+            _playerLayer = LayerMask.NameToLayer("Player");
+            _objectLayer = LayerMask.NameToLayer("Object");
+            //_collisionLayer = LayerMask.GetMask("Object");
+            // Check if the layers are valid
+            if (_playerLayer == -1 || _objectLayer == -1)
+            {
+                Debug.LogError("Player or Object layer not found. Make sure the layers exist in the project settings.");
+            }
+
             FindObjectOfType<PlayerController>().OnColorChange += HandleColorChange;
-            
-            //objectColor = GetColorByID(playerID);
         }
+
         private void HandleColorChange(Color newColor)
         {
-            if (newColor == _objectLight.color)
+            
+            if (GameManager.Instance.AreColorsClose(newColor, this._objectLight.color, _colorTolerance))
             {
                 if (_objectRigidbody != null)
                 {
-                    // Exclude the player layer
-                    Physics2D.IgnoreLayerCollision(gameObject.layer, playerLayer,true);
-
+                    // Enable collisions with player and objects
+                    Physics2D.IgnoreLayerCollision(_objectLayer, _playerLayer, false);
+                    //Physics2D.IgnoreLayerCollision(_objectLayer, _collisionLayer, false);
                     Debug.Log("Je collide !");
                 }
             }
@@ -39,33 +46,12 @@ namespace Data
             {
                 if (_objectRigidbody != null)
                 {
-                    // Reset collision detection mode and layer collision mask
-                    Physics2D.IgnoreLayerCollision(gameObject.layer, playerLayer,false);
-
+                    // Disable collisions with player and objects
+                    Physics2D.IgnoreLayerCollision(_objectLayer, _playerLayer, true);
+                    //Physics2D.IgnoreLayerCollision(_objectLayer, _collisionLayer, true);
                     Debug.Log("Et non !");
                 }
             }
         }
-        /*private static Color GetColorByID(int id)
-        {
-            switch (id)
-            {
-                case 1:
-                    return Color.red;
-                case 2:
-                    return Color.green;
-                case 3:
-                    return Color.blue;
-                case 4:
-                    return Color.yellow;
-                case 5:
-                    return Color.magenta;
-                case 6:
-                    return Color.cyan;
-                default:
-                    return Color.white;
-            }
-        }*/
     }
 }
-
