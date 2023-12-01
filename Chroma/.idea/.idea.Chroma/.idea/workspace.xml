@@ -11,8 +11,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Data/BaseObject.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Data/PlayerController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Elias/Scripts/Helper/ObjectColors.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 1
@@ -127,6 +126,7 @@
       <workItem from="1701248450587" duration="12753000" />
       <workItem from="1701337664778" duration="398000" />
       <workItem from="1701356479410" duration="6118000" />
+      <workItem from="1701435416400" duration="9163000" />
     </task>
     <servers />
   </component>
