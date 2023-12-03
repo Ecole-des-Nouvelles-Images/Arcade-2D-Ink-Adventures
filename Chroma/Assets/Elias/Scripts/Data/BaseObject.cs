@@ -11,9 +11,11 @@ namespace Elias.Scripts.Data
         private Rigidbody2D _objectRigidbody;
         private string _objectLayer; // Change to string to store layer name
         private LayerMask _playerLayer;
-        private float _colorTolerance = 3f;
+        private float _colorTolerance = 4f;
 
         private Color _currentColor;
+        
+        
 
         void Start()
         {
@@ -22,11 +24,6 @@ namespace Elias.Scripts.Data
             _playerLayer = LayerMask.NameToLayer("Player");
 
             _objectLayer = LayerMask.LayerToName(gameObject.layer); // Store the layer name instead of the index
-
-            if (_playerLayer == -1)
-            {
-                Debug.LogError("Player layer not found. Make sure the layer exists in the project settings.");
-            }
 
             _currentColor = _objectLight.color;
 

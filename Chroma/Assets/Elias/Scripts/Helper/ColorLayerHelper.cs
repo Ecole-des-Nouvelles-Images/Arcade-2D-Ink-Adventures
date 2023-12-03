@@ -51,7 +51,7 @@ namespace Elias.Scripts.Helper
                 case "ObjectCyan":
                     return Color.cyan;
                 default:
-                    Debug.LogWarning("Unsupported layer: " + layer);
+                        Debug.LogWarning("Unsupported layer: " + layer);
                     return Color.white;
             }
         }
