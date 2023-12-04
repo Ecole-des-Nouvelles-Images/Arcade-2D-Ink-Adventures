@@ -7,7 +7,7 @@ using UnityEngine.Serialization;
 
 namespace Noah.Scripts.Player
 {
-    public class PlayerController : MonoBehaviour
+    public class PlayerControllerElias : MonoBehaviour
     {
         [HideInInspector] public bool IsClimbing;
 

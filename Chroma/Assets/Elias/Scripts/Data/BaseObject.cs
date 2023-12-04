@@ -1,21 +1,21 @@
+using Elias.Scripts.Helper;
 using Elias.Scripts.Managers;
+using Elias.Scripts.ObjectColorState;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
-using Elias.Scripts.Helper; // Import the helper namespace
 
 namespace Elias.Scripts.Data
 {
+
     public class BaseObject : MonoBehaviour
     {
         private Light2D _objectLight;
         private Rigidbody2D _objectRigidbody;
-        private string _objectLayer; // Change to string to store layer name
+        private string _objectLayer;
         private LayerMask _playerLayer;
         private float _colorTolerance = 4f;
-
         private Color _currentColor;
-        
-        
+        private ColorContext colorContext;
 
         void Start()
         {
@@ -23,27 +23,35 @@ namespace Elias.Scripts.Data
             _objectLight = GetComponent<Light2D>();
             _playerLayer = LayerMask.NameToLayer("Player");
 
-            _objectLayer = LayerMask.LayerToName(gameObject.layer); // Store the layer name instead of the index
-
+            _objectLayer = LayerMask.LayerToName(gameObject.layer);
             _currentColor = _objectLight.color;
 
-            FindObjectOfType<PlayerController>().OnColorChange += HandleColorChange;
+            FindObjectOfType<PlayerControllerElias>().OnColorChange += HandleColorChange;
+
+            // Initialize the color context with the appropriate initial state based on the layer
+            IColorState initialState = GetInitialState(_objectLayer);
+            colorContext = new ColorContext(initialState);
+
+            // Set up collisions based on the initial state
+            colorContext.SetupCollision(this);
         }
 
         private void HandleColorChange(Color newColor)
         {
-            // Check if the player and object colors are close
             bool areColorsClose = GameManager.Instance.AreColorsClose(newColor, _objectLight.color, _colorTolerance);
 
-            // Check if the layers should ignore each other based on color
-            bool shouldIgnoreCollision = ColorLayerHelper.ShouldIgnoreCollision(_objectLayer, "Player");
+            // Change the color state based on the new color
+            IColorState newState = GetStateFromColor(newColor);
+            colorContext.SetState(newState);
 
-            if (areColorsClose && !shouldIgnoreCollision)
+            // Set up collisions based on the new state
+            colorContext.SetupCollision(this);
+
+            if (areColorsClose && !ColorLayerHelper.ShouldIgnoreCollision(_objectLayer, "Player"))
             {
                 if (_objectRigidbody != null)
                 {
                     Physics2D.IgnoreLayerCollision(gameObject.layer, _playerLayer, false);
-                    Physics2D.IgnoreLayerCollision(gameObject.layer, gameObject.layer, false);
                     Debug.Log("Je collide !");
                 }
             }
@@ -52,12 +60,40 @@ namespace Elias.Scripts.Data
                 if (_objectRigidbody != null)
                 {
                     Physics2D.IgnoreLayerCollision(gameObject.layer, _playerLayer, true);
-                    Physics2D.IgnoreLayerCollision(gameObject.layer, gameObject.layer, true);
                     Debug.Log("Et non !");
                 }
             }
 
             _currentColor = newColor;
+        }
+
+        private IColorState GetInitialState(string layer)
+        {
+            switch (layer)
+            {
+                case "ObjectRed":
+                    return new RedState();
+                case "ObjectBlue":
+                    return new BlueState();
+                case "ObjectGreen":
+                    return new GreenState();
+                case "ObjectYellow":
+                    return new YellowState();
+                case "ObjectMagenta":
+                    return new MagentaState();
+                case "ObjectCyan":
+                    return new CyanState();
+                default:
+                    Debug.LogWarning("Unsupported layer: " + layer);
+                    return null;
+            }
+        }
+
+        private IColorState GetStateFromColor(Color color)
+        {
+            // Implement your logic to map colors to states here
+            // For simplicity, you can return a specific state for each color
+            return new RedState(); // Placeholder; replace with actual logic
         }
     }
 }

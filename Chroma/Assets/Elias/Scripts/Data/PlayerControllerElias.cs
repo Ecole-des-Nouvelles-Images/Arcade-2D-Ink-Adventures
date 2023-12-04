@@ -8,7 +8,7 @@ using UnityEngine.Rendering.Universal;
 namespace Elias.Scripts.Data
 {
     
-    public class PlayerController : MonoBehaviour
+    public class PlayerControllerElias : MonoBehaviour
     {
         [SerializeField] private Light2D playerLight;
         [HideInInspector] public bool IsClimbing;
@@ -44,6 +44,8 @@ namespace Elias.Scripts.Data
         
         private float _moveInputx;
         private float _moveInputy;
+
+        public GroundDetection GroundDetection;
 
 
         private Coroutine _resetTriggerCoroutine;
@@ -88,7 +90,7 @@ namespace Elias.Scripts.Data
         #region Jump Function
         private void Jump()
         {
-            if (UserInput.Instance.Controls.Jumping.Jump.WasPressedThisFrame() && IsGrounded())
+            if (UserInput.Instance.Controls.Jumping.Jump.WasPressedThisFrame() && Data.GroundDetection.IsCollided)
             {
                 _isJumping = true;
                 _jumpTimeCounter = _jumpTime;
@@ -148,25 +150,12 @@ namespace Elias.Scripts.Data
         #endregion
 
         #region Ground/Landed Check
-        private bool IsGrounded()
-        {
-            _groundHit = Physics2D.BoxCast(_coll.bounds.center, _coll.bounds.size, 0f, Vector2.down,extraHeight, _whatIsGround);
-            if (_groundHit.collider != null)
-            {
-                return true;
-            }
-
-            else
-            {
-                return false;
-            }
-        }
 
         private bool CheckForLand()
         {
             if (_isFalling)
             {
-                if (IsGrounded())
+                if (Data.GroundDetection.IsCollided)
                 {
                     _isFalling = false;
                     return true;
@@ -257,7 +246,7 @@ namespace Elias.Scripts.Data
         {
             Color rayColor;
 
-            if (IsGrounded())
+            if (Data.GroundDetection.IsCollided)
             {
                 rayColor = Color.green;
             }
