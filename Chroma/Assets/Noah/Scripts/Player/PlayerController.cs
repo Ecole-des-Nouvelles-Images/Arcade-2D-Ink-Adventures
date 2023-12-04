@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Noah.Scripts.Camera;
 using Noah.Scripts.Input;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
@@ -46,12 +47,14 @@ namespace Noah.Scripts.Player
         
         private float _moveInputx;
         private float _moveInputy;
-
-
+        
         private Coroutine _resetTriggerCoroutine;
 
         private CameraFollowObject _cameraFollowObject;
         private float _fallSpeedYDampingChangeThreshold;
+
+        private float _normalGravity;
+        private bool _isGrounded;
 
         private void Start()
         {
@@ -87,7 +90,7 @@ namespace Noah.Scripts.Player
         #region Jump Function
         private void Jump()
         {
-            if (UserInput.Instance.Controls.Jumping.Jump.WasPressedThisFrame() && (IsGrounded() || IsClimbing)) 
+            if (UserInput.Instance.Controls.Jumping.Jump.WasPressedThisFrame() && (_isGrounded || IsClimbing)) 
             {
                 _isJumping = true;
                 _jumpTimeCounter = _jumpTime;
@@ -169,25 +172,29 @@ namespace Noah.Scripts.Player
         #endregion
 
         #region Ground/Landed Check
-        private bool IsGrounded()
+        private void OnCollisionEnter2D(Collision2D other)
         {
-            _groundHit = Physics2D.BoxCast(_coll.bounds.center, _coll.bounds.size, 0f, Vector2.down,extraHeight, _whatIsGround);
-            if (_groundHit.collider != null)
+            if (other.gameObject.CompareTag("Ground"))
             {
-                return true;
+                _isGrounded = true;
             }
 
-            else
+        }
+        
+        private void OnCollisionExit2D(Collision2D other)
+        {
+            if (other.gameObject.CompareTag("Ground"))
             {
-                return false;
+                _isGrounded = false;
             }
+
         }
 
         private bool CheckForLand()
         {
             if (_isFalling)
             {
-                if (IsGrounded())
+                if (_isGrounded)
                 {
                     _isFalling = false;
                     return true;
@@ -268,7 +275,13 @@ namespace Noah.Scripts.Player
 
             if (IsClimbing)
             { 
-                _rb.velocity = new Vector2(_moveInputx * _moveSpeed, _moveInputy * _moveSpeed); 
+                _rb.velocity = new Vector2(_moveInputx * _moveSpeed, _moveInputy * _moveSpeed);
+                _rb.gravityScale = 0f;
+            }
+
+            else
+            {
+                _rb.gravityScale = 7f;
             }
         }
         #endregion
@@ -277,7 +290,7 @@ namespace Noah.Scripts.Player
         {
             Color rayColor;
 
-            if (IsGrounded())
+            if (_isGrounded)
             {
                 rayColor = Color.green;
             }
