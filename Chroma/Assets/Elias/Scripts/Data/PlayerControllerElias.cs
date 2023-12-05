@@ -276,33 +276,28 @@ namespace Elias.Scripts.Data
                     switch (key)
                     {
                         case KeyCode.R:
-                            if (Input.GetKey(KeyCode.G))
-                                ChangeColor(Color.yellow);
-                            else if (Input.GetKey(KeyCode.B))
-                                ChangeColor(Color.magenta);
-                            else
-                                ChangeColor(Color.red);
+                            ChangeColor(GetColor(KeyCode.G, Color.yellow, KeyCode.B, Color.magenta, Color.red));
                             break;
 
                         case KeyCode.G:
-                            if (Input.GetKey(KeyCode.B))
-                                ChangeColor(Color.cyan);
-                            else if (Input.GetKey(KeyCode.R))
-                                ChangeColor(Color.yellow);
-                            else
-                                ChangeColor(Color.green);
+                            ChangeColor(GetColor(KeyCode.B, Color.cyan, KeyCode.R, Color.yellow, Color.green));
                             break;
 
                         case KeyCode.B:
-                            if (Input.GetKey(KeyCode.R))
-                                ChangeColor(Color.magenta);
-                            else if (Input.GetKey(KeyCode.G))
-                                ChangeColor(Color.cyan);
-                            else
-                                ChangeColor(Color.blue);
+                            ChangeColor(GetColor(KeyCode.R, Color.magenta, KeyCode.G, Color.cyan, Color.blue));
                             break;
                     }
                 }
+            }
+
+            Color GetColor(KeyCode secondKey, Color colorIfBothPressed, KeyCode thirdKey, Color colorIfThirdPressed, Color defaultColor)
+            {
+                if (Input.GetKey(secondKey))
+                    return colorIfBothPressed;
+                else if (Input.GetKey(thirdKey))
+                    return colorIfThirdPressed;
+                else
+                    return defaultColor;
             }
         } 
         public void ChangeColor(Color newColor)
