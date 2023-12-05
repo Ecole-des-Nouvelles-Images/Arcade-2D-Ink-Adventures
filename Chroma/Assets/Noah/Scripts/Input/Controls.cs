@@ -370,6 +370,45 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 }
             ]
+        },
+        {
+            ""name"": ""Pushing/Pulling"",
+            ""id"": ""96003a3d-bdab-4410-b54e-1e4db7b336e6"",
+            ""actions"": [
+                {
+                    ""name"": ""Push/Pull"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""237e08cc-fb6c-41c3-a956-180fddb85a58"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""9db788ed-2ed3-4662-8f03-81580e8a0701"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Push/Pull"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1dc8c868-4c53-4357-afc0-1975145d323d"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Push/Pull"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -394,6 +433,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         // Climbing
         m_Climbing = asset.FindActionMap("Climbing", throwIfNotFound: true);
         m_Climbing_Climb = m_Climbing.FindAction("Climb", throwIfNotFound: true);
+        // Pushing/Pulling
+        m_PushingPulling = asset.FindActionMap("Pushing/Pulling", throwIfNotFound: true);
+        m_PushingPulling_PushPull = m_PushingPulling.FindAction("Push/Pull", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -589,6 +631,52 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         }
     }
     public ClimbingActions @Climbing => new ClimbingActions(this);
+
+    // Pushing/Pulling
+    private readonly InputActionMap m_PushingPulling;
+    private List<IPushingPullingActions> m_PushingPullingActionsCallbackInterfaces = new List<IPushingPullingActions>();
+    private readonly InputAction m_PushingPulling_PushPull;
+    public struct PushingPullingActions
+    {
+        private @Controls m_Wrapper;
+        public PushingPullingActions(@Controls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @PushPull => m_Wrapper.m_PushingPulling_PushPull;
+        public InputActionMap Get() { return m_Wrapper.m_PushingPulling; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(PushingPullingActions set) { return set.Get(); }
+        public void AddCallbacks(IPushingPullingActions instance)
+        {
+            if (instance == null || m_Wrapper.m_PushingPullingActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_PushingPullingActionsCallbackInterfaces.Add(instance);
+            @PushPull.started += instance.OnPushPull;
+            @PushPull.performed += instance.OnPushPull;
+            @PushPull.canceled += instance.OnPushPull;
+        }
+
+        private void UnregisterCallbacks(IPushingPullingActions instance)
+        {
+            @PushPull.started -= instance.OnPushPull;
+            @PushPull.performed -= instance.OnPushPull;
+            @PushPull.canceled -= instance.OnPushPull;
+        }
+
+        public void RemoveCallbacks(IPushingPullingActions instance)
+        {
+            if (m_Wrapper.m_PushingPullingActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IPushingPullingActions instance)
+        {
+            foreach (var item in m_Wrapper.m_PushingPullingActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_PushingPullingActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public PushingPullingActions @PushingPulling => new PushingPullingActions(this);
     private int m_KeyboardSchemeIndex = -1;
     public InputControlScheme KeyboardScheme
     {
@@ -618,5 +706,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     public interface IClimbingActions
     {
         void OnClimb(InputAction.CallbackContext context);
+    }
+    public interface IPushingPullingActions
+    {
+        void OnPushPull(InputAction.CallbackContext context);
     }
 }

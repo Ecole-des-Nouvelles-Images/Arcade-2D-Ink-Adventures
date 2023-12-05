@@ -12,7 +12,7 @@ namespace Noah.Scripts.Player
     {
         [HideInInspector] public bool IsClimbing;
         [HideInInspector] public bool IsOnPlatform;
-        public Rigidbody2D PlatformRb;
+        [HideInInspector] public Rigidbody2D PlatformRb;
 
 
         [Header("Movement")]
@@ -56,6 +56,9 @@ namespace Noah.Scripts.Player
         private float _normalGravity;
         private bool _isGrounded;
 
+        private GameObject _movableBox;
+        private bool _canMoveBox;
+        
         private void Start()
         {
             _rb = GetComponent<Rigidbody2D>(); 
@@ -70,6 +73,8 @@ namespace Noah.Scripts.Player
         {
             Climb();
             Move();
+            Movebox();
+            DontMoveBox();
         }
 
         private void Update()
@@ -171,25 +176,72 @@ namespace Noah.Scripts.Player
         }
         #endregion
 
-        #region Ground/Landed Check
+        #region Ground/Landed + Push/Pull Functions
         private void OnCollisionEnter2D(Collision2D other)
         {
-            if (other.gameObject.CompareTag("Ground"))
+            if (Tags.CompareTags("Ground", other.gameObject))
             {
                 _isGrounded = true;
+  
             }
-
+            if (Tags.CompareTags("Movable", other.gameObject))
+            {
+                _canMoveBox = true;
+                _movableBox = other.gameObject;
+            }   
         }
-        
+
         private void OnCollisionExit2D(Collision2D other)
         {
-            if (other.gameObject.CompareTag("Ground"))
+            if (Tags.CompareTags("Ground", other.gameObject))
             {
                 _isGrounded = false;
             }
 
+            if (Tags.CompareTags("Movable", other.gameObject))
+            {
+                _canMoveBox = false;
+            }
         }
 
+        private void Movebox()
+        {
+            if (UserInput.Instance.Controls.PushingPulling.PushPull.IsPressed() && _canMoveBox && _movableBox != null)
+            {
+                Rigidbody2D movableRigidbody = _movableBox.GetComponent<Rigidbody2D>();
+        
+                if (movableRigidbody != null)
+                {
+                    movableRigidbody.isKinematic = false; 
+
+                    RelativeJoint2D relativeJoint = GetComponent<RelativeJoint2D>();
+                    relativeJoint.enabled = true; 
+                    relativeJoint.connectedBody = movableRigidbody;
+                }
+            }
+        }
+
+        private void DontMoveBox()
+        {
+            if (!_canMoveBox && _movableBox != null)
+            {
+                Rigidbody2D movableRigidbody = _movableBox.GetComponent<Rigidbody2D>();
+
+                if (movableRigidbody != null)
+                {
+                    movableRigidbody.isKinematic = true;
+
+                    RelativeJoint2D relativeJoint = GetComponent<RelativeJoint2D>();
+                    if (relativeJoint != null)
+                    {
+                        relativeJoint.enabled = false;
+                        relativeJoint.connectedBody = null;
+                    }
+                }
+            }
+        }
+
+        
         private bool CheckForLand()
         {
             if (_isFalling)
@@ -306,6 +358,8 @@ namespace Noah.Scripts.Player
                 _coll.bounds.center - new Vector3(_coll.bounds.extents.x, _coll.bounds.extents.y + extraHeight),
                 Vector2.right * (_coll.bounds.extents.x * 2), rayColor);
         }
+        
+        
         
     }
 }

@@ -348,6 +348,45 @@
                     "isPartOfComposite": true
                 }
             ]
+        },
+        {
+            "name": "Pushing/Pulling",
+            "id": "96003a3d-bdab-4410-b54e-1e4db7b336e6",
+            "actions": [
+                {
+                    "name": "Push/Pull",
+                    "type": "PassThrough",
+                    "id": "237e08cc-fb6c-41c3-a956-180fddb85a58",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "9db788ed-2ed3-4662-8f03-81580e8a0701",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "Push/Pull",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1dc8c868-4c53-4357-afc0-1975145d323d",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Push/Pull",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [
