@@ -73,13 +73,14 @@ namespace Noah.Scripts.Player
         {
             Climb();
             Move();
-            Movebox();
-            DontMoveBox();
+
         }
 
         private void Update()
         {
             Jump();
+            Movebox();
+            DontMoveBox();
             if (_rb.velocity.y < _fallSpeedYDampingChangeThreshold && !CameraManager.Instance.IsLerpingYDamping && !CameraManager.Instance.LerpedFromPlayerFalling)
             {
                 CameraManager.Instance.LerpYDamping(true);
@@ -89,6 +90,17 @@ namespace Noah.Scripts.Player
             {
                 CameraManager.Instance.LerpedFromPlayerFalling = false;
                 CameraManager.Instance.LerpYDamping(false);
+            }
+            
+            
+            if (Tags.CompareTags("Ground", this.gameObject))
+            {
+                Debug.Log("Tag Ground");
+            }
+            
+            if (Tags.CompareTags("Movable", this.gameObject))
+            {
+                Debug.Log("Tag Movable");
             }
         }
         
@@ -177,18 +189,30 @@ namespace Noah.Scripts.Player
         #endregion
 
         #region Ground/Landed + Push/Pull Functions
-        private void OnCollisionEnter2D(Collision2D other)
+        private void OnCollisionStay2D(Collision2D other)
         {
             if (Tags.CompareTags("Ground", other.gameObject))
             {
                 _isGrounded = true;
   
             }
+        }
+
+        private void OnTriggerStay2D(Collider2D other)
+        {
             if (Tags.CompareTags("Movable", other.gameObject))
             {
                 _canMoveBox = true;
                 _movableBox = other.gameObject;
-            }   
+            }          
+        }
+
+        private void OnTriggerExit2D(Collider2D other)
+        {
+            if (Tags.CompareTags("Movable", other.gameObject))
+            {
+                _canMoveBox = false;
+            }        
         }
 
         private void OnCollisionExit2D(Collision2D other)
@@ -196,11 +220,6 @@ namespace Noah.Scripts.Player
             if (Tags.CompareTags("Ground", other.gameObject))
             {
                 _isGrounded = false;
-            }
-
-            if (Tags.CompareTags("Movable", other.gameObject))
-            {
-                _canMoveBox = false;
             }
         }
 
@@ -212,7 +231,7 @@ namespace Noah.Scripts.Player
         
                 if (movableRigidbody != null)
                 {
-                    movableRigidbody.isKinematic = false; 
+                    movableRigidbody.constraints = ~RigidbodyConstraints2D.FreezeAll;
 
                     RelativeJoint2D relativeJoint = GetComponent<RelativeJoint2D>();
                     relativeJoint.enabled = true; 
@@ -223,14 +242,15 @@ namespace Noah.Scripts.Player
 
         private void DontMoveBox()
         {
-            if (!_canMoveBox && _movableBox != null)
+            if (UserInput.Instance.Controls.PushingPulling.PushPull.WasReleasedThisFrame() && _movableBox != null)
             {
                 Rigidbody2D movableRigidbody = _movableBox.GetComponent<Rigidbody2D>();
 
                 if (movableRigidbody != null)
                 {
-                    movableRigidbody.isKinematic = true;
-
+                    movableRigidbody.constraints = ~RigidbodyConstraints2D.FreezeAll;
+                    movableRigidbody.constraints = ~RigidbodyConstraints2D.FreezePositionY;
+                    
                     RelativeJoint2D relativeJoint = GetComponent<RelativeJoint2D>();
                     if (relativeJoint != null)
                     {
