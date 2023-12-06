@@ -91,23 +91,12 @@ namespace Noah.Scripts.Player
                 CameraManager.Instance.LerpedFromPlayerFalling = false;
                 CameraManager.Instance.LerpYDamping(false);
             }
-            
-            
-            if (Tags.CompareTags("Ground", this.gameObject))
-            {
-                Debug.Log("Tag Ground");
-            }
-            
-            if (Tags.CompareTags("Movable", this.gameObject))
-            {
-                Debug.Log("Tag Movable");
-            }
         }
         
         #region Jump Function
         private void Jump()
         {
-            if (UserInput.Instance.Controls.Jumping.Jump.WasPressedThisFrame() && (_isGrounded || IsClimbing)) 
+            if (UserInput.Instance.Controls.InGame.Jump.WasPressedThisFrame() && (_isGrounded || IsClimbing)) 
             {
                 _isJumping = true;
                 _jumpTimeCounter = _jumpTime;
@@ -116,7 +105,7 @@ namespace Noah.Scripts.Player
     //            _anim.SetTrigger("jump");
             }
 
-            if (UserInput.Instance.Controls.Jumping.Jump.IsPressed())
+            if (UserInput.Instance.Controls.InGame.Jump.IsPressed())
             {
                 if (_jumpTimeCounter > 0 && _isJumping)
                 {
@@ -137,7 +126,7 @@ namespace Noah.Scripts.Player
                 
             }
             
-            if (UserInput.Instance.Controls.Jumping.Jump.WasReleasedThisFrame())
+            if (UserInput.Instance.Controls.InGame.Jump.WasReleasedThisFrame())
             {
                 _isJumping = false;
                 _isFalling = true;
@@ -156,7 +145,6 @@ namespace Noah.Scripts.Player
         private void Move()
         {
             _moveInputx = UserInput.Instance.MoveInput.x;
-
             if (_moveInputx > 0 || _moveInputx < 0)
             {
                 TurnCheck();
@@ -225,7 +213,7 @@ namespace Noah.Scripts.Player
 
         private void Movebox()
         {
-            if (UserInput.Instance.Controls.PushingPulling.PushPull.IsPressed() && _canMoveBox && _movableBox != null)
+            if (UserInput.Instance.Controls.InGame.PushPull.IsPressed() && _canMoveBox && _movableBox != null)
             {
                 Rigidbody2D movableRigidbody = _movableBox.GetComponent<Rigidbody2D>();
         
@@ -242,7 +230,7 @@ namespace Noah.Scripts.Player
 
         private void DontMoveBox()
         {
-            if (UserInput.Instance.Controls.PushingPulling.PushPull.WasReleasedThisFrame() && _movableBox != null)
+            if (UserInput.Instance.Controls.InGame.PushPull.WasReleasedThisFrame() && _movableBox != null)
             {
                 Rigidbody2D movableRigidbody = _movableBox.GetComponent<Rigidbody2D>();
 

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8779633259270658333}
   - component: {fileID: 1277330012062718647}
   m_Layer: 6
-  m_Name: MovingObstacle
+  m_Name: MovableBox
   m_TagString: Movable,Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
