@@ -41,8 +41,8 @@ namespace Elias.Scripts.Data
             bool areColorsClose = GameManager.Instance.AreColorsClose(newColor, _objectLight.color, _colorTolerance);
 
             // Change the color state based on the new color
-            IColorState newState = GetStateFromColor(newColor);
-            colorContext.SetState(newState);
+            //IColorState newState = GetStateFromColor(newColor);
+            //colorContext.SetState(newState);
 
             // Set up collisions based on the new state
             colorContext.SetupCollision(this);
@@ -87,13 +87,6 @@ namespace Elias.Scripts.Data
                     Debug.LogWarning("Unsupported layer: " + layer);
                     return null;
             }
-        }
-
-        private IColorState GetStateFromColor(Color color)
-        {
-            // Implement your logic to map colors to states here
-            // For simplicity, you can return a specific state for each color
-            return new RedState(); // Placeholder; replace with actual logic
         }
     }
 }
