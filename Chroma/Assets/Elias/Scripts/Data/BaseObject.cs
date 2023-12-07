@@ -1,37 +1,57 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
+using Elias.Scripts.Helper;
+using Elias.Scripts.Managers;
+using Elias.Scripts.ObjectColorState;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
-namespace Data
+namespace Elias.Scripts.Data
 {
+
     public class BaseObject : MonoBehaviour
     {
-        //public int playerID;
         private Light2D _objectLight;
         private Rigidbody2D _objectRigidbody;
-        private LayerMask playerLayer;
+        private string _objectLayer;
+        private LayerMask _playerLayer;
+        private float _colorTolerance = 4f;
+        private Color _currentColor;
+        private ColorContext colorContext;
+
         void Start()
         {
             _objectRigidbody = GetComponent<Rigidbody2D>();
             _objectLight = GetComponent<Light2D>();
-            
-            playerLayer = LayerMask.GetMask("Player");
-            
-            FindObjectOfType<PlayerController>().OnColorChange += HandleColorChange;
-            
-            //objectColor = GetColorByID(playerID);
+            _playerLayer = LayerMask.NameToLayer("Player");
+
+            _objectLayer = LayerMask.LayerToName(gameObject.layer);
+            _currentColor = _objectLight.color;
+
+            FindObjectOfType<PlayerControllerElias>().OnColorChange += HandleColorChange;
+
+            // Initialize the color context with the appropriate initial state based on the layer
+            IColorState initialState = GetInitialState(_objectLayer);
+            colorContext = new ColorContext(initialState);
+
+            // Set up collisions based on the initial state
+            colorContext.SetupCollision(this);
         }
+
         private void HandleColorChange(Color newColor)
         {
-            if (newColor == _objectLight.color)
+            bool areColorsClose = GameManager.Instance.AreColorsClose(newColor, _objectLight.color, _colorTolerance);
+
+            // Change the color state based on the new color
+            //IColorState newState = GetStateFromColor(newColor);
+            //colorContext.SetState(newState);
+
+            // Set up collisions based on the new state
+            colorContext.SetupCollision(this);
+
+            if (areColorsClose && !ColorLayerHelper.ShouldIgnoreCollision(_objectLayer, "Player"))
             {
                 if (_objectRigidbody != null)
                 {
-                    // Exclude the player layer
-                    Physics2D.IgnoreLayerCollision(gameObject.layer, playerLayer,true);
-
+                    Physics2D.IgnoreLayerCollision(gameObject.layer, _playerLayer, false);
                     Debug.Log("Je collide !");
                 }
             }
@@ -39,33 +59,34 @@ namespace Data
             {
                 if (_objectRigidbody != null)
                 {
-                    // Reset collision detection mode and layer collision mask
-                    Physics2D.IgnoreLayerCollision(gameObject.layer, playerLayer,false);
-
+                    Physics2D.IgnoreLayerCollision(gameObject.layer, _playerLayer, true);
                     Debug.Log("Et non !");
                 }
             }
+
+            _currentColor = newColor;
         }
-        /*private static Color GetColorByID(int id)
+
+        private IColorState GetInitialState(string layer)
         {
-            switch (id)
+            switch (layer)
             {
-                case 1:
-                    return Color.red;
-                case 2:
-                    return Color.green;
-                case 3:
-                    return Color.blue;
-                case 4:
-                    return Color.yellow;
-                case 5:
-                    return Color.magenta;
-                case 6:
-                    return Color.cyan;
+                case "ObjectRed":
+                    return new RedState();
+                case "ObjectBlue":
+                    return new BlueState();
+                case "ObjectGreen":
+                    return new GreenState();
+                case "ObjectYellow":
+                    return new YellowState();
+                case "ObjectMagenta":
+                    return new MagentaState();
+                case "ObjectCyan":
+                    return new CyanState();
                 default:
-                    return Color.white;
+                    Debug.LogWarning("Unsupported layer: " + layer);
+                    return null;
             }
-        }*/
+        }
     }
 }
-

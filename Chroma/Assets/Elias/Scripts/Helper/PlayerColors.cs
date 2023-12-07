@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-namespace Helper
+namespace Elias.Scripts.Helper
 {
     public static class PlayerColors
     {

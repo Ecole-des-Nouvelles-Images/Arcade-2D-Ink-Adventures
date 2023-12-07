@@ -10,18 +10,18 @@ public class CameraFollowObject : MonoBehaviour
 {
     [Header("References")] 
     [SerializeField] private Transform _playerTransform;
-    
+
     [Header("Flip Rotation Stats")] 
     [SerializeField] private float _flipYRotationTime = 0.5f;
 
     private Coroutine _turnCoroutine;
-    private PlayerController _playerController;
+    private PlayerControllerElias _playerControllerElias;
     private bool _isFacingRight;
 
     private void Awake()
     {
-        _playerController = _playerTransform.gameObject.GetComponent<PlayerController>();
-        _isFacingRight = _playerController.IsFacingRight;
+        _playerControllerElias = _playerTransform.gameObject.GetComponent<PlayerControllerElias>();
+        //_isFacingRight = _playerControllerElias.IsFacingRight;
     }
 
     private void Update()

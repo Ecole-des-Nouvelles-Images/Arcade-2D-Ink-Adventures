@@ -7,13 +7,13 @@ using UnityEngine.Serialization;
 
 public class Ladder : MonoBehaviour
 {
-    [SerializeField] private PlayerController playerController;
+    [FormerlySerializedAs("playerController")] [SerializeField] private PlayerControllerElias playerControllerElias;
     
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
-            playerController.IsClimbing = true;
+            playerControllerElias.IsClimbing = true;
         }        
     }
 
@@ -21,7 +21,7 @@ public class Ladder : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            playerController.IsClimbing = false;
+            playerControllerElias.IsClimbing = false;
         }  
     }
 }

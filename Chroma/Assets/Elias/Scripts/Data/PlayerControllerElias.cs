@@ -1,14 +1,16 @@
 using System;
 using System.Collections;
+using Helper;
 using Noah.Scripts.Input;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
-using UnityEngine.Serialization;
+using UnityEngine.Rendering.Universal;
 
-namespace Noah.Scripts.Player
+namespace Elias.Scripts.Data
 {
-    public class PlayerController : MonoBehaviour
+    
+    public class PlayerControllerElias : MonoBehaviour
     {
+        [SerializeField] private Light2D playerLight;
         [HideInInspector] public bool IsClimbing;
 
         [Header("Movement")]
@@ -43,6 +45,8 @@ namespace Noah.Scripts.Player
         private float _moveInputx;
         private float _moveInputy;
 
+        public GroundDetection GroundDetection;
+
 
         private Coroutine _resetTriggerCoroutine;
 
@@ -69,6 +73,8 @@ namespace Noah.Scripts.Player
         {
             Jump();
             
+            CheckInput();
+            
             if (_rb.velocity.y < _fallSpeedYDampingChangeThreshold && !CameraManager.Instance.IsLerpingYDamping && !CameraManager.Instance.LerpedFromPlayerFalling)
             {
                 CameraManager.Instance.LerpYDamping(true);
@@ -84,7 +90,7 @@ namespace Noah.Scripts.Player
         #region Jump Function
         private void Jump()
         {
-            if (UserInput.Instance.Controls.Jumping.Jump.WasPressedThisFrame() && IsGrounded())
+            if (UserInput.Instance.Controls.Jumping.Jump.WasPressedThisFrame() && Data.GroundDetection.IsCollided)
             {
                 _isJumping = true;
                 _jumpTimeCounter = _jumpTime;
@@ -144,25 +150,12 @@ namespace Noah.Scripts.Player
         #endregion
 
         #region Ground/Landed Check
-        private bool IsGrounded()
-        {
-            _groundHit = Physics2D.BoxCast(_coll.bounds.center, _coll.bounds.size, 0f, Vector2.down,extraHeight, _whatIsGround);
-            if (_groundHit.collider != null)
-            {
-                return true;
-            }
-
-            else
-            {
-                return false;
-            }
-        }
 
         private bool CheckForLand()
         {
             if (_isFalling)
             {
-                if (IsGrounded())
+                if (Data.GroundDetection.IsCollided)
                 {
                     _isFalling = false;
                     return true;
@@ -253,7 +246,7 @@ namespace Noah.Scripts.Player
         {
             Color rayColor;
 
-            if (IsGrounded())
+            if (Data.GroundDetection.IsCollided)
             {
                 rayColor = Color.green;
             }
@@ -269,6 +262,49 @@ namespace Noah.Scripts.Player
                 _coll.bounds.center - new Vector3(_coll.bounds.extents.x, _coll.bounds.extents.y + extraHeight),
                 Vector2.right * (_coll.bounds.extents.x * 2), rayColor);
         }
-        
+         
+        public event Action<Color> OnColorChange;
+        private void CheckInput()
+        {
+            if (!Input.anyKeyDown)
+                return;
+            
+            foreach (KeyCode key in PlayerInputs.InputList)
+            {
+                if (Input.GetKeyDown(key))
+                {
+                    switch (key)
+                    {
+                        case KeyCode.R:
+                            ChangeColor(GetColor(KeyCode.G, Color.yellow, KeyCode.B, Color.magenta, Color.red));
+                            break;
+
+                        case KeyCode.G:
+                            ChangeColor(GetColor(KeyCode.B, Color.cyan, KeyCode.R, Color.yellow, Color.green));
+                            break;
+
+                        case KeyCode.B:
+                            ChangeColor(GetColor(KeyCode.R, Color.magenta, KeyCode.G, Color.cyan, Color.blue));
+                            break;
+                    }
+                }
+            }
+
+            Color GetColor(KeyCode secondKey, Color colorIfBothPressed, KeyCode thirdKey, Color colorIfThirdPressed, Color defaultColor)
+            {
+                if (Input.GetKey(secondKey))
+                    return colorIfBothPressed;
+                else if (Input.GetKey(thirdKey))
+                    return colorIfThirdPressed;
+                else
+                    return defaultColor;
+            }
+        } 
+        public void ChangeColor(Color newColor)
+        {
+            playerLight.color = newColor;
+            OnColorChange?.Invoke(newColor);
+        }
+
     }
 }

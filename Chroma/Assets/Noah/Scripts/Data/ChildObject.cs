@@ -1,9 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
-using Data;
-using UnityEngine;
+using Elias.Scripts.Data;
 
-public class ChildObject : BaseObject
+namespace Noah.Scripts.Data
 {
+    public class ChildObject : BaseObject
+    {
     
+    }
 }
