@@ -25,7 +25,7 @@ namespace Noah.Scripts.Input
 
             Controls = new Controls();
 
-            Controls.Movement.Move.performed += ctx => MoveInput = ctx.ReadValue<Vector2>();
+            Controls.InGame.Move.performed += ctx => MoveInput = ctx.ReadValue<Vector2>();
         }
         private void OnEnable()
         {

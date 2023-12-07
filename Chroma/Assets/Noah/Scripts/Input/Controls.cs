@@ -24,7 +24,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     ""name"": ""Controls"",
     ""maps"": [
         {
-            ""name"": ""Movement"",
+            ""name"": ""InGame"",
             ""id"": ""5b497374-b06d-4052-86e7-398e413e7ec9"",
             ""actions"": [
                 {
@@ -35,13 +35,40 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Jump"",
+                    ""type"": ""Button"",
+                    ""id"": ""63b13982-982b-46e8-b40d-47505952bc25"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Climb"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""be4f69df-5a68-4365-8b9d-4075639cd544"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""PushPull"",
+                    ""type"": ""Button"",
+                    ""id"": ""89e8f1ad-79dd-4180-a2d2-db842d2b9cc6"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
                 {
                     ""name"": ""WASD"",
                     ""id"": ""69b71a06-a044-4af9-97a9-d515e5876838"",
-                    ""path"": ""2DVector(mode=1)"",
+                    ""path"": ""2DVector"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -96,7 +123,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                 {
                     ""name"": ""Arrow Keys"",
                     ""id"": ""781ab039-359f-447f-b421-bb6f58c367fb"",
-                    ""path"": ""2DVector(mode=1)"",
+                    ""path"": ""2DVector"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -151,7 +178,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                 {
                     ""name"": ""Analog"",
                     ""id"": ""688e4bee-5e47-4e6f-b092-c4f317f68ed1"",
-                    ""path"": ""2DVector(mode=1)"",
+                    ""path"": ""2DVector"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -206,7 +233,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                 {
                     ""name"": ""DPAD"",
                     ""id"": ""b0ef31b5-c963-4c15-81b7-0e30d52bba22"",
-                    ""path"": ""2DVector(mode=1)"",
+                    ""path"": ""2DVector"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -257,27 +284,10 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
-                }
-            ]
-        },
-        {
-            ""name"": ""Jumping"",
-            ""id"": ""f90ec7bc-57e7-4267-921a-de11d64e8044"",
-            ""actions"": [
-                {
-                    ""name"": ""Jump"",
-                    ""type"": ""PassThrough"",
-                    ""id"": ""8da0e92e-f35d-4125-bfc5-6674334af3cb"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                }
-            ],
-            ""bindings"": [
+                },
                 {
                     ""name"": """",
-                    ""id"": ""beec2f3f-27ae-461f-95c2-7c3baa66bbe7"",
+                    ""id"": ""27f3976f-2429-43b4-8bfe-de4e58b41ecb"",
                     ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -288,7 +298,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""888e5e47-d45f-41c0-a549-f8725335ffe9"",
+                    ""id"": ""b7c04204-8796-4431-b499-5870ff9d1a2d"",
                     ""path"": ""<Gamepad>/buttonSouth"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -296,27 +306,10 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""action"": ""Jump"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
-                }
-            ]
-        },
-        {
-            ""name"": ""Climbing"",
-            ""id"": ""c7c47b57-6dd5-4ac2-abfa-d0f150d5b2f1"",
-            ""actions"": [
-                {
-                    ""name"": ""Climb"",
-                    ""type"": ""PassThrough"",
-                    ""id"": ""d0408ed2-a4b8-4f5b-9974-8f794f7cc891"",
-                    ""expectedControlType"": ""Vector2"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                }
-            ],
-            ""bindings"": [
+                },
                 {
                     ""name"": ""2D Vector"",
-                    ""id"": ""d9863540-2661-4347-bbfe-56911513c78d"",
+                    ""id"": ""2f177899-d50c-4d47-846c-f8de5aef55af"",
                     ""path"": ""2DVector"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -327,7 +320,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""up"",
-                    ""id"": ""2e1db610-2b73-4fb7-b00d-37c4336ebb01"",
+                    ""id"": ""af688936-500e-4e1b-8f38-4f2b03e5a542"",
                     ""path"": """",
                     ""interactions"": """",
                     ""processors"": """",
@@ -338,7 +331,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""down"",
-                    ""id"": ""6b8570d2-5e65-4edb-8dda-3631743e6a6c"",
+                    ""id"": ""74441209-4d26-4676-8b72-552de247ada7"",
                     ""path"": """",
                     ""interactions"": """",
                     ""processors"": """",
@@ -349,7 +342,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""left"",
-                    ""id"": ""f0f09762-0799-4216-a5f0-262a50939c6b"",
+                    ""id"": ""e1919610-6c42-4778-a757-b5787e9f6107"",
                     ""path"": """",
                     ""interactions"": """",
                     ""processors"": """",
@@ -360,7 +353,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""right"",
-                    ""id"": ""c98ad584-52c5-445d-8c58-c537e5f3e4bf"",
+                    ""id"": ""d7d4c263-140f-46c5-94d2-3d40cb681dfb"",
                     ""path"": """",
                     ""interactions"": """",
                     ""processors"": """",
@@ -368,6 +361,28 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""action"": ""Climb"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f1e1e911-33be-45c0-94ef-58e3c0060d54"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""PushPull"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ca9474e5-89cf-4808-be06-9a8c26570af2"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""PushPull"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -385,15 +400,12 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         }
     ]
 }");
-        // Movement
-        m_Movement = asset.FindActionMap("Movement", throwIfNotFound: true);
-        m_Movement_Move = m_Movement.FindAction("Move", throwIfNotFound: true);
-        // Jumping
-        m_Jumping = asset.FindActionMap("Jumping", throwIfNotFound: true);
-        m_Jumping_Jump = m_Jumping.FindAction("Jump", throwIfNotFound: true);
-        // Climbing
-        m_Climbing = asset.FindActionMap("Climbing", throwIfNotFound: true);
-        m_Climbing_Climb = m_Climbing.FindAction("Climb", throwIfNotFound: true);
+        // InGame
+        m_InGame = asset.FindActionMap("InGame", throwIfNotFound: true);
+        m_InGame_Move = m_InGame.FindAction("Move", throwIfNotFound: true);
+        m_InGame_Jump = m_InGame.FindAction("Jump", throwIfNotFound: true);
+        m_InGame_Climb = m_InGame.FindAction("Climb", throwIfNotFound: true);
+        m_InGame_PushPull = m_InGame.FindAction("PushPull", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -452,143 +464,75 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         return asset.FindBinding(bindingMask, out action);
     }
 
-    // Movement
-    private readonly InputActionMap m_Movement;
-    private List<IMovementActions> m_MovementActionsCallbackInterfaces = new List<IMovementActions>();
-    private readonly InputAction m_Movement_Move;
-    public struct MovementActions
+    // InGame
+    private readonly InputActionMap m_InGame;
+    private List<IInGameActions> m_InGameActionsCallbackInterfaces = new List<IInGameActions>();
+    private readonly InputAction m_InGame_Move;
+    private readonly InputAction m_InGame_Jump;
+    private readonly InputAction m_InGame_Climb;
+    private readonly InputAction m_InGame_PushPull;
+    public struct InGameActions
     {
         private @Controls m_Wrapper;
-        public MovementActions(@Controls wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Move => m_Wrapper.m_Movement_Move;
-        public InputActionMap Get() { return m_Wrapper.m_Movement; }
+        public InGameActions(@Controls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Move => m_Wrapper.m_InGame_Move;
+        public InputAction @Jump => m_Wrapper.m_InGame_Jump;
+        public InputAction @Climb => m_Wrapper.m_InGame_Climb;
+        public InputAction @PushPull => m_Wrapper.m_InGame_PushPull;
+        public InputActionMap Get() { return m_Wrapper.m_InGame; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
         public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(MovementActions set) { return set.Get(); }
-        public void AddCallbacks(IMovementActions instance)
+        public static implicit operator InputActionMap(InGameActions set) { return set.Get(); }
+        public void AddCallbacks(IInGameActions instance)
         {
-            if (instance == null || m_Wrapper.m_MovementActionsCallbackInterfaces.Contains(instance)) return;
-            m_Wrapper.m_MovementActionsCallbackInterfaces.Add(instance);
+            if (instance == null || m_Wrapper.m_InGameActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_InGameActionsCallbackInterfaces.Add(instance);
             @Move.started += instance.OnMove;
             @Move.performed += instance.OnMove;
             @Move.canceled += instance.OnMove;
+            @Jump.started += instance.OnJump;
+            @Jump.performed += instance.OnJump;
+            @Jump.canceled += instance.OnJump;
+            @Climb.started += instance.OnClimb;
+            @Climb.performed += instance.OnClimb;
+            @Climb.canceled += instance.OnClimb;
+            @PushPull.started += instance.OnPushPull;
+            @PushPull.performed += instance.OnPushPull;
+            @PushPull.canceled += instance.OnPushPull;
         }
 
-        private void UnregisterCallbacks(IMovementActions instance)
+        private void UnregisterCallbacks(IInGameActions instance)
         {
             @Move.started -= instance.OnMove;
             @Move.performed -= instance.OnMove;
             @Move.canceled -= instance.OnMove;
-        }
-
-        public void RemoveCallbacks(IMovementActions instance)
-        {
-            if (m_Wrapper.m_MovementActionsCallbackInterfaces.Remove(instance))
-                UnregisterCallbacks(instance);
-        }
-
-        public void SetCallbacks(IMovementActions instance)
-        {
-            foreach (var item in m_Wrapper.m_MovementActionsCallbackInterfaces)
-                UnregisterCallbacks(item);
-            m_Wrapper.m_MovementActionsCallbackInterfaces.Clear();
-            AddCallbacks(instance);
-        }
-    }
-    public MovementActions @Movement => new MovementActions(this);
-
-    // Jumping
-    private readonly InputActionMap m_Jumping;
-    private List<IJumpingActions> m_JumpingActionsCallbackInterfaces = new List<IJumpingActions>();
-    private readonly InputAction m_Jumping_Jump;
-    public struct JumpingActions
-    {
-        private @Controls m_Wrapper;
-        public JumpingActions(@Controls wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Jump => m_Wrapper.m_Jumping_Jump;
-        public InputActionMap Get() { return m_Wrapper.m_Jumping; }
-        public void Enable() { Get().Enable(); }
-        public void Disable() { Get().Disable(); }
-        public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(JumpingActions set) { return set.Get(); }
-        public void AddCallbacks(IJumpingActions instance)
-        {
-            if (instance == null || m_Wrapper.m_JumpingActionsCallbackInterfaces.Contains(instance)) return;
-            m_Wrapper.m_JumpingActionsCallbackInterfaces.Add(instance);
-            @Jump.started += instance.OnJump;
-            @Jump.performed += instance.OnJump;
-            @Jump.canceled += instance.OnJump;
-        }
-
-        private void UnregisterCallbacks(IJumpingActions instance)
-        {
             @Jump.started -= instance.OnJump;
             @Jump.performed -= instance.OnJump;
             @Jump.canceled -= instance.OnJump;
-        }
-
-        public void RemoveCallbacks(IJumpingActions instance)
-        {
-            if (m_Wrapper.m_JumpingActionsCallbackInterfaces.Remove(instance))
-                UnregisterCallbacks(instance);
-        }
-
-        public void SetCallbacks(IJumpingActions instance)
-        {
-            foreach (var item in m_Wrapper.m_JumpingActionsCallbackInterfaces)
-                UnregisterCallbacks(item);
-            m_Wrapper.m_JumpingActionsCallbackInterfaces.Clear();
-            AddCallbacks(instance);
-        }
-    }
-    public JumpingActions @Jumping => new JumpingActions(this);
-
-    // Climbing
-    private readonly InputActionMap m_Climbing;
-    private List<IClimbingActions> m_ClimbingActionsCallbackInterfaces = new List<IClimbingActions>();
-    private readonly InputAction m_Climbing_Climb;
-    public struct ClimbingActions
-    {
-        private @Controls m_Wrapper;
-        public ClimbingActions(@Controls wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Climb => m_Wrapper.m_Climbing_Climb;
-        public InputActionMap Get() { return m_Wrapper.m_Climbing; }
-        public void Enable() { Get().Enable(); }
-        public void Disable() { Get().Disable(); }
-        public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(ClimbingActions set) { return set.Get(); }
-        public void AddCallbacks(IClimbingActions instance)
-        {
-            if (instance == null || m_Wrapper.m_ClimbingActionsCallbackInterfaces.Contains(instance)) return;
-            m_Wrapper.m_ClimbingActionsCallbackInterfaces.Add(instance);
-            @Climb.started += instance.OnClimb;
-            @Climb.performed += instance.OnClimb;
-            @Climb.canceled += instance.OnClimb;
-        }
-
-        private void UnregisterCallbacks(IClimbingActions instance)
-        {
             @Climb.started -= instance.OnClimb;
             @Climb.performed -= instance.OnClimb;
             @Climb.canceled -= instance.OnClimb;
+            @PushPull.started -= instance.OnPushPull;
+            @PushPull.performed -= instance.OnPushPull;
+            @PushPull.canceled -= instance.OnPushPull;
         }
 
-        public void RemoveCallbacks(IClimbingActions instance)
+        public void RemoveCallbacks(IInGameActions instance)
         {
-            if (m_Wrapper.m_ClimbingActionsCallbackInterfaces.Remove(instance))
+            if (m_Wrapper.m_InGameActionsCallbackInterfaces.Remove(instance))
                 UnregisterCallbacks(instance);
         }
 
-        public void SetCallbacks(IClimbingActions instance)
+        public void SetCallbacks(IInGameActions instance)
         {
-            foreach (var item in m_Wrapper.m_ClimbingActionsCallbackInterfaces)
+            foreach (var item in m_Wrapper.m_InGameActionsCallbackInterfaces)
                 UnregisterCallbacks(item);
-            m_Wrapper.m_ClimbingActionsCallbackInterfaces.Clear();
+            m_Wrapper.m_InGameActionsCallbackInterfaces.Clear();
             AddCallbacks(instance);
         }
     }
-    public ClimbingActions @Climbing => new ClimbingActions(this);
+    public InGameActions @InGame => new InGameActions(this);
     private int m_KeyboardSchemeIndex = -1;
     public InputControlScheme KeyboardScheme
     {
@@ -607,16 +551,11 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             return asset.controlSchemes[m_GamepadSchemeIndex];
         }
     }
-    public interface IMovementActions
+    public interface IInGameActions
     {
         void OnMove(InputAction.CallbackContext context);
-    }
-    public interface IJumpingActions
-    {
         void OnJump(InputAction.CallbackContext context);
-    }
-    public interface IClimbingActions
-    {
         void OnClimb(InputAction.CallbackContext context);
+        void OnPushPull(InputAction.CallbackContext context);
     }
 }
