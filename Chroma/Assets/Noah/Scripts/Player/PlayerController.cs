@@ -8,7 +8,7 @@ using UnityEngine.Serialization;
 
 namespace Noah.Scripts.Player
 {
-    public class PlayerControllerElias : MonoBehaviour
+    public class PlayerController : MonoBehaviour
     {
         [HideInInspector] public bool IsClimbing;
         [HideInInspector] public bool IsOnPlatform;

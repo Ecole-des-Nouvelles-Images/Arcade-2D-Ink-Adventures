@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using Helper;
+using Noah.Scripts.Camera;
 using Noah.Scripts.Input;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
@@ -90,7 +91,7 @@ namespace Elias.Scripts.Data
         #region Jump Function
         private void Jump()
         {
-            if (UserInput.Instance.Controls.Jumping.Jump.WasPressedThisFrame() && Data.GroundDetection.IsCollided)
+            if (UserInput.Instance.Controls.InGame.Jump.WasPressedThisFrame() &&  (IsClimbing)) 
             {
                 _isJumping = true;
                 _jumpTimeCounter = _jumpTime;
@@ -99,7 +100,7 @@ namespace Elias.Scripts.Data
     //            _anim.SetTrigger("jump");
             }
 
-            if (UserInput.Instance.Controls.Jumping.Jump.IsPressed())
+            if (UserInput.Instance.Controls.InGame.Jump.IsPressed())
             {
                 if (_jumpTimeCounter > 0 && _isJumping)
                 {
@@ -120,7 +121,7 @@ namespace Elias.Scripts.Data
                 
             }
             
-            if (UserInput.Instance.Controls.Jumping.Jump.WasReleasedThisFrame())
+            if (UserInput.Instance.Controls.InGame.Jump.WasReleasedThisFrame())
             {
                 _isJumping = false;
                 _isFalling = true;
