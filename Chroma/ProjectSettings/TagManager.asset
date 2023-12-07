@@ -18,12 +18,12 @@ TagManager:
   - Ground
   - Player
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - ObjectRed
+  - ObjectGreen
+  - ObjectBlue
+  - ObjectCyan
+  - ObjectMagenta
+  - ObjectYellow
   - 
   - 
   - 

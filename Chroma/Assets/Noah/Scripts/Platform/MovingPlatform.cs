@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Elias.Scripts.Data;
 using Noah.Scripts.Player;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -17,13 +18,13 @@ public class MovingPlatform : MonoBehaviour
     private int _direction = 1;
     
     private Vector3 _targetPos;
-    private PlayerController _playerController;
+    private PlayerControllerElias _playerController;
     private Rigidbody2D _rb;
     private Vector2 _moveDirection;
 
     private void Awake()
     {
-        _playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+        _playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerControllerElias>();
         _rb = GetComponent<Rigidbody2D>();
 
         wayPoints = new Transform[ways.transform.childCount];

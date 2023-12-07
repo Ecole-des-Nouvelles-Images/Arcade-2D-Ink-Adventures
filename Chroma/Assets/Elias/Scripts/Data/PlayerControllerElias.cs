@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using Helper;
+using Noah.Scripts.Camera;
 using Noah.Scripts.Input;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
@@ -11,8 +12,11 @@ namespace Elias.Scripts.Data
     public class PlayerControllerElias : MonoBehaviour
     {
         [SerializeField] private Light2D playerLight;
+        
         [HideInInspector] public bool IsClimbing;
-
+        [HideInInspector] public bool IsOnPlatform;
+        [HideInInspector] public Rigidbody2D PlatformRb;
+        
         [Header("Movement")]
         [SerializeField] private float _moveSpeed = 7.5f;
         
@@ -34,6 +38,7 @@ namespace Elias.Scripts.Data
         [HideInInspector] public bool IsFacingRight;
         
         private bool _isFalling;
+        private bool _isMoving;
         private bool _isJumping;
         private float _jumpTimeCounter;
         
@@ -44,14 +49,37 @@ namespace Elias.Scripts.Data
         
         private float _moveInputx;
         private float _moveInputy;
-
-        public GroundDetection GroundDetection;
-
-
+        
         private Coroutine _resetTriggerCoroutine;
 
         private CameraFollowObject _cameraFollowObject;
         private float _fallSpeedYDampingChangeThreshold;
+
+        private float _normalGravity;
+        private bool _isGrounded;
+
+        private GameObject _movableBox;
+        private bool _canMoveBox;
+
+        private Controls _controls;
+
+        private void Awake()
+        {
+            _controls = new Controls();
+        }
+        
+        private void OnEnable()
+        {
+            // Enable the Controls
+            _controls.Enable();
+        }
+
+        private void OnDisable()
+        {
+            // Disable the Controls
+            _controls.Disable();
+        }
+        
 
         private void Start()
         {
@@ -67,14 +95,15 @@ namespace Elias.Scripts.Data
         {
             Climb();
             Move();
+
         }
 
         private void Update()
         {
             Jump();
-            
+            Movebox();
+            DontMoveBox();
             CheckInput();
-            
             if (_rb.velocity.y < _fallSpeedYDampingChangeThreshold && !CameraManager.Instance.IsLerpingYDamping && !CameraManager.Instance.LerpedFromPlayerFalling)
             {
                 CameraManager.Instance.LerpYDamping(true);
@@ -90,7 +119,7 @@ namespace Elias.Scripts.Data
         #region Jump Function
         private void Jump()
         {
-            if (UserInput.Instance.Controls.Jumping.Jump.WasPressedThisFrame() && Data.GroundDetection.IsCollided)
+            if (UserInput.Instance.Controls.InGame.Jump.WasPressedThisFrame() && (_isGrounded || IsClimbing)) 
             {
                 _isJumping = true;
                 _jumpTimeCounter = _jumpTime;
@@ -99,7 +128,7 @@ namespace Elias.Scripts.Data
     //            _anim.SetTrigger("jump");
             }
 
-            if (UserInput.Instance.Controls.Jumping.Jump.IsPressed())
+            if (UserInput.Instance.Controls.InGame.Jump.IsPressed())
             {
                 if (_jumpTimeCounter > 0 && _isJumping)
                 {
@@ -120,7 +149,7 @@ namespace Elias.Scripts.Data
                 
             }
             
-            if (UserInput.Instance.Controls.Jumping.Jump.WasReleasedThisFrame())
+            if (UserInput.Instance.Controls.InGame.Jump.WasReleasedThisFrame())
             {
                 _isJumping = false;
                 _isFalling = true;
@@ -139,23 +168,116 @@ namespace Elias.Scripts.Data
         private void Move()
         {
             _moveInputx = UserInput.Instance.MoveInput.x;
-
             if (_moveInputx > 0 || _moveInputx < 0)
             {
                 TurnCheck();
             }
-            
-            _rb.velocity = new Vector2(_moveInputx * _moveSpeed, _rb.velocity.y);
+            if (IsOnPlatform)
+            {
+                if (IsMoving())
+                {
+                    _rb.velocity = new Vector2(_moveInputx * _moveSpeed, _rb.velocity.y);
+                }
+                else if (IsMoving() == false)
+                { 
+                    _rb.velocity = new Vector2(_moveInputx * _moveSpeed + PlatformRb.velocity.x, _rb.velocity.y);
+                }
+            }
+            else
+            {
+                _rb.velocity = new Vector2(_moveInputx * _moveSpeed, _rb.velocity.y);
+            }
+        }
+
+        private bool IsMoving()
+        {
+            if (_rb.velocity.x != 0 && _rb.velocity.x != PlatformRb.velocity.x) 
+            {
+                return true;
+            }
+            return false;
         }
         #endregion
 
-        #region Ground/Landed Check
+        #region Ground/Landed + Push/Pull Functions
+        private void OnCollisionStay2D(Collision2D other)
+        {
+            if (Tags.CompareTags("Ground", other.gameObject))
+            {
+                _isGrounded = true;
+  
+            }
+        }
 
+        private void OnTriggerStay2D(Collider2D other)
+        {
+            if (Tags.CompareTags("Movable", other.gameObject))
+            {
+                _canMoveBox = true;
+                _movableBox = other.gameObject;
+            }          
+        }
+
+        private void OnTriggerExit2D(Collider2D other)
+        {
+            if (Tags.CompareTags("Movable", other.gameObject))
+            {
+                _canMoveBox = false;
+            }        
+        }
+
+        private void OnCollisionExit2D(Collision2D other)
+        {
+            if (Tags.CompareTags("Ground", other.gameObject))
+            {
+                _isGrounded = false;
+            }
+        }
+
+        private void Movebox()
+        {
+            if (UserInput.Instance.Controls.InGame.PushPull.IsPressed() && _canMoveBox && _movableBox != null)
+            {
+                Rigidbody2D movableRigidbody = _movableBox.GetComponent<Rigidbody2D>();
+        
+                if (movableRigidbody != null)
+                {
+                    movableRigidbody.constraints = ~RigidbodyConstraints2D.FreezeAll;
+
+                    RelativeJoint2D relativeJoint = GetComponent<RelativeJoint2D>();
+                    relativeJoint.enabled = true; 
+                    relativeJoint.connectedBody = movableRigidbody;
+                }
+            }
+        }
+
+        private void DontMoveBox()
+        {
+            if (UserInput.Instance.Controls.InGame.PushPull.WasReleasedThisFrame() && _movableBox != null)
+            {
+                Rigidbody2D movableRigidbody = _movableBox.GetComponent<Rigidbody2D>();
+
+                if (movableRigidbody != null)
+                {
+                    movableRigidbody.constraints = ~RigidbodyConstraints2D.FreezeAll;
+                    movableRigidbody.constraints = ~RigidbodyConstraints2D.FreezePositionY;
+                    
+                    RelativeJoint2D relativeJoint = GetComponent<RelativeJoint2D>();
+                    if (relativeJoint != null)
+                    {
+                        relativeJoint.enabled = false;
+                        relativeJoint.connectedBody = null;
+                    }
+                }
+            }
+        }
+
+        
         private bool CheckForLand()
         {
             if (_isFalling)
             {
-                if (Data.GroundDetection.IsCollided)
+                if (_isGrounded)
                 {
                     _isFalling = false;
                     return true;
@@ -236,17 +358,22 @@ namespace Elias.Scripts.Data
 
             if (IsClimbing)
             { 
-                _rb.velocity = new Vector2(_moveInputx * _moveSpeed, _moveInputy * _moveSpeed); 
+                _rb.velocity = new Vector2(_moveInputx * _moveSpeed, _moveInputy * _moveSpeed);
+                _rb.gravityScale = 0f;
+            }
+
+            else
+            {
+                _rb.gravityScale = 7f;
             }
         }
         #endregion
-
-
+        
         private void DrawGroundCheck()
         {
             Color rayColor;
 
-            if (Data.GroundDetection.IsCollided)
+            if (_isGrounded)
             {
                 rayColor = Color.green;
             }

@@ -1,10 +1,12 @@
 using Core;
+using System.Collections;
 using UnityEngine;
 
-namespace Elias.Scripts.Managers {
-    
-    public class GameManager : MonoBehaviourSingleton<GameManager> {
+namespace Elias.Scripts.Managers
+{
 
+    public class GameManager : MonoBehaviourSingleton<GameManager>
+    {
         public bool AreColorsClose(Color color1, Color color2, float toleranceMultiplier)
         {
             // Calculate the brightness of each color
@@ -22,6 +24,7 @@ namespace Elias.Scripts.Managers {
             // Check if the color difference is within the allowable range
             return colorDifference <= maxDifference * toleranceMultiplier;
         }
-        
+
     }
 }
+

@@ -18,7 +18,7 @@ namespace Noah.Scripts.Camera
         private void Awake()
         {
             _playerController = _playerTransform.gameObject.GetComponent<PlayerController>();
-            _isFacingRight = _playerController.IsFacingRight;
+            //_isFacingRight = _playerController.IsFacingRight;
         }
 
         private void Update()

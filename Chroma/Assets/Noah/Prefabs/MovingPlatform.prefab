@@ -278,15 +278,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1997177633424982726}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d85564a1c222f03468ff7a7bcaf6cd6f, type: 3}
+  m_Script: {fileID: 11500000, guid: 5ed331dc0d94b4d4fad7b0f2e68ef065, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 2
   ways: {fileID: 9170056020220703153}
-  wayPoints:
-  - {fileID: 943003876385848215}
-  - {fileID: 1684358320060488783}
-  - {fileID: 2586833631725660396}
+  wayPoints: []
+  waitDuration: 0.5
 --- !u!1 &7440956589455561144
 GameObject:
   m_ObjectHideFlags: 0
