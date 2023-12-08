@@ -28,11 +28,9 @@ namespace Elias.Scripts.Data
 
             FindObjectOfType<PlayerControllerElias>().OnColorChange += HandleColorChange;
 
-            // Initialize the color context with the appropriate initial state based on the layer
             IColorState initialState = GetInitialState(_objectLayer);
             colorContext = new ColorContext(initialState);
 
-            // Set up collisions based on the initial state
             colorContext.SetupCollision(this);
         }
 
@@ -40,11 +38,6 @@ namespace Elias.Scripts.Data
         {
             bool areColorsClose = GameManager.Instance.AreColorsClose(newColor, _objectLight.color, _colorTolerance);
 
-            // Change the color state based on the new color
-            //IColorState newState = GetStateFromColor(newColor);
-            //colorContext.SetState(newState);
-
-            // Set up collisions based on the new state
             colorContext.SetupCollision(this);
 
             if (areColorsClose && !ColorLayerHelper.ShouldIgnoreCollision(_objectLayer, "Player"))

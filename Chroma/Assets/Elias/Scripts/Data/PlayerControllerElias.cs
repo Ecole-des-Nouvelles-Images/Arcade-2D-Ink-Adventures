@@ -4,6 +4,7 @@ using Helper;
 using Noah.Scripts.Camera;
 using Noah.Scripts.Input;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 using UnityEngine.Rendering.Universal;
 
 namespace Elias.Scripts.Data
@@ -62,6 +63,9 @@ namespace Elias.Scripts.Data
         private bool _canMoveBox;
 
         private Controls _controls;
+
+        private bool _hasColorUpgradeG = false;
+        private bool _hasColorUpgradeB = false;
 
         private void Awake()
         {
@@ -402,16 +406,23 @@ namespace Elias.Scripts.Data
                 {
                     switch (key)
                     {
+                        case KeyCode.C:
+                            Debug.Log("hahah");
+                            UnlockColorAbilities();
+                            break;
+                        
                         case KeyCode.R:
                             ChangeColor(GetColor(KeyCode.G, Color.yellow, KeyCode.B, Color.magenta, Color.red));
                             break;
 
                         case KeyCode.G:
-                            ChangeColor(GetColor(KeyCode.B, Color.cyan, KeyCode.R, Color.yellow, Color.green));
+                            if (_hasColorUpgradeG)
+                                ChangeColor(GetColor(KeyCode.B, Color.cyan, KeyCode.R, Color.yellow, Color.green));
                             break;
 
                         case KeyCode.B:
-                            ChangeColor(GetColor(KeyCode.R, Color.magenta, KeyCode.G, Color.cyan, Color.blue));
+                            if (_hasColorUpgradeB)
+                                ChangeColor(GetColor(KeyCode.R, Color.magenta, KeyCode.G, Color.cyan, Color.blue));
                             break;
                     }
                 }
@@ -431,6 +442,13 @@ namespace Elias.Scripts.Data
         {
             playerLight.color = newColor;
             OnColorChange?.Invoke(newColor);
+        }
+        
+        public void UnlockColorAbilities()
+        {
+            Debug.Log("hohoh");
+            _hasColorUpgradeB = true;
+            _hasColorUpgradeG = true;
         }
 
     }
