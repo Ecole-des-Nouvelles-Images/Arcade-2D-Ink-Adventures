@@ -58,10 +58,14 @@ namespace Noah.Scripts.Player
 
         private GameObject _movableBox;
         private bool _canMoveBox;
+        private Rigidbody2D _movableRigidbody2D;
+        private RelativeJoint2D _relativeJoint2D;
+
         
         private void Start()
         {
             _rb = GetComponent<Rigidbody2D>(); 
+            _relativeJoint2D = GetComponent<RelativeJoint2D>();
             //     _anim = GetComponent<Animator>();
             _coll = GetComponent<Collider2D>();
             _cameraFollowObject = _cameraFollowGO.GetComponent<CameraFollowObject>();
@@ -73,14 +77,17 @@ namespace Noah.Scripts.Player
         {
             Climb();
             Move();
-
         }
 
         private void Update()
         {
             Jump();
-            Movebox();
-            DontMoveBox();
+            if (!_isGrounded)
+            {
+                
+            }
+            GrabBox();
+            ReleaseBox();
             if (_rb.velocity.y < _fallSpeedYDampingChangeThreshold && !CameraManager.Instance.IsLerpingYDamping && !CameraManager.Instance.LerpedFromPlayerFalling)
             {
                 CameraManager.Instance.LerpYDamping(true);
@@ -177,15 +184,7 @@ namespace Noah.Scripts.Player
         #endregion
 
         #region Ground/Landed + Push/Pull Functions
-        private void OnCollisionStay2D(Collision2D other)
-        {
-            if (Tags.CompareTags("Ground", other.gameObject))
-            {
-                _isGrounded = true;
-  
-            }
-        }
-
+        
         private void OnTriggerStay2D(Collider2D other)
         {
             if (Tags.CompareTags("Movable", other.gameObject))
@@ -193,7 +192,13 @@ namespace Noah.Scripts.Player
                 _canMoveBox = true;
                 _movableBox = other.gameObject;
             }          
+            
+            if (other.CompareTag("Ground"))
+            {
+                _isGrounded = true;
+            }
         }
+        
 
         private void OnTriggerExit2D(Collider2D other)
         {
@@ -211,39 +216,47 @@ namespace Noah.Scripts.Player
             }
         }
 
-        private void Movebox()
+        private void GrabBox()
         {
-            if (UserInput.Instance.Controls.InGame.PushPull.IsPressed() && _canMoveBox && _movableBox != null)
+            if (_isGrounded)
             {
-                Rigidbody2D movableRigidbody = _movableBox.GetComponent<Rigidbody2D>();
-        
-                if (movableRigidbody != null)
+                if (UserInput.Instance.Controls.InGame.PushPull.IsPressed() && _canMoveBox && _movableBox != null)
                 {
-                    movableRigidbody.constraints = ~RigidbodyConstraints2D.FreezeAll;
+                    _movableRigidbody2D = _movableBox.GetComponent<Rigidbody2D>();
 
-                    RelativeJoint2D relativeJoint = GetComponent<RelativeJoint2D>();
-                    relativeJoint.enabled = true; 
-                    relativeJoint.connectedBody = movableRigidbody;
+                    if (_movableRigidbody2D != null)
+                    {
+                        _movableRigidbody2D.constraints = ~RigidbodyConstraints2D.FreezeAll;
+                        _relativeJoint2D.enabled = true;
+                        _relativeJoint2D.connectedBody = _movableRigidbody2D;
+                    }
+                }
+            }
+            
+            else if (!_isGrounded)
+            {
+                if (_relativeJoint2D != null)
+                {
+                    _relativeJoint2D.enabled = false;
+                    _relativeJoint2D.connectedBody = null;
                 }
             }
         }
 
-        private void DontMoveBox()
+        private void ReleaseBox()
         {
             if (UserInput.Instance.Controls.InGame.PushPull.WasReleasedThisFrame() && _movableBox != null)
             {
-                Rigidbody2D movableRigidbody = _movableBox.GetComponent<Rigidbody2D>();
-
-                if (movableRigidbody != null)
+                _movableRigidbody2D = _movableBox.GetComponent<Rigidbody2D>();
+                if (_movableRigidbody2D != null)
                 {
-                    movableRigidbody.constraints = ~RigidbodyConstraints2D.FreezeAll;
-                    movableRigidbody.constraints = ~RigidbodyConstraints2D.FreezePositionY;
+                    _movableRigidbody2D.constraints = ~RigidbodyConstraints2D.FreezeAll;
+                    _movableRigidbody2D.constraints = ~RigidbodyConstraints2D.FreezePositionY;
                     
-                    RelativeJoint2D relativeJoint = GetComponent<RelativeJoint2D>();
-                    if (relativeJoint != null)
+                    if (_relativeJoint2D != null)
                     {
-                        relativeJoint.enabled = false;
-                        relativeJoint.connectedBody = null;
+                        _relativeJoint2D.enabled = false;
+                        _relativeJoint2D.connectedBody = null;
                     }
                 }
             }
@@ -259,17 +272,11 @@ namespace Noah.Scripts.Player
                     _isFalling = false;
                     return true;
                 }
-
-                else
-                {
-                    return false;
-                }
-            }
-
-            else
-            {
+                
                 return false;
+                    
             }
+            return false;
         }
 
         private IEnumerator Reset()

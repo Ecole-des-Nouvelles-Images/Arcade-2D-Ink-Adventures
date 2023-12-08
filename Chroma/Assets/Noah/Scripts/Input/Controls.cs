@@ -62,6 +62,15 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""MenuOpenClose"",
+                    ""type"": ""Button"",
+                    ""id"": ""b07d8f63-ca85-4ca2-9641-7f7db595298f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -383,6 +392,28 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""action"": ""PushPull"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4ee9bc22-f436-4c4d-9853-6716feb22f3a"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""MenuOpenClose"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""139138fc-ec7b-470d-ab7a-8bcfd5a3dc49"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""MenuOpenClose"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -406,6 +437,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         m_InGame_Jump = m_InGame.FindAction("Jump", throwIfNotFound: true);
         m_InGame_Climb = m_InGame.FindAction("Climb", throwIfNotFound: true);
         m_InGame_PushPull = m_InGame.FindAction("PushPull", throwIfNotFound: true);
+        m_InGame_MenuOpenClose = m_InGame.FindAction("MenuOpenClose", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -471,6 +503,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private readonly InputAction m_InGame_Jump;
     private readonly InputAction m_InGame_Climb;
     private readonly InputAction m_InGame_PushPull;
+    private readonly InputAction m_InGame_MenuOpenClose;
     public struct InGameActions
     {
         private @Controls m_Wrapper;
@@ -479,6 +512,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         public InputAction @Jump => m_Wrapper.m_InGame_Jump;
         public InputAction @Climb => m_Wrapper.m_InGame_Climb;
         public InputAction @PushPull => m_Wrapper.m_InGame_PushPull;
+        public InputAction @MenuOpenClose => m_Wrapper.m_InGame_MenuOpenClose;
         public InputActionMap Get() { return m_Wrapper.m_InGame; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -500,6 +534,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @PushPull.started += instance.OnPushPull;
             @PushPull.performed += instance.OnPushPull;
             @PushPull.canceled += instance.OnPushPull;
+            @MenuOpenClose.started += instance.OnMenuOpenClose;
+            @MenuOpenClose.performed += instance.OnMenuOpenClose;
+            @MenuOpenClose.canceled += instance.OnMenuOpenClose;
         }
 
         private void UnregisterCallbacks(IInGameActions instance)
@@ -516,6 +553,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @PushPull.started -= instance.OnPushPull;
             @PushPull.performed -= instance.OnPushPull;
             @PushPull.canceled -= instance.OnPushPull;
+            @MenuOpenClose.started -= instance.OnMenuOpenClose;
+            @MenuOpenClose.performed -= instance.OnMenuOpenClose;
+            @MenuOpenClose.canceled -= instance.OnMenuOpenClose;
         }
 
         public void RemoveCallbacks(IInGameActions instance)
@@ -557,5 +597,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         void OnJump(InputAction.CallbackContext context);
         void OnClimb(InputAction.CallbackContext context);
         void OnPushPull(InputAction.CallbackContext context);
+        void OnMenuOpenClose(InputAction.CallbackContext context);
     }
 }
