@@ -7,6 +7,9 @@ namespace Elias.Scripts.Managers
 
     public class GameManager : MonoBehaviourSingleton<GameManager>
     {
+        public bool hasColorUpgradeG = false;
+        public bool hasColorUpgradeB = false;
+
         public bool AreColorsClose(Color color1, Color color2, float toleranceMultiplier)
         {
             // Calculate the brightness of each color

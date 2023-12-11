@@ -8,6 +8,8 @@ TagManager:
   - Ground
   - Movable,Ground
   - Movable
+  - BlueUpgrade
+  - GreenUpgrade
   layers:
   - Default
   - TransparentFX

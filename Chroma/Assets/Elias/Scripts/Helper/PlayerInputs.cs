@@ -5,7 +5,7 @@ namespace Helper
 {
     public static class PlayerInputs
     {
-        private static readonly KeyCode[] Keys = { KeyCode.R, KeyCode.G, KeyCode.B, KeyCode.C };
+        private static readonly KeyCode[] Keys = { KeyCode.R, KeyCode.G, KeyCode.B };
         public static readonly List<KeyCode> InputList = new List<KeyCode>(Keys);
     }
 }
