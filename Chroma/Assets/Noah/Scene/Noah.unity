@@ -7065,11 +7065,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9217075717708722289, guid: 6ce483b8c0381384c82fa327adb6e163, type: 3}
       propertyPath: m_Color.b
-      value: 0.48584908
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9217075717708722289, guid: 6ce483b8c0381384c82fa327adb6e163, type: 3}
       propertyPath: m_Color.g
-      value: 0.48584908
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9217075717708722289, guid: 6ce483b8c0381384c82fa327adb6e163, type: 3}
       propertyPath: m_Color.r
