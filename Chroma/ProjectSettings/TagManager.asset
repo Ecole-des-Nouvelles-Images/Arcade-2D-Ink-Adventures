@@ -44,6 +44,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: lamp
+    uniqueID: 1956218573
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0

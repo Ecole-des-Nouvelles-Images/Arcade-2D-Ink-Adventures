@@ -85,8 +85,14 @@ namespace Elias.Scripts.Data
 
         private void Start()
         {
-            _rb = GetComponent<Rigidbody2D>(); 
-            //     _anim = GetComponent<Animator>();
+            Transform firstChild = transform.GetChild(0);
+            
+            Animator firstChildAnimator = firstChild.GetComponent<Animator>();
+            _anim = firstChildAnimator;
+            
+            Debug.Log(_anim.name);
+            
+            _rb = GetComponent<Rigidbody2D>();
             _coll = GetComponent<Collider2D>();
             _cameraFollowObject = _cameraFollowGO.GetComponent<CameraFollowObject>();
             StartDirectionCheck();
@@ -116,6 +122,8 @@ namespace Elias.Scripts.Data
                 CameraManager.Instance.LerpedFromPlayerFalling = false;
                 CameraManager.Instance.LerpYDamping(false);
             }
+
+            
         }
         
         #region Jump Function
@@ -174,6 +182,9 @@ namespace Elias.Scripts.Data
             {
                 TurnCheck();
             }
+
+            
+            
             if (IsOnPlatform)
             {
                 if (IsMoving())
