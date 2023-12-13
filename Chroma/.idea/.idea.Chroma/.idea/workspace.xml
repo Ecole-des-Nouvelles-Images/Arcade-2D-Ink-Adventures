@@ -6,10 +6,24 @@
   <component name="ChangeListManager">
     <list default="true" id="327f0f78-c56b-4abd-91d6-6122790d9453" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Chroma/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Chroma/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Elias/Scripts/Data/BaseObject.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Elias/Scripts/Data/BaseObject.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Elias/Scripts/Data/PlayerControllerElias.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Elias/Scripts/Data/PlayerControllerElias.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Noah/Scene/Noah.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Noah/Scene/Noah.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Noah/Scripts/Input/Controls.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Noah/Scripts/Input/Controls.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Noah/Scripts/Input/Controls.inputactions" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Noah/Scripts/Input/Controls.inputactions.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Noah/Scripts/Input/InputManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Noah/Scripts/Input/InputManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Noah/Scripts/Input/PlayerControls.inputactions" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Noah/Scripts/Input/PlayerControls.inputactions" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Noah/Scripts/Input/UserInput.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Noah/Scripts/Input/UserInput.cs.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Noah/Scripts/Menu/MenuManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Noah/Scripts/Menu/MenuManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Noah/Scripts/Player/PlayerController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Noah/Scripts/Player/PlayerController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Noah/Shader/MagicMaterializeMat.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Noah/Shader/MagicMaterializeMat.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Noah/Shader/MagicMaterializeShader.shadergraph" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Noah/Shader/MagicMaterializeShader.shadergraph" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Samples/Input System/1.7.0/Rebinding UI/RebindActionUI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Samples/Input System/1.7.0/Rebinding UI/RebindActionUI.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Samples/Input System/1.7.0/Rebinding UI/RebindActionUIEditor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Samples/Input System/1.7.0/Rebinding UI/RebindActionUIEditor.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Samples/Input System/1.7.0/Rebinding UI/RebindUIPrefab.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Samples/Input System/1.7.0/Rebinding UI/RebindUIPrefab.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Samples/Input System/1.7.0/Rebinding UI/Unity.InputSystem.RebindingUI.asmdef" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Samples/Input System/1.7.0/Rebinding UI/Unity.InputSystem.RebindingUI.asmdef" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,26 +53,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Discover.Launch.Via.Unity": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Discover.Launch.Via.Unity&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "rider.external.source.directories": [
-      "C:\\Users\\n.miliani\\AppData\\Roaming\\JetBrains\\Rider2023.2\\resharper-host\\DecompilerCache",
-      "C:\\Users\\n.miliani\\AppData\\Roaming\\JetBrains\\Rider2023.2\\resharper-host\\SourcesCache",
-      "C:\\Users\\n.miliani\\AppData\\Local\\Symbols\\src"
+  &quot;keyToStringList&quot;: {
+    &quot;rider.external.source.directories&quot;: [
+      &quot;C:\\Users\\n.miliani\\AppData\\Roaming\\JetBrains\\Rider2023.2\\resharper-host\\DecompilerCache&quot;,
+      &quot;C:\\Users\\n.miliani\\AppData\\Roaming\\JetBrains\\Rider2023.2\\resharper-host\\SourcesCache&quot;,
+      &quot;C:\\Users\\n.miliani\\AppData\\Local\\Symbols\\src&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
     <configuration name="Start Unity" type="RunUnityExe" factoryName="Unity Executable">
       <option name="EXE_PATH" value="C:\Program Files\Unity\Hub\Editor\2022.3.10f1\Editor\Unity.exe" />
@@ -124,6 +138,7 @@
       <workItem from="1701940196825" duration="3636000" />
       <workItem from="1702026171205" duration="14926000" />
       <workItem from="1702406421180" duration="2048000" />
+      <workItem from="1702462781637" duration="10615000" />
     </task>
     <servers />
   </component>

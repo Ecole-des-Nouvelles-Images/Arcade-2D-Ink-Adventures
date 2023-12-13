@@ -25,9 +25,9 @@ namespace Elias.Scripts.Data
 
             _objectLayer = LayerMask.LayerToName(gameObject.layer);
             _currentColor = _objectLight.color;
-
+/*
             FindObjectOfType<PlayerControllerElias>().OnColorChange += HandleColorChange;
-
+*/
             // Initialize the color context with the appropriate initial state based on the layer
             IColorState initialState = GetInitialState(_objectLayer);
             colorContext = new ColorContext(initialState);

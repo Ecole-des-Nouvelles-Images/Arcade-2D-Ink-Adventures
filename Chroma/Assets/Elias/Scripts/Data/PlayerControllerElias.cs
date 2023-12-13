@@ -2,13 +2,12 @@ using System;
 using System.Collections;
 using Helper;
 using Noah.Scripts.Camera;
-using Noah.Scripts.Input;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
 namespace Elias.Scripts.Data
 {
-    
+    /*
     public class PlayerControllerElias : MonoBehaviour
     {
         [SerializeField] private Light2D playerLight;
@@ -307,5 +306,5 @@ namespace Elias.Scripts.Data
             OnColorChange?.Invoke(newColor);
         }
 
-    }
+    }*/
 }

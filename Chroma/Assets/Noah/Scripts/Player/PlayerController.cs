@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using Noah.Scripts.Camera;
-using Noah.Scripts.Input;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 using UnityEngine.Serialization;
@@ -103,7 +102,7 @@ namespace Noah.Scripts.Player
         #region Jump Function
         private void Jump()
         {
-            if (UserInput.Instance.Controls.InGame.Jump.WasPressedThisFrame() && (_isGrounded || IsClimbing)) 
+            if (InputManager.instance.JumpJustPressed && (_isGrounded || IsClimbing)) 
             {
                 _isJumping = true;
                 _jumpTimeCounter = _jumpTime;
@@ -112,7 +111,7 @@ namespace Noah.Scripts.Player
     //            _anim.SetTrigger("jump");
             }
 
-            if (UserInput.Instance.Controls.InGame.Jump.IsPressed())
+            if (InputManager.instance.JumpBeingHeld)
             {
                 if (_jumpTimeCounter > 0 && _isJumping)
                 {
@@ -133,7 +132,7 @@ namespace Noah.Scripts.Player
                 
             }
             
-            if (UserInput.Instance.Controls.InGame.Jump.WasReleasedThisFrame())
+            if (InputManager.instance.JumpReleased)
             {
                 _isJumping = false;
                 _isFalling = true;
@@ -151,7 +150,7 @@ namespace Noah.Scripts.Player
         #region Movement Functions
         private void Move()
         {
-            _moveInputx = UserInput.Instance.MoveInput.x;
+            _moveInputx = InputManager.instance.MoveInput.x;
             if (_moveInputx > 0 || _moveInputx < 0)
             {
                 TurnCheck();
@@ -220,7 +219,7 @@ namespace Noah.Scripts.Player
         {
             if (_isGrounded)
             {
-                if (UserInput.Instance.Controls.InGame.PushPull.IsPressed() && _canMoveBox && _movableBox != null)
+                if (InputManager.instance.PushPullBeingHeld && _canMoveBox && _movableBox != null)
                 {
                     _movableRigidbody2D = _movableBox.GetComponent<Rigidbody2D>();
 
@@ -245,7 +244,7 @@ namespace Noah.Scripts.Player
 
         private void ReleaseBox()
         {
-            if (UserInput.Instance.Controls.InGame.PushPull.WasReleasedThisFrame() && _movableBox != null)
+            if (InputManager.instance.PushPullReleased && _movableBox != null)
             {
                 _movableRigidbody2D = _movableBox.GetComponent<Rigidbody2D>();
                 if (_movableRigidbody2D != null)
@@ -303,12 +302,12 @@ namespace Noah.Scripts.Player
 
         private void TurnCheck()
         {
-            if (UserInput.Instance.MoveInput.x > 0 && !IsFacingRight)
+            if (InputManager.instance.MoveInput.x > 0 && !IsFacingRight)
             {
                 Turn();
             }
             
-            else if (UserInput.Instance.MoveInput.x < 0 && IsFacingRight)
+            else if (InputManager.instance.MoveInput.x < 0 && IsFacingRight)
             {
                 Turn();
             }
@@ -337,8 +336,8 @@ namespace Noah.Scripts.Player
         #region Climb Function
         private void Climb()
         {
-            _moveInputx = UserInput.Instance.MoveInput.x;
-            _moveInputy = UserInput.Instance.MoveInput.y;
+            _moveInputx = InputManager.instance.MoveInput.x;
+            _moveInputy = InputManager.instance.MoveInput.y;
 
             if (IsClimbing)
             { 
