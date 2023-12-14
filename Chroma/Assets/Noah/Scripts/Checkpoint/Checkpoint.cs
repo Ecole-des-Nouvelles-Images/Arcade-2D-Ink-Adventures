@@ -1,4 +1,5 @@
 using System;
+using Noah.Scripts.Player;
 using UnityEngine;
 
 namespace Noah.Scripts.Checkpoint

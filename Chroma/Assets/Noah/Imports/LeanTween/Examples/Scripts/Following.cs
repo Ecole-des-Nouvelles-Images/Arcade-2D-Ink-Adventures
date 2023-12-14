@@ -58,8 +58,8 @@ public class Following : MonoBehaviour {
         LeanTween.followLinear(dude5Title, dude5, LeanProp.localPosition, 30f).setOffset(titleOffset);
 
         // Rotate Planet
-        var localPos = Camera.main.transform.InverseTransformPoint(planet.transform.position);
-        LeanTween.rotateAround(Camera.main.gameObject, Vector3.left, 360f, 300f).setPoint(localPos).setRepeat(-1);
+        //var localPos = Camera.main.transform.InverseTransformPoint(planet.transform.position);
+        //LeanTween.rotateAround(Camera.main.gameObject, Vector3.left, 360f, 300f).setPoint(localPos).setRepeat(-1);
     }
 
     private float fromY;
