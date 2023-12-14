@@ -63,10 +63,14 @@ namespace Noah.Scripts.Player
         private bool _canMoveBox;
         private Rigidbody2D _movableRigidbody2D;
         private RelativeJoint2D _relativeJoint2D;
+        
+        private float idleTimer = 0f;
+        private float idleThreshold = 5f;
 
         
         private void Start()
         {
+            _anim = GetComponentInChildren<Animator>();
             _rb = GetComponent<Rigidbody2D>(); 
             _relativeJoint2D = GetComponent<RelativeJoint2D>();
             //     _anim = GetComponent<Animator>();
@@ -84,11 +88,13 @@ namespace Noah.Scripts.Player
 
         private void Update()
         {
+            
             Jump();
             if (!_isGrounded)
             {
                 
             }
+            CheckInput();
             GrabBox();
             ReleaseBox();
             if (_rb.velocity.y < _fallSpeedYDampingChangeThreshold && !CameraManager.Instance.IsLerpingYDamping && !CameraManager.Instance.LerpedFromPlayerFalling)
@@ -101,6 +107,28 @@ namespace Noah.Scripts.Player
                 CameraManager.Instance.LerpedFromPlayerFalling = false;
                 CameraManager.Instance.LerpYDamping(false);
             }
+
+            _anim.SetBool("IsWalking", _moveInputx != 0);
+            
+            _anim.SetBool("IsJumping", _isJumping);
+            
+            _anim.SetBool("IsFalling", _isFalling);
+            
+            _anim.SetBool("IsClimbing", IsClimbing);
+            
+            _anim.SetBool("IsFalling", !_isJumping && !_isGrounded);
+
+            idleTimer += Time.deltaTime;
+            if (idleTimer >= idleThreshold)
+            {
+                _anim.SetBool("IsDancing",true);
+            }
+
+            if (_moveInputx != 0 || _isJumping)
+            {
+                idleTimer = 0;
+                _anim.SetBool("IsDancing",false);
+            }
         }
         
         #region Jump Function
@@ -111,8 +139,6 @@ namespace Noah.Scripts.Player
                 _isJumping = true;
                 _jumpTimeCounter = _jumpTime;
                 _rb.velocity = new Vector2(_rb.velocity.x, _jumpForce);
-                
-    //            _anim.SetTrigger("jump");
             }
 
             if (InputManager.instance.JumpBeingHeld)
