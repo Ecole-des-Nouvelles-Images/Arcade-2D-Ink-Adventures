@@ -18,13 +18,13 @@ public class MovingPlatform : MonoBehaviour
     private int _direction = 1;
     
     private Vector3 _targetPos;
-    private PlayerControllerElias _playerController;
+    private PlayerController _playerController;
     private Rigidbody2D _rb;
     private Vector2 _moveDirection;
 
     private void Awake()
     {
-        _playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerControllerElias>();
+        _playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         _rb = GetComponent<Rigidbody2D>();
 
         wayPoints = new Transform[ways.transform.childCount];

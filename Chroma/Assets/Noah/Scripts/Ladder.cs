@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using Noah.Scripts.Player;
 using UnityEngine;
 using UnityEngine.Serialization;
-using PlayerControllerElias = Elias.Scripts.Data.PlayerControllerElias;
 
 public class Ladder : MonoBehaviour
 {

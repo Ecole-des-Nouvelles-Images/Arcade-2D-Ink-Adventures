@@ -1,14 +1,17 @@
 using System;
 using System.Collections;
+using Helper;
 using Noah.Scripts.Camera;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.Serialization;
 
 namespace Noah.Scripts.Player
 {
     public class PlayerController : MonoBehaviour
     {
+        [SerializeField] private Light2D playerLight;
         [HideInInspector] public bool IsClimbing;
         [HideInInspector] public bool IsOnPlatform;
         [HideInInspector] public Rigidbody2D PlatformRb;
@@ -33,6 +36,7 @@ namespace Noah.Scripts.Player
         [SerializeField] private GameObject _cameraFollowGO;
         
         [HideInInspector] public bool IsFacingRight;
+        
         
         private bool _isFalling;
         private bool _isMoving;
@@ -373,7 +377,52 @@ namespace Noah.Scripts.Player
                 Vector2.right * (_coll.bounds.extents.x * 2), rayColor);
         }
         
-        
-        
+          
+        public event Action<Color> OnColorChange;
+        private void CheckInput()
+        {
+            if (!Input.anyKeyDown)
+                return;
+            
+            foreach (KeyCode key in PlayerInputs.InputList)
+            {
+                if (Input.GetKeyDown(key))
+                {
+                    switch (key)
+                    {
+                        case KeyCode.R:
+                            ChangeColor(GetColor(KeyCode.G, Color.yellow, KeyCode.B, Color.magenta, Color.red));
+                            break;
+
+                        case KeyCode.G:
+                            ChangeColor(GetColor(KeyCode.B, Color.cyan, KeyCode.R, Color.yellow, Color.green));
+                            break;
+
+                        case KeyCode.B:
+                            ChangeColor(GetColor(KeyCode.R, Color.magenta, KeyCode.G, Color.cyan, Color.blue));
+                            break;
+                    }
+                }
+            }
+
+            Color GetColor(KeyCode secondKey, Color colorIfBothPressed, KeyCode thirdKey, Color colorIfThirdPressed, Color defaultColor)
+            {
+                if (Input.GetKey(secondKey))
+                    return colorIfBothPressed;
+                else if (Input.GetKey(thirdKey))
+                    return colorIfThirdPressed;
+                else
+                    return defaultColor;
+            }
+        } 
+        public void ChangeColor(Color newColor)
+        {
+            playerLight.color = newColor;
+            OnColorChange?.Invoke(newColor);
+        }
+
     }
+        
+        
 }
+
