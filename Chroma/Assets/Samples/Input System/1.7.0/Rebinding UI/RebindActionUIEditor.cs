@@ -28,7 +28,7 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
             m_RebindStartEventProperty = serializedObject.FindProperty("m_RebindStartEvent");
             m_RebindStopEventProperty = serializedObject.FindProperty("m_RebindStopEvent");
             m_DisplayStringOptionsProperty = serializedObject.FindProperty("m_DisplayStringOptions");
-            m_actionOverRideProperty = serializedObject.FindProperty("m_OverRideRideActionLabel");
+            m_actionOverRideProperty = serializedObject.FindProperty("m_OverRideActionLabel");
             m_actionOverRideStringProperty = serializedObject.FindProperty("m_ActionLabelString");
 
             RefreshBindingOptions();
