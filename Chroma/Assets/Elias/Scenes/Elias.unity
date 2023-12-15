@@ -165,7 +165,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.2}
+  m_Offset: {x: 0, y: -0.49405348}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -176,7 +176,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.2, y: 0.6}
+  m_Size: {x: 1.2, y: 0.011993051}
   m_EdgeRadius: 0
 --- !u!4 &10582926 stripped
 Transform:
@@ -2611,7 +2611,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 4.99
+  orthographic size: 5.4
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -2636,7 +2636,7 @@ Transform:
   m_GameObject: {fileID: 489065844}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.3907726, y: 0, z: -10}
+  m_LocalPosition: {x: 1.222233, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -10547,8 +10547,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.003099978, y: -0.008399993, z: 0}
-    m_Extent: {x: 1.0055001, y: 1.0016, z: 0}
+    m_Center: {x: 0.0022000074, y: 0.000100016594, z: 0}
+    m_Extent: {x: 0.9992, y: 1.0077, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -10720,8 +10720,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.0059999824, y: 0.0020999908, z: 0}
-    m_Extent: {x: 1.0039, y: 1.0045, z: 0}
+    m_Center: {x: 0.0042999983, y: 0.0026999712, z: 0}
+    m_Extent: {x: 0.9992, y: 1.0059, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -11119,8 +11119,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.001150012, y: -0.0018000007, z: 0}
-    m_Extent: {x: 0.99865, y: 1.0030999, z: 0}
+    m_Center: {x: 0.0024000108, y: 0.00034999847, z: 0}
+    m_Extent: {x: 0.99899995, y: 1.00755, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -13273,8 +13273,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.0009999871, y: -0.00424999, z: 0}
-    m_Extent: {x: 1.0049, y: 1.0007501, z: 0}
+    m_Center: {x: 0.005700022, y: -0.005099982, z: 0}
+    m_Extent: {x: 1.0023, y: 1.0045999, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -14550,7 +14550,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.11584759}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -14561,7 +14561,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.5, y: 2.25}
+  m_Size: {x: 1.5, y: 2.4816952}
   m_EdgeRadius: 0
 --- !u!50 &4117042045380644406
 Rigidbody2D:
@@ -14686,9 +14686,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerLight: {fileID: 4117042045380644409}
-  IsClimbing: 0
-  IsOnPlatform: 0
-  PlatformRb: {fileID: 0}
   _moveSpeed: 7.5
   _jumpForce: 12
   _jumpTime: 0.35
@@ -14700,6 +14697,13 @@ MonoBehaviour:
     m_Bits: 64
   _cameraFollowGO: {fileID: 1125267881}
   IsFacingRight: 0
+  IsClimbing: 0
+  IsOnPlatform: 0
+  PlatformRb: {fileID: 0}
+  _movableBox: {fileID: 0}
+  _canMoveBox: 0
+  _movableRigidbody2D: {fileID: 0}
+  _relativeJoint2D: {fileID: 0}
 --- !u!1 &5888574117942937055
 GameObject:
   m_ObjectHideFlags: 0
