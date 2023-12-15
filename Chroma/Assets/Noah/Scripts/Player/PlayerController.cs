@@ -107,7 +107,6 @@ namespace Noah.Scripts.Player
                 CameraManager.Instance.LerpedFromPlayerFalling = false;
                 CameraManager.Instance.LerpYDamping(false);
             }
-
             _anim.SetBool("IsWalking", _moveInputx != 0);
             
             _anim.SetBool("IsJumping", _isJumping);
@@ -222,11 +221,17 @@ namespace Noah.Scripts.Player
                 _movableBox = other.gameObject;
             }          
             
+            if (other.CompareTag("Movable,Ground"))
+            {
+                _isGrounded = true;
+            }
+            
             if (other.CompareTag("Ground"))
             {
                 _isGrounded = true;
             }
         }
+        
         
 
         private void OnTriggerExit2D(Collider2D other)
@@ -247,29 +252,68 @@ namespace Noah.Scripts.Player
 
         private void GrabBox()
         {
-            if (_isGrounded)
-            {
-                if (InputManager.instance.PushPullBeingHeld && _canMoveBox && _movableBox != null)
+                if (_isGrounded)
                 {
-                    _movableRigidbody2D = _movableBox.GetComponent<Rigidbody2D>();
-
-                    if (_movableRigidbody2D != null)
+                    if (InputManager.instance.PushPullBeingHeld && _canMoveBox && _movableBox != null)
                     {
-                        _movableRigidbody2D.constraints = ~RigidbodyConstraints2D.FreezeAll;
-                        _relativeJoint2D.enabled = true;
-                        _relativeJoint2D.connectedBody = _movableRigidbody2D;
+                        _movableRigidbody2D = _movableBox.GetComponent<Rigidbody2D>();
+
+                        if (_movableRigidbody2D != null)
+                        {
+                            // Freeze all constraints
+                            _movableRigidbody2D.constraints = ~RigidbodyConstraints2D.FreezeAll;
+
+                            // Freeze rotation on the Z-axis
+                            _movableRigidbody2D.constraints |= RigidbodyConstraints2D.FreezeRotation;
+
+                            _relativeJoint2D.enabled = true;
+                            _relativeJoint2D.connectedBody = _movableRigidbody2D;
+
+                            // Determine if pushing or pulling
+                            if (_movableRigidbody2D.velocity.x > 0)
+                            {
+                                // Play pushing animation
+                                if (IsFacingRight)
+                                {
+                                    _anim.SetBool("IsPulling", false);
+                                    _anim.SetBool("IsPushing", true);
+                                    
+                                    
+                                }
+                                else
+                                {
+                                    _anim.SetBool("IsPushing", false);
+                                    _anim.SetBool("IsPulling", true);
+                                    
+                                }
+                            }
+                            else if (_movableRigidbody2D.velocity.x < 0)
+                            {
+                                if (IsFacingRight)
+                                {
+                                    _anim.SetBool("IsPushing", false);
+                                    _anim.SetBool("IsPulling", true);
+                                    
+                                }
+                                else
+                                {
+                                    _anim.SetBool("IsPulling", false);
+                                    _anim.SetBool("IsPushing", true);
+                                    
+                                }
+                            }
+                        }
                     }
                 }
-            }
-            
-            else if (!_isGrounded)
-            {
-                if (_relativeJoint2D != null)
+                else if (!_isGrounded)
                 {
-                    _relativeJoint2D.enabled = false;
-                    _relativeJoint2D.connectedBody = null;
+                    if (_relativeJoint2D != null)
+                    {
+                        _relativeJoint2D.enabled = false;
+                        _relativeJoint2D.connectedBody = null;
+                    }
                 }
-            }
+
         }
 
         private void ReleaseBox()
@@ -288,6 +332,8 @@ namespace Noah.Scripts.Player
                         _relativeJoint2D.connectedBody = null;
                     }
                 }
+                _anim.SetBool("IsPushing", false);
+                _anim.SetBool("IsPulling", false);
             }
         }
 
