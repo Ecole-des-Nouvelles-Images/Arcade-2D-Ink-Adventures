@@ -63,10 +63,15 @@ namespace Noah.Scripts.Player
         public bool _canMoveBox;
         public Rigidbody2D _movableRigidbody2D;
         public RelativeJoint2D _relativeJoint2D;
+        
+        private float idleTimer = 0f;
+        private float idleThreshold = 5f;
 
         
         private void Start()
         {
+            
+            _anim = GetComponentInChildren<Animator>();
             _rb = GetComponent<Rigidbody2D>(); 
             _relativeJoint2D = GetComponent<RelativeJoint2D>();
             //     _anim = GetComponent<Animator>();
@@ -99,6 +104,29 @@ namespace Noah.Scripts.Player
                 CameraManager.Instance.LerpedFromPlayerFalling = false;
                 CameraManager.Instance.LerpYDamping(false);
             }
+            
+            _anim.SetBool("IsWalking", _moveInputx != 0);
+            
+            _anim.SetBool("IsJumping", _isJumping);
+            
+            _anim.SetBool("IsFalling", _isFalling);
+            
+            _anim.SetBool("IsClimbing", IsClimbing);
+            
+            _anim.SetBool("IsFalling", !_isJumping && !_isGrounded);
+
+            idleTimer += Time.deltaTime;
+            if (idleTimer >= idleThreshold)
+            {
+                _anim.SetBool("IsDancing",true);
+            }
+
+            if (_moveInputx != 0 || _isJumping)
+            {
+                idleTimer = 0;
+                _anim.SetBool("IsDancing",false);
+            }
+            
         }
         
         #region Jump Function
@@ -192,7 +220,12 @@ namespace Noah.Scripts.Player
             {
                 _canMoveBox = true;
                 _movableBox = other.gameObject;
-            }          
+            }        
+            
+            if (other.CompareTag("Movable,Ground"))
+            {
+                _isGrounded = true;
+            }
             
             if (other.CompareTag("Ground"))
             {
@@ -219,29 +252,67 @@ namespace Noah.Scripts.Player
 
         private void GrabBox()
         {
-            if (_isGrounded)
-            {
-                if (InputManager.instance.PushPullBeingHeld && _canMoveBox && _movableBox != null)
-                {
-                    _movableRigidbody2D = _movableBox.GetComponent<Rigidbody2D>();
-
-                    if (_movableRigidbody2D != null)
+           if (_isGrounded)
+           {
+                    if (InputManager.instance.PushPullBeingHeld && _canMoveBox && _movableBox != null)
                     {
-                        _movableRigidbody2D.constraints = ~RigidbodyConstraints2D.FreezeAll;
-                        _relativeJoint2D.enabled = true;
-                        _relativeJoint2D.connectedBody = _movableRigidbody2D;
+                        _movableRigidbody2D = _movableBox.GetComponent<Rigidbody2D>();
+
+                        if (_movableRigidbody2D != null)
+                        {
+                            // Freeze all constraints
+                            _movableRigidbody2D.constraints = ~RigidbodyConstraints2D.FreezeAll;
+
+                            // Freeze rotation on the Z-axis
+                            _movableRigidbody2D.constraints |= RigidbodyConstraints2D.FreezeRotation;
+
+                            _relativeJoint2D.enabled = true;
+                            _relativeJoint2D.connectedBody = _movableRigidbody2D;
+
+                            // Determine if pushing or pulling
+                            if (_movableRigidbody2D.velocity.x > 0)
+                            {
+                                // Play pushing animation
+                                if (IsFacingRight)
+                                {
+                                    _anim.SetBool("IsPulling", false);
+                                    _anim.SetBool("IsPushing", true);
+                                    
+                                    
+                                }
+                                else
+                                {
+                                    _anim.SetBool("IsPushing", false);
+                                    _anim.SetBool("IsPulling", true);
+                                    
+                                }
+                            }
+                            else if (_movableRigidbody2D.velocity.x < 0)
+                            {
+                                if (IsFacingRight)
+                                {
+                                    _anim.SetBool("IsPushing", false);
+                                    _anim.SetBool("IsPulling", true);
+                                    
+                                }
+                                else
+                                {
+                                    _anim.SetBool("IsPulling", false);
+                                    _anim.SetBool("IsPushing", true);
+                                    
+                                }
+                            }
+                        }
                     }
-                }
-            }
-            
-            else if (!_isGrounded)
-            {
-                if (_relativeJoint2D != null)
-                {
-                    _relativeJoint2D.enabled = false;
-                    _relativeJoint2D.connectedBody = null;
-                }
-            }
+           }
+           else if (!_isGrounded)
+           {
+               if (_relativeJoint2D != null)
+               {
+                   _relativeJoint2D.enabled = false;
+                   _relativeJoint2D.connectedBody = null;
+               }
+           }
         }
 
         public void ReleaseBox()
@@ -260,6 +331,8 @@ namespace Noah.Scripts.Player
                         _relativeJoint2D.connectedBody = null;
                     }
                 }
+                _anim.SetBool("IsPushing", false);
+                _anim.SetBool("IsPulling", false);
             }
         }
 
