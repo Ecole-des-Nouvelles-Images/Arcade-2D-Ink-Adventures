@@ -11,7 +11,7 @@ namespace Noah.Scripts.Ladder
         {
             if (other.CompareTag("Player"))
             {
-                playerController.IsClimbing = true;
+                 playerController.IsClimbing = true;
             }        
         }
 
