@@ -7,6 +7,7 @@ public class MenuManager : MonoBehaviour
     [Header("Menu Objects")]
     [SerializeField] private GameObject _mainMenuCanvasGO;
     [SerializeField] private GameObject _settingsMenuCanvasGO;
+    [SerializeField] private GameObject _volumeMenuCanvasGO;
     [SerializeField] private GameObject _keyboardMenuCanvasGO;
     [SerializeField] private GameObject _gamepadMenuCanvasGO;
 
@@ -16,6 +17,7 @@ public class MenuManager : MonoBehaviour
     [Header("First Selected Options")] 
     [SerializeField] private GameObject _mainMenuFirst;
     [SerializeField] private GameObject _settingsMenuFirst;
+    [SerializeField] private GameObject _volumeMenuFirst;
     [SerializeField] private GameObject _keyboardMenuFirst;
     [SerializeField] private GameObject _gamepadMenuFirst;
 
@@ -26,6 +28,7 @@ public class MenuManager : MonoBehaviour
     {
         _mainMenuCanvasGO.SetActive(false);
         _settingsMenuCanvasGO.SetActive(false);
+        _volumeMenuCanvasGO.SetActive(false);
         _keyboardMenuCanvasGO.SetActive(false);
         _gamepadMenuCanvasGO.SetActive(false);
     }
@@ -64,13 +67,13 @@ public class MenuManager : MonoBehaviour
     }
     #endregion
     
-
     #region Canvas Activations
 
     private void OpenMainMenu()
     {
         _mainMenuCanvasGO.SetActive(true);
         _settingsMenuCanvasGO.SetActive(false);
+        _volumeMenuCanvasGO.SetActive(false);
         _keyboardMenuCanvasGO.SetActive(false);
         _gamepadMenuCanvasGO.SetActive(false);
         
@@ -81,10 +84,22 @@ public class MenuManager : MonoBehaviour
     {
         _settingsMenuCanvasGO.SetActive(true);
         _mainMenuCanvasGO.SetActive(false);
+        _volumeMenuCanvasGO.SetActive(false);
         _keyboardMenuCanvasGO.SetActive(false);
         _gamepadMenuCanvasGO.SetActive(false);
         
         EventSystem.current.SetSelectedGameObject(_settingsMenuFirst);
+    }
+    
+    private void OpenVolumeMenuHandle()
+    {
+        _volumeMenuCanvasGO.SetActive(true);
+        _mainMenuCanvasGO.SetActive(false);
+        _settingsMenuCanvasGO.SetActive(false);
+        _gamepadMenuCanvasGO.SetActive(false);
+        _keyboardMenuCanvasGO.SetActive(false);
+        
+        EventSystem.current.SetSelectedGameObject(_volumeMenuFirst);
     }
 
     private void OpenKeyboardMenuHandle()
@@ -92,6 +107,7 @@ public class MenuManager : MonoBehaviour
         _keyboardMenuCanvasGO.SetActive(true);
         _mainMenuCanvasGO.SetActive(false);
         _settingsMenuCanvasGO.SetActive(false);
+        _volumeMenuCanvasGO.SetActive(false);
         _gamepadMenuCanvasGO.SetActive(false);
         
         EventSystem.current.SetSelectedGameObject(_keyboardMenuFirst);
@@ -101,6 +117,7 @@ public class MenuManager : MonoBehaviour
         _gamepadMenuCanvasGO.SetActive(true);
         _mainMenuCanvasGO.SetActive(false);
         _settingsMenuCanvasGO.SetActive(false);
+        _volumeMenuCanvasGO.SetActive(false);
         _keyboardMenuCanvasGO.SetActive(false);
         
         EventSystem.current.SetSelectedGameObject(_gamepadMenuFirst);
@@ -111,6 +128,7 @@ public class MenuManager : MonoBehaviour
     {
         _mainMenuCanvasGO.SetActive(false);
         _settingsMenuCanvasGO.SetActive(false);
+        _volumeMenuCanvasGO.SetActive(false);
         _keyboardMenuCanvasGO.SetActive(false);
         _gamepadMenuCanvasGO.SetActive(false);
         
@@ -134,6 +152,10 @@ public class MenuManager : MonoBehaviour
 
     #region Settings Menu Button Actions
 
+    public void OnSettingsVolumePress()
+    {
+        OpenVolumeMenuHandle();
+    }
     public void OnSettingsKeyboardPress()
     {
         OpenKeyboardMenuHandle();
@@ -146,10 +168,8 @@ public class MenuManager : MonoBehaviour
     {
         OpenMainMenu();
     }
-    #endregion
     
-    #region Keyboard Menu Button Actions
     
     #endregion
-
+    
 }
