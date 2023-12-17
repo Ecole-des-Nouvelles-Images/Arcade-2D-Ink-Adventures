@@ -3,6 +3,7 @@ using System.Collections;
 using Helper;
 using Noah.Scripts.Camera;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.PlayerLoop;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.Serialization;
@@ -12,10 +13,6 @@ namespace Noah.Scripts.Player
     public class PlayerController : MonoBehaviour
     {
         [SerializeField] private Light2D playerLight;
-        [HideInInspector] public bool IsClimbing;
-        [HideInInspector] public bool IsOnPlatform;
-        [HideInInspector] public Rigidbody2D PlatformRb;
-
 
         [Header("Movement")]
         [SerializeField] private float _moveSpeed = 7.5f;
@@ -36,7 +33,10 @@ namespace Noah.Scripts.Player
         [SerializeField] private GameObject _cameraFollowGO;
         
         [HideInInspector] public bool IsFacingRight;
-        
+        [HideInInspector] public bool IsClimbing;
+        [HideInInspector] public bool IsOnPlatform;
+        [HideInInspector] public Rigidbody2D PlatformRb;
+
         
         private bool _isFalling;
         private bool _isMoving;
@@ -59,10 +59,10 @@ namespace Noah.Scripts.Player
         private float _normalGravity;
         private bool _isGrounded;
 
-        private GameObject _movableBox;
-        private bool _canMoveBox;
-        private Rigidbody2D _movableRigidbody2D;
-        private RelativeJoint2D _relativeJoint2D;
+        public GameObject _movableBox;
+        public bool _canMoveBox;
+        public Rigidbody2D _movableRigidbody2D;
+        public RelativeJoint2D _relativeJoint2D;
 
         
         private void Start()
@@ -84,11 +84,9 @@ namespace Noah.Scripts.Player
 
         private void Update()
         {
+
+            CheckInputV2();
             Jump();
-            if (!_isGrounded)
-            {
-                
-            }
             GrabBox();
             ReleaseBox();
             if (_rb.velocity.y < _fallSpeedYDampingChangeThreshold && !CameraManager.Instance.IsLerpingYDamping && !CameraManager.Instance.LerpedFromPlayerFalling)
@@ -246,7 +244,7 @@ namespace Noah.Scripts.Player
             }
         }
 
-        private void ReleaseBox()
+        public void ReleaseBox()
         {
             if (InputManager.instance.PushPullReleased && _movableBox != null)
             {
@@ -421,6 +419,33 @@ namespace Noah.Scripts.Player
             OnColorChange?.Invoke(newColor);
         }
 
+        private void CheckInputV2()
+        {
+            if (InputManager.instance.RedLightJustPressed)
+            {
+                ChangeColor(GetColor(InputManager.instance.GreenLightBeingHeld, Color.yellow, InputManager.instance.BlueLightBeingHeld, Color.magenta, Color.red));
+            }
+
+            if (InputManager.instance.GreenLightJustPressed)
+            {
+                ChangeColor(GetColor(InputManager.instance.BlueLightBeingHeld, Color.cyan, InputManager.instance.RedLightBeingHeld, Color.yellow, Color.green));
+            }
+            
+            if (InputManager.instance.BlueLightJustPressed)
+            {
+                ChangeColor(GetColor(InputManager.instance.RedLightBeingHeld, Color.magenta, InputManager.instance.GreenLightBeingHeld, Color.cyan, Color.blue));
+            }
+
+            Color GetColor(bool secondKey, Color colorIfBothPressed, bool thirdKey, Color colorIfThirdPressed, Color defaultColor)
+            {
+                if (secondKey)
+                    return colorIfBothPressed; 
+                if (thirdKey)
+                    return colorIfThirdPressed;
+                
+                return defaultColor;
+            }
+        }
     }
         
         
