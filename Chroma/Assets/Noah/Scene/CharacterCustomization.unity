@@ -174,7 +174,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa15e74441951ae49b07387aefd3f84d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bodypart: {fileID: 1423400079}
+  bodypart: {fileID: 1790517424}
   options:
   - {fileID: 21300000, guid: 04771e0702e244d47bb1058a99d3f353, type: 3}
   - {fileID: 21300000, guid: 2a7aa04385ebe0d43ae54c9ef97e9a1b, type: 3}
@@ -2068,7 +2068,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1777302597}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: CharacterCreationMenu, Assembly-CSharp
         m_MethodName: RandomizeCharacter
         m_Mode: 1
@@ -3163,11 +3163,6 @@ SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 6072556698294944088, guid: 0289c9d3beea02444bca5be9f22c5a82, type: 3}
   m_PrefabInstance: {fileID: 1601746303}
   m_PrefabAsset: {fileID: 0}
---- !u!212 &1423400079 stripped
-SpriteRenderer:
-  m_CorrespondingSourceObject: {fileID: 5199546573183453731, guid: 0289c9d3beea02444bca5be9f22c5a82, type: 3}
-  m_PrefabInstance: {fileID: 1601746303}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1435202913
 GameObject:
   m_ObjectHideFlags: 0
@@ -3458,6 +3453,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3186791985925619217, guid: 0289c9d3beea02444bca5be9f22c5a82, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3459952882077342914, guid: 0289c9d3beea02444bca5be9f22c5a82, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -3489,6 +3488,10 @@ PrefabInstance:
     - target: {fileID: 5185774259344029261, guid: 0289c9d3beea02444bca5be9f22c5a82, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5199546573183453731, guid: 0289c9d3beea02444bca5be9f22c5a82, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5524150462815372180, guid: 0289c9d3beea02444bca5be9f22c5a82, type: 3}
       propertyPath: m_IsActive
@@ -3809,7 +3812,6 @@ GameObject:
   - component: {fileID: 1777302594}
   - component: {fileID: 1777302596}
   - component: {fileID: 1777302595}
-  - component: {fileID: 1777302597}
   m_Layer: 5
   m_Name: CharacterCreationMenu
   m_TagString: Untagged
@@ -3879,23 +3881,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1777302593}
   m_CullTransparentMesh: 1
---- !u!114 &1777302597
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+--- !u!212 &1790517424 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 1060302382884873960, guid: 0289c9d3beea02444bca5be9f22c5a82, type: 3}
+  m_PrefabInstance: {fileID: 1601746303}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1777302593}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd1c4c1d14c2b6d44b4d40ef1d619da5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  outfitChangers:
-  - {fileID: 467166060}
-  - {fileID: 624725345}
-  - {fileID: 15291757}
-  - {fileID: 1007555139}
 --- !u!1 &1943316992
 GameObject:
   m_ObjectHideFlags: 0
