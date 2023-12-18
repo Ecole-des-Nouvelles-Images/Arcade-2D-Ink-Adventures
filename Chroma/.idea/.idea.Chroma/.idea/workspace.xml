@@ -6,8 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="327f0f78-c56b-4abd-91d6-6122790d9453" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Chroma/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Chroma/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Noah/Scene/CharacterCustomization.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Noah/Scene/CharacterCustomization.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Noah/Scene/Menu.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Noah/Scene/Menu.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Noah/Scene/Noah.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Noah/Scene/Noah.unity" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -132,7 +130,7 @@
       <workItem from="1702462781637" duration="10615000" />
       <workItem from="1702545718689" duration="441000" />
       <workItem from="1702630204058" duration="13319000" />
-      <workItem from="1702897025796" duration="2472000" />
+      <workItem from="1702897025796" duration="4497000" />
     </task>
     <servers />
   </component>
