@@ -8,11 +8,16 @@ namespace Elias.Scripts.Data
         private void OnCollisionEnter2D(Collision2D other)
         {
             if (!other.collider.CompareTag("Player")) return;
+
+            if (CompareTag("RedUpgrade"))
+            {
+                GameManager.Instance.hasColorUpgradeR = true;
+            }
             if (CompareTag("BlueUpgrade"))
             {
                 GameManager.Instance.hasColorUpgradeB = true;
             }
-            else
+            if (CompareTag("GreenUpgrade"))
             {
                 GameManager.Instance.hasColorUpgradeG = true;
             }

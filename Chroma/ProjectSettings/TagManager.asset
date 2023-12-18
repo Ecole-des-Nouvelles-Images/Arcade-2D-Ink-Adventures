@@ -11,6 +11,7 @@ TagManager:
   - BlueUpgrade
   - GreenUpgrade
   - Ground,Movable
+  - RedUpgrade
   layers:
   - Default
   - TransparentFX

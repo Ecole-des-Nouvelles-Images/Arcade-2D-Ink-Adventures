@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Elias.Scripts.Managers;
 using Helper;
 using Noah.Scripts.Camera;
 using UnityEngine;
@@ -494,17 +495,17 @@ namespace Noah.Scripts.Player
 
         private void CheckInputV2()
         {
-            if (InputManager.instance.RedLightJustPressed)
+            if (InputManager.instance.RedLightJustPressed && GameManager.Instance.hasColorUpgradeR)
             {
                 ChangeColor(GetColor(InputManager.instance.GreenLightBeingHeld, Color.yellow, InputManager.instance.BlueLightBeingHeld, Color.magenta, Color.red));
             }
 
-            if (InputManager.instance.GreenLightJustPressed)
+            if (InputManager.instance.GreenLightJustPressed && GameManager.Instance.hasColorUpgradeG)
             {
                 ChangeColor(GetColor(InputManager.instance.BlueLightBeingHeld, Color.cyan, InputManager.instance.RedLightBeingHeld, Color.yellow, Color.green));
             }
             
-            if (InputManager.instance.BlueLightJustPressed)
+            if (InputManager.instance.BlueLightJustPressed && GameManager.Instance.hasColorUpgradeB)
             {
                 ChangeColor(GetColor(InputManager.instance.RedLightBeingHeld, Color.magenta, InputManager.instance.GreenLightBeingHeld, Color.cyan, Color.blue));
             }

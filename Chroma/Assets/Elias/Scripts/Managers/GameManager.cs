@@ -7,6 +7,7 @@ namespace Elias.Scripts.Managers
 
     public class GameManager : MonoBehaviourSingleton<GameManager>
     {
+        public bool hasColorUpgradeR = false;
         public bool hasColorUpgradeG = false;
         public bool hasColorUpgradeB = false;
 

@@ -14,7 +14,7 @@ namespace Elias.Scripts.Data
         private Rigidbody2D _objectRigidbody;
         private string _objectLayer;
         private LayerMask _playerLayer;
-        private float _colorTolerance = 4f;
+        private readonly float _colorTolerance = 4f;
         private Color _currentColor;
         private ColorContext colorContext;
 
@@ -28,24 +28,17 @@ namespace Elias.Scripts.Data
             _currentColor = _objectLight.color;
 
             FindObjectOfType<PlayerController>().OnColorChange += HandleColorChange;
-
-            // Initialize the color context with the appropriate initial state based on the layer
+            
             IColorState initialState = GetInitialState(_objectLayer);
             colorContext = new ColorContext(initialState);
 
-            // Set up collisions based on the initial state
             colorContext.SetupCollision(this);
         }
 
         private void HandleColorChange(Color newColor)
         {
             bool areColorsClose = GameManager.Instance.AreColorsClose(newColor, _objectLight.color, _colorTolerance);
-
-            // Change the color state based on the new color
-            //IColorState newState = GetStateFromColor(newColor);
-            //colorContext.SetState(newState);
-
-            // Set up collisions based on the new state
+            
             colorContext.SetupCollision(this);
 
             if (areColorsClose && !ColorLayerHelper.ShouldIgnoreCollision(_objectLayer, "Player"))
@@ -89,5 +82,8 @@ namespace Elias.Scripts.Data
                     return null;
             }
         }
+        
+        
+        
     }
 }
