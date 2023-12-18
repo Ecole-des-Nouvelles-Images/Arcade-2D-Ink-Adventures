@@ -89,11 +89,11 @@ namespace Noah.Scripts.Player
 
         private void Update()
         {
-
             CheckInputV2();
             Jump();
             GrabBox();
             ReleaseBox();
+
             if (_rb.velocity.y < _fallSpeedYDampingChangeThreshold && !CameraManager.Instance.IsLerpingYDamping && !CameraManager.Instance.LerpedFromPlayerFalling)
             {
                 CameraManager.Instance.LerpYDamping(true);
