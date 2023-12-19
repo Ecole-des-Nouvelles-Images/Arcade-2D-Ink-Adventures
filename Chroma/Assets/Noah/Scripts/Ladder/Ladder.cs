@@ -6,12 +6,11 @@ namespace Noah.Scripts.Ladder
 {
     public class Ladder : MonoBehaviour
     {
-        [SerializeField] private PlayerController playerController;
         private void OnTriggerEnter2D(Collider2D other)
         {
             if (other.CompareTag("Player"))
             {
-                 playerController.IsClimbing = true;
+                 PlayerController.instance.IsClimbing = true;
             }        
         }
 
@@ -19,7 +18,7 @@ namespace Noah.Scripts.Ladder
         {
             if (other.CompareTag("Player"))
             {
-                playerController.IsClimbing = false;
+                PlayerController.instance.IsClimbing = false;
             }  
         }
     }

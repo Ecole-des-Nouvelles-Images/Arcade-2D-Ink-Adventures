@@ -34,6 +34,11 @@ public class MainMenuManager : MonoBehaviour
         StartCoroutine(ProgressLoadingBar());
     }
 
+    public void QuitGame()
+    {
+        QuitGame();
+    }
+
     private void HideMenu()
     {
         for (int i = 0; i < _objectsToHide.Length; i++)

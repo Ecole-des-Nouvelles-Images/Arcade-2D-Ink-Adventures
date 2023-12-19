@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -5,15 +6,20 @@ namespace Noah.Scripts.Player
 {
     public class GameController : MonoBehaviour
     {
+        public static GameController instance;
         [SerializeField] private float respawnTime = 0.1f;
         private Vector2 _checkpointPos;
         private Rigidbody2D _playerRb;
-        private PlayerController _playerController;
-    
+
+        private void Awake()
+        {
+            instance = this;
+            DontDestroyOnLoad(this.gameObject);
+        }
+
         private void Start()
         {
             _checkpointPos = transform.position;
-            _playerController = GetComponent<PlayerController>();
         }
     
         public void UpdateCheckpoint(Vector2 pos)
@@ -36,10 +42,8 @@ namespace Noah.Scripts.Player
 
         IEnumerator Respawn(float duration)
         { 
-            transform.localScale = new Vector3(0, 0, 0);
             transform.position = _checkpointPos; 
             yield return new WaitForSeconds(duration);
-            transform.localScale = new Vector3(1, 1, 1);
         }
     
     }

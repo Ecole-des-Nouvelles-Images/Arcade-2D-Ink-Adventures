@@ -27,13 +27,7 @@ public class CameraManager : MonoBehaviour
     private float _normYPanAmount;
 
     private Vector2 _startingTrackedObjectOffset;
-
-
-    private void Update()
-    {
-        Debug.Log(_currentCamera);
-    }
-
+    
     private void Awake()
     {
         if (Instance == null)

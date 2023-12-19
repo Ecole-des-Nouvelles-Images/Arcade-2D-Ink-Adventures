@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using Helper;
 using Noah.Scripts.Camera;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.PlayerLoop;
@@ -12,6 +13,7 @@ namespace Noah.Scripts.Player
 {
     public class PlayerController : MonoBehaviour
     {
+        public static PlayerController instance;
         [SerializeField] private Light2D playerLight;
 
         [Header("Movement")]
@@ -67,10 +69,14 @@ namespace Noah.Scripts.Player
         private float idleTimer = 0f;
         private float idleThreshold = 5f;
 
-        
+        private void Awake()
+        {
+            instance = this;
+            DontDestroyOnLoad(this.gameObject);
+        }
+
         private void Start()
         {
-            
             _anim = GetComponentInChildren<Animator>();
             _rb = GetComponent<Rigidbody2D>(); 
             _relativeJoint2D = GetComponent<RelativeJoint2D>();

@@ -4,12 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="327f0f78-c56b-4abd-91d6-6122790d9453" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Chroma/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Chroma/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Noah/Scene/Noah.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Noah/Scene/Noah.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Noah/Scripts/Camera/CameraManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Noah/Scripts/Camera/CameraManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Noah/Scripts/Player/PlayerController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Noah/Scripts/Player/PlayerController.cs" afterDir="false" />
-    </list>
+    <list default="true" id="327f0f78-c56b-4abd-91d6-6122790d9453" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -136,6 +131,8 @@
       <workItem from="1702897025796" duration="5412000" />
       <workItem from="1702920018359" duration="7669000" />
       <workItem from="1702934586612" duration="4104000" />
+      <workItem from="1702975352586" duration="390000" />
+      <workItem from="1702978362428" duration="4151000" />
     </task>
     <servers />
   </component>
