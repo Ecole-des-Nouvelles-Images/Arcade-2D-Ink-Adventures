@@ -21,17 +21,17 @@ public class MainMenuManager : MonoBehaviour
     private List<AsyncOperation> _scenesToLoad = new List<AsyncOperation>();
     private void Awake()
     {
-        _loadingBarObject.SetActive(false);
+  //      _loadingBarObject.SetActive(false);
     }
 
     public void StartGame()
     {
         HideMenu();
         
-        _loadingBarObject.SetActive(true);
+   //     _loadingBarObject.SetActive(true); 
         _scenesToLoad.Add(SceneManager.LoadSceneAsync(_persistentGameplay));
         _scenesToLoad.Add(SceneManager.LoadSceneAsync(_levelScene, LoadSceneMode.Additive));
-        StartCoroutine(ProgressLoadingBar());
+   //     StartCoroutine(ProgressLoadingBar()); 
     }
 
     public void QuitGame()
