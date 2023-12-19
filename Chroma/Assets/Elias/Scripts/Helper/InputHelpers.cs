@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace Helper
+namespace Elias.Scripts.Helper
 {
-    public static class PlayerInputs
+    public static class InputHelpers
     {
         private static readonly KeyCode[] Keys = { KeyCode.R, KeyCode.G, KeyCode.B };
-        public static readonly List<KeyCode> InputList = new List<KeyCode>(Keys);
+        public static readonly List<KeyCode> InputList = new(Keys);
     }
 }

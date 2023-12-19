@@ -1,8 +1,8 @@
-using Elias.Scripts.Data;
+using Elias.Scripts.Components;
 
 namespace Noah.Scripts.Data
 {
-    public class ChildObject : BaseObject
+    public class ChildObject : PropColorCollider
     {
     
     }

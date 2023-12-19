@@ -1,13 +1,9 @@
-using System;
 using System.Collections;
+using Elias.Scripts.Helper;
 using Elias.Scripts.Managers;
-using Helper;
 using Noah.Scripts.Camera;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.PlayerLoop;
 using UnityEngine.Rendering.Universal;
-using UnityEngine.Serialization;
 
 namespace Noah.Scripts.Player
 {
@@ -38,6 +34,9 @@ namespace Noah.Scripts.Player
         [HideInInspector] public bool IsOnPlatform;
         [HideInInspector] public Rigidbody2D PlatformRb;
 
+        public bool hasColorUpgradeR;
+        public bool hasColorUpgradeG;
+        public bool hasColorUpgradeB;
         
         private bool _isFalling;
         private bool _isMoving;
@@ -449,14 +448,13 @@ namespace Noah.Scripts.Player
                 Vector2.right * (_coll.bounds.extents.x * 2), rayColor);
         }
         
-          
-        public event Action<Color> OnColorChange;
+        
         private void CheckInput()
         {
             if (!Input.anyKeyDown)
                 return;
             
-            foreach (KeyCode key in PlayerInputs.InputList)
+            foreach (KeyCode key in InputHelpers.InputList)
             {
                 if (Input.GetKeyDown(key))
                 {
@@ -490,22 +488,21 @@ namespace Noah.Scripts.Player
         public void ChangeColor(Color newColor)
         {
             playerLight.color = newColor;
-            OnColorChange?.Invoke(newColor);
         }
 
         private void CheckInputV2()
         {
-            if (InputManager.instance.RedLightJustPressed && GameManager.Instance.hasColorUpgradeR)
+            if (InputManager.instance.RedLightJustPressed && hasColorUpgradeR)
             {
                 ChangeColor(GetColor(InputManager.instance.GreenLightBeingHeld, Color.yellow, InputManager.instance.BlueLightBeingHeld, Color.magenta, Color.red));
             }
 
-            if (InputManager.instance.GreenLightJustPressed && GameManager.Instance.hasColorUpgradeG)
+            if (InputManager.instance.GreenLightJustPressed && hasColorUpgradeG)
             {
                 ChangeColor(GetColor(InputManager.instance.BlueLightBeingHeld, Color.cyan, InputManager.instance.RedLightBeingHeld, Color.yellow, Color.green));
             }
             
-            if (InputManager.instance.BlueLightJustPressed && GameManager.Instance.hasColorUpgradeB)
+            if (InputManager.instance.BlueLightJustPressed && hasColorUpgradeB)
             {
                 ChangeColor(GetColor(InputManager.instance.RedLightBeingHeld, Color.magenta, InputManager.instance.GreenLightBeingHeld, Color.cyan, Color.blue));
             }

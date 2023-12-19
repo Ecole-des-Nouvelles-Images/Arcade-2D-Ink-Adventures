@@ -1,10 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Elias.Scripts.Data;
 using Noah.Scripts.Player;
 using UnityEngine;
 using UnityEngine.Serialization;
+using PlayerController = Noah.Scripts.Player.PlayerController;
 
 public class MovingPlatform : MonoBehaviour
 {

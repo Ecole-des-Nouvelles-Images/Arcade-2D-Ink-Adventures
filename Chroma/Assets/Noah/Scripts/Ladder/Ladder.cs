@@ -1,6 +1,6 @@
-using Elias.Scripts.Data;
 using Noah.Scripts.Player;
 using UnityEngine;
+using PlayerController = Noah.Scripts.Player.PlayerController;
 
 namespace Noah.Scripts.Ladder
 {
