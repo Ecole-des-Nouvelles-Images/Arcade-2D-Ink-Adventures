@@ -24,7 +24,6 @@ public class MovingPlatform : MonoBehaviour
 
     private void Awake()
     {
-        _playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         _rb = GetComponent<Rigidbody2D>();
 
         wayPoints = new Transform[ways.transform.childCount];
@@ -88,8 +87,8 @@ public class MovingPlatform : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            _playerController.IsOnPlatform = true;
-            _playerController.PlatformRb = _rb;
+            PlayerController.instance.IsOnPlatform = true;
+            PlayerController.instance.PlatformRb = _rb;
         }
     }
     
@@ -97,7 +96,7 @@ public class MovingPlatform : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            _playerController.IsOnPlatform = false;
+            PlayerController.instance.IsOnPlatform = false;
         }
     }
     

@@ -2,6 +2,7 @@ using System.Collections;
 using Elias.Scripts.Helper;
 using Elias.Scripts.Managers;
 using Noah.Scripts.Camera;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
@@ -9,6 +10,7 @@ namespace Noah.Scripts.Player
 {
     public class PlayerController : MonoBehaviour
     {
+        public static PlayerController instance;
         [SerializeField] private Light2D playerLight;
 
         [Header("Movement")]
@@ -67,10 +69,14 @@ namespace Noah.Scripts.Player
         private float idleTimer = 0f;
         private float idleThreshold = 5f;
 
-        
+        private void Awake()
+        {
+            instance = this;
+            DontDestroyOnLoad(this.gameObject);
+        }
+
         private void Start()
         {
-            
             _anim = GetComponentInChildren<Animator>();
             _rb = GetComponent<Rigidbody2D>(); 
             _relativeJoint2D = GetComponent<RelativeJoint2D>();
@@ -89,11 +95,11 @@ namespace Noah.Scripts.Player
 
         private void Update()
         {
-
             CheckInputV2();
             Jump();
             GrabBox();
             ReleaseBox();
+
             if (_rb.velocity.y < _fallSpeedYDampingChangeThreshold && !CameraManager.Instance.IsLerpingYDamping && !CameraManager.Instance.LerpedFromPlayerFalling)
             {
                 CameraManager.Instance.LerpYDamping(true);

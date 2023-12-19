@@ -6,16 +6,13 @@ namespace Noah.Scripts.Checkpoint
 {
     public class Checkpoint : MonoBehaviour
     {
-
         [SerializeField] private Transform respawnPoint;
         [SerializeField] private Sprite passive, active;
-        private GameController _gameController;
         private SpriteRenderer _spriteRenderer;
         private Collider2D _coll;
 
         private void Awake()
         {
-            _gameController = GameObject.FindGameObjectWithTag("Player").GetComponent<GameController>();
             _spriteRenderer = GetComponent<SpriteRenderer>();
             _coll = GetComponent<Collider2D>();
         }
@@ -24,7 +21,7 @@ namespace Noah.Scripts.Checkpoint
         {
             if (other.CompareTag("Player"))
             {
-                _gameController.UpdateCheckpoint(respawnPoint.position);
+                GameController.instance.UpdateCheckpoint(respawnPoint.position);
                 _coll.enabled = false;
             }
         }
