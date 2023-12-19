@@ -37,18 +37,14 @@ namespace Elias.Scripts.Components
         
         private void OnTriggerEnter2D(Collider2D other)
         {
-            // Check if the other collider is the player
             if (other.gameObject.CompareTag("Player"))
             {
                 bool isColliding = ColorHelpers.Collide(_objectLight.color, _playerLight.color);
                 Debug.Log($"Trigger Enter: Collision Status = {isColliding}");
             }
         }
-
-        // OnCollisionEnter2D is called when the Collider2D other enters the collider
         private void OnCollisionEnter2D(Collision2D collision)
         {
-            // Check if the other collider is the player
             if (collision.gameObject.CompareTag("Player"))
             {
                 bool isColliding = ColorHelpers.Collide(_objectLight.color, _playerLight.color);
