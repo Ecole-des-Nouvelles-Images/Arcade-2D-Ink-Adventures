@@ -12,7 +12,7 @@ EditorBuildSettings:
     path: Assets/PROD/Scenes/MainMenu.unity
     guid: e8e637878649dcd459217fbed42dfacd
   - enabled: 1
-    path: Assets/Noah/Scene/PersistentGameplay.unity
+    path: Assets/PROD/Scenes/PersistentGameplay.unity
     guid: f5d3b1b00dc84c341aa47200a7dc80c8
   - enabled: 1
     path: Assets/PROD/Scenes/Niveau 1.unity

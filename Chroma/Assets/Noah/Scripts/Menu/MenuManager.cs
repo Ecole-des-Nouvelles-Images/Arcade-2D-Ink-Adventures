@@ -63,7 +63,6 @@ public class MenuManager : MonoBehaviour
         Time.timeScale = 1f;
         player.enabled = true;
         CloseAllMenus();
-
     }
     #endregion
     
