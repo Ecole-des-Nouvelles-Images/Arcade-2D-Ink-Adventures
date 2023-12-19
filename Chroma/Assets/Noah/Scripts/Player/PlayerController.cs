@@ -179,7 +179,6 @@ namespace Noah.Scripts.Player
     //            _anim.SetTrigger("land");
                 _resetTriggerCoroutine = StartCoroutine(Reset());
             }
-            DrawGroundCheck();
         }
         #endregion
         
@@ -433,7 +432,7 @@ namespace Noah.Scripts.Player
         }
         #endregion
         
-        private void DrawGroundCheck()
+        /*private void DrawGroundCheck()
         {
             Color rayColor;
 
@@ -452,7 +451,7 @@ namespace Noah.Scripts.Player
             Debug.DrawRay(
                 _coll.bounds.center - new Vector3(_coll.bounds.extents.x, _coll.bounds.extents.y + extraHeight),
                 Vector2.right * (_coll.bounds.extents.x * 2), rayColor);
-        }
+        }*/
         
         
         private void CheckInput()

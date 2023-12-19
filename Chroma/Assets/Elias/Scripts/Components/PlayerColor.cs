@@ -27,22 +27,25 @@ namespace Elias.Scripts.Components
         
         private void InputSwitchColor()
         {
-            if (InputManager.instance.RedLightJustPressed && switchableColors.Contains(Color.red)) {
+            if (InputManager.instance.RedLightJustPressed /*&& switchableColors.Contains(Color.red)*/) {
                 _playerLight.color = GetColor(InputManager.instance.GreenLightBeingHeld, 
                         Color.yellow, InputManager.instance.BlueLightBeingHeld, 
                         Color.magenta, Color.red);
+                
             }
 
-            if (InputManager.instance.GreenLightJustPressed && switchableColors.Contains(Color.green)) {
+            if (InputManager.instance.GreenLightJustPressed /*&& switchableColors.Contains(Color.green)*/) {
                 _playerLight.color = GetColor(InputManager.instance.BlueLightBeingHeld, 
                     Color.cyan, InputManager.instance.RedLightBeingHeld, 
                     Color.yellow, Color.green);
+                
             }
             
-            if (InputManager.instance.BlueLightJustPressed && switchableColors.Contains(Color.blue)) {
+            if (InputManager.instance.BlueLightJustPressed /*&& switchableColors.Contains(Color.blue)*/) {
                 _playerLight.color = GetColor(InputManager.instance.RedLightBeingHeld, 
                     Color.magenta, InputManager.instance.GreenLightBeingHeld, 
                     Color.cyan, Color.blue);
+                
             }
         }
 

@@ -9,7 +9,7 @@ namespace Elias.Scripts.Components
 {
     public class PlayerController : MonoBehaviour
     {
-        [HideInInspector] public bool IsClimbing;
+        [HideInInspector] public static bool IsClimbing;
         [HideInInspector] public bool IsOnPlatform;
         [HideInInspector] public Rigidbody2D PlatformRb;
 
@@ -167,7 +167,6 @@ namespace Elias.Scripts.Components
             if (!_isJumping && CheckForLand())
                 //            _anim.SetTrigger("land");
                 _resetTriggerCoroutine = StartCoroutine(Reset());
-            DrawGroundCheck();
         }
 
         #endregion
@@ -193,7 +192,7 @@ namespace Elias.Scripts.Components
 
         #endregion
 
-        private void DrawGroundCheck()
+        /*private void DrawGroundCheck()
         {
             Color rayColor;
 
@@ -210,7 +209,7 @@ namespace Elias.Scripts.Components
             Debug.DrawRay(
                 _coll.bounds.center - new Vector3(_coll.bounds.extents.x, _coll.bounds.extents.y + extraHeight),
                 Vector2.right * (_coll.bounds.extents.x * 2), rayColor);
-        }
+        }*/
 
         #region Movement Functions
 
@@ -412,5 +411,6 @@ namespace Elias.Scripts.Components
         }
 
         #endregion
+        
     }
 }

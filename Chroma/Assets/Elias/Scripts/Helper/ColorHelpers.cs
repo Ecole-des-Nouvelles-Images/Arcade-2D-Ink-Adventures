@@ -21,6 +21,7 @@ namespace Elias.Scripts.Helper
                 { (Color.yellow, Color.yellow), true },
                 { (Color.magenta, Color.magenta), true },
                 { (Color.cyan, Color.cyan), true }
+                
             };
 
             return colorsDictionary.ContainsKey((color, otherColor)) ||
