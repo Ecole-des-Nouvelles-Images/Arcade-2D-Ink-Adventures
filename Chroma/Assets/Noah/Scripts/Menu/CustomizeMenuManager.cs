@@ -16,7 +16,6 @@ public class CustomizeMenuManager : MonoBehaviour
     [SerializeField] private GameObject _customizeMenuFirst;
 
     private bool _onCustomizing;
-
     private bool _onPause;
 
     private void Start()
