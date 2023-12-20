@@ -5,6 +5,7 @@ using Noah.Scripts.Player;
 using Unity.VisualScripting;
 using UnityEngine.EventSystems;
 using UnityEngine;
+using PlayerController = Elias.Scripts.Components.PlayerController;
 
 public class CustomizeMenuManager : MonoBehaviour
 {
@@ -13,28 +14,37 @@ public class CustomizeMenuManager : MonoBehaviour
     
     [Header("First Selected Options")] 
     [SerializeField] private GameObject _customizeMenuFirst;
-    
-    [Header("Player Scripts to Deactivate on Pause")]
-    [SerializeField] private PlayerController player;
-    
+
     private bool _isPaused;
-    
-    private void OnTriggerEnter(Collider other)
+
+    private void Start()
+    {
+        Pause();
+        OpenMenu(); 
+    }
+
+    private void Update()
+    {
+        if (_isPaused)
+        {
+            PlayerController.Instance._anim.SetBool("IsWalking", false);
+            PlayerController.Instance.canMove = false;
+            PlayerController.Instance.canJump = false;
+
+        }
+        else
+        {
+            PlayerController.Instance.canMove = true;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
             Pause();
             OpenMenu();
         }  
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            Unpause();
-            CloseMenu();
-        } 
     }
 
     public void OnCustomValidate()
@@ -46,26 +56,35 @@ public class CustomizeMenuManager : MonoBehaviour
     private void Pause()
     {
         _isPaused = true;
-        Time.timeScale = 0f;
-        PlayerController.instance.enabled = false;
+        Time.timeScale = 1f;
+        PlayerController.Instance.canJump = false;
+        PlayerController.Instance.canMove = false;
     }
 
     private void Unpause()
     {
+        StartCoroutine(EnableJumpAfterDelay());
         _isPaused = false;
         Time.timeScale = 1f;
-        PlayerController.instance.enabled = true;
+        PlayerController.Instance.canMove = true;
+
     }
 
     private void OpenMenu()
     {
-        _customizeMenuFirst.SetActive(true);
+        _customizeMenuGO.SetActive(true);        
         EventSystem.current.SetSelectedGameObject(_customizeMenuFirst);
     }
 
     private void CloseMenu()
     {
-        _customizeMenuFirst.SetActive(false);
+        _customizeMenuGO.SetActive(false);
         EventSystem.current.SetSelectedGameObject(null);
+    }
+
+    private IEnumerator EnableJumpAfterDelay()
+    {
+        yield return new WaitForSeconds(0.1f);
+        PlayerController.Instance.canJump = true;
     }
 }

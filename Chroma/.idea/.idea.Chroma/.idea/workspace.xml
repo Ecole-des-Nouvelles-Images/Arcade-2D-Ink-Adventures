@@ -4,7 +4,27 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="327f0f78-c56b-4abd-91d6-6122790d9453" name="Changes" comment="" />
+    <list default="true" id="327f0f78-c56b-4abd-91d6-6122790d9453" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Chroma/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Chroma/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Elias/Scripts/Components/PlayerController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Elias/Scripts/Components/PlayerController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Giulia/Animations/Chroma/ChromaAnimator.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Giulia/Animations/Chroma/ChromaAnimator.controller" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Giulia/Animations/UI/ChromaButton.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Giulia/Animations/UI/ChromaButton.controller" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Giulia/Animations/UI/Slider.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Giulia/Animations/UI/Slider.controller" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Giulia/Animations/UI/Slider.controller.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Giulia/Animations/UI/Slider.controller.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Giulia/Scenes/TestScene_Giulia_03.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Giulia/Scenes/TestScene_Giulia_03.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Giulia/Scenes/TestScene_Giulia_04.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Giulia/Scenes/TestScene_Giulia_04.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Giulia/Scenes/TestScene_Giulia_05.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Giulia/Scenes/TestScene_Giulia_05.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Giulia/Scripts/ParallaxScript.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Giulia/Scripts/ParallaxScript.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Giulia/Sprites/Environment/Environment_ChromaHouse_01.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Giulia/Sprites/Environment/Environment_ChromaHouse_01.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Giulia/Sprites/Environment/Environment_ChromaHouse_02.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Giulia/Sprites/Environment/Environment_ChromaHouse_02.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Giulia/Sprites/Environment/Environment_ChromaHouse_03.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Giulia/Sprites/Environment/Environment_ChromaHouse_03.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Giulia/Sprites/UI/Kitchen SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Giulia/Sprites/UI/Kitchen SDF.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Giulia/Sprites/UI/Kitchen SDF.mat.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Giulia/Sprites/UI/Kitchen SDF.mat.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Noah/Scene/PersistentGameplay 1.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Noah/Scene/PersistentGameplay 1.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Noah/Scripts/Menu/CustomizeMenuManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Noah/Scripts/Menu/CustomizeMenuManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Noah/Scripts/Menu/MenuManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Noah/Scripts/Menu/MenuManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/PROD/Scenes/Niveau 1.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/PROD/Scenes/Niveau 1.unity" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -134,6 +154,8 @@
       <workItem from="1702975352586" duration="390000" />
       <workItem from="1702978362428" duration="4151000" />
       <workItem from="1702987770942" duration="5492000" />
+      <workItem from="1703019973404" duration="2250000" />
+      <workItem from="1703025768869" duration="7223000" />
     </task>
     <servers />
   </component>
