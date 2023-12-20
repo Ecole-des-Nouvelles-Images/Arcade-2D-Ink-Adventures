@@ -21,7 +21,7 @@ namespace Noah.Scripts.Checkpoint
         {
             if (other.CompareTag("Player"))
             {
-                GameController.instance.UpdateCheckpoint(respawnPoint.position);
+                GameController.Instance.UpdateCheckpoint(respawnPoint.position);
                 _coll.enabled = false;
             }
         }

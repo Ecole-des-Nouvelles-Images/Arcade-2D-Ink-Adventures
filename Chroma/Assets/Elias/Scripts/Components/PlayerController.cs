@@ -71,7 +71,8 @@ namespace Elias.Scripts.Components
         public static PlayerController Instance;
 
 
-        private void Awake() {
+        private void Awake() 
+        {
             _playerLight = GetComponent<Light2D>();
             Instance = this;
             DontDestroyOnLoad(this.gameObject);
