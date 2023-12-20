@@ -15,22 +15,31 @@ public class CustomizeMenuManager : MonoBehaviour
     [Header("First Selected Options")] 
     [SerializeField] private GameObject _customizeMenuFirst;
 
-    private bool _isPaused;
+    private bool _onCustomizing;
+
+    private bool _onPause;
 
     private void Start()
     {
         Pause();
-        OpenMenu(); 
+        OpenMenu();
+        _onPause = false;
     }
-
     private void Update()
     {
-        if (_isPaused)
+        if (InputManager.instance.MenuOpenCloseInput && !_onPause)
+        {
+            _onPause = true;
+        }
+        if (InputManager.instance.MenuOpenCloseInput && _onPause)
+        {
+            _onPause = false;
+        }
+        if (_onCustomizing)
         {
             PlayerController.Instance._anim.SetBool("IsWalking", false);
             PlayerController.Instance.canMove = false;
             PlayerController.Instance.canJump = false;
-
         }
         else
         {
@@ -55,7 +64,7 @@ public class CustomizeMenuManager : MonoBehaviour
     
     private void Pause()
     {
-        _isPaused = true;
+        _onCustomizing = true;
         Time.timeScale = 1f;
         PlayerController.Instance.canJump = false;
         PlayerController.Instance.canMove = false;
@@ -64,10 +73,9 @@ public class CustomizeMenuManager : MonoBehaviour
     private void Unpause()
     {
         StartCoroutine(EnableJumpAfterDelay());
-        _isPaused = false;
+        _onCustomizing = false;
         Time.timeScale = 1f;
         PlayerController.Instance.canMove = true;
-
     }
 
     private void OpenMenu()
