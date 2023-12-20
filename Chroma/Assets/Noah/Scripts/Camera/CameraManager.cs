@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Cinemachine;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class CameraManager : MonoBehaviour
 {
@@ -22,7 +23,7 @@ public class CameraManager : MonoBehaviour
 
     private Coroutine _lerpYPanCoroutine;
     private Coroutine _panCameraCoroutine;
-    private CinemachineVirtualCamera _currentCamera;
+    [HideInInspector] public CinemachineVirtualCamera currentCamera;
     private CinemachineFramingTransposer _framingTransposer;
     private float _normYPanAmount;
 
@@ -39,8 +40,8 @@ public class CameraManager : MonoBehaviour
         {
             if (_allVirtualCameras[i].enabled)
             {
-                _currentCamera = _allVirtualCameras[i];
-                _framingTransposer = _currentCamera.GetCinemachineComponent<CinemachineFramingTransposer>();
+                currentCamera = _allVirtualCameras[i];
+                _framingTransposer = currentCamera.GetCinemachineComponent<CinemachineFramingTransposer>();
             }
         }
 
@@ -151,19 +152,19 @@ public class CameraManager : MonoBehaviour
 
     public void SwapCamera(CinemachineVirtualCamera cameraFromLeft, CinemachineVirtualCamera cameraFromRight, Vector2 triggerExitDirection)
     {
-        if (_currentCamera == cameraFromLeft && triggerExitDirection.x > 0f)
+        if (currentCamera == cameraFromLeft && triggerExitDirection.x > 0f)
         {
             cameraFromRight.enabled = true;
             cameraFromLeft.enabled = false;
-            _currentCamera = cameraFromRight;
-            _framingTransposer = _currentCamera.GetCinemachineComponent<CinemachineFramingTransposer>();
+            currentCamera = cameraFromRight;
+            _framingTransposer = currentCamera.GetCinemachineComponent<CinemachineFramingTransposer>();
         }
-        else if (_currentCamera == cameraFromRight && triggerExitDirection.x < 0f)
+        else if (currentCamera == cameraFromRight && triggerExitDirection.x < 0f)
         {
             cameraFromLeft.enabled = true;
             cameraFromRight.enabled = false;
-            _currentCamera = cameraFromLeft;
-            _framingTransposer = _currentCamera.GetCinemachineComponent<CinemachineFramingTransposer>();
+            currentCamera = cameraFromLeft;
+            _framingTransposer = currentCamera.GetCinemachineComponent<CinemachineFramingTransposer>();
         }
     }
 
