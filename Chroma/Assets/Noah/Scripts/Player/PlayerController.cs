@@ -111,26 +111,26 @@ namespace Noah.Scripts.Player
                 CameraManager.Instance.LerpYDamping(false);
             }
             
-            _anim.SetBool("IsWalking", _moveInputx != 0);
+    //        _anim.SetBool("IsWalking", _moveInputx != 0);
             
-            _anim.SetBool("IsJumping", _isJumping);
+   //         _anim.SetBool("IsJumping", _isJumping);
             
-            _anim.SetBool("IsFalling", _isFalling);
+    //        _anim.SetBool("IsFalling", _isFalling);
             
-            _anim.SetBool("IsClimbing", IsClimbing);
+      //      _anim.SetBool("IsClimbing", IsClimbing);
             
-            _anim.SetBool("IsFalling", !_isJumping && !_isGrounded);
+      //      _anim.SetBool("IsFalling", !_isJumping && !_isGrounded);
 
             idleTimer += Time.deltaTime;
             if (idleTimer >= idleThreshold)
             {
-                _anim.SetBool("IsDancing",true);
+      //          _anim.SetBool("IsDancing",true);
             }
 
             if (_moveInputx != 0 || _isJumping)
             {
                 idleTimer = 0;
-                _anim.SetBool("IsDancing",false);
+     //           _anim.SetBool("IsDancing",false);
             }
             
         }

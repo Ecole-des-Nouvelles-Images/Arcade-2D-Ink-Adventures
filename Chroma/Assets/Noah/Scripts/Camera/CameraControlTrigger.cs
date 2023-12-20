@@ -9,12 +9,28 @@ public class CameraControlTrigger : MonoBehaviour
 {
     public CustomInspectorObjects CustomInspectorObjects;
 
+    [SerializeField] private GameObject HouseOutside;
+
     private Collider2D _coll;
+    [SerializeField] private CinemachineVirtualCamera HouseCamera;
 
     private void Start()
     {
         _coll = GetComponent<Collider2D>();
+        if (HouseOutside != null)
+        {
+            HouseOutside.SetActive(false);
+        }
     }
+
+    private void Update()
+    {
+        if (CameraManager.Instance.currentCamera == HouseCamera)
+        {
+            HouseOutside.SetActive(false);
+        }
+    }
+
 
     private void OnTriggerEnter2D(Collider2D col)
     {
@@ -24,14 +40,19 @@ public class CameraControlTrigger : MonoBehaviour
             {
                 CameraManager.Instance.PanCameraOnContact(CustomInspectorObjects.panDistance, CustomInspectorObjects.panDistance, CustomInspectorObjects.panDirection, false );
             }
+            
+            if (CameraManager.Instance.currentCamera == HouseCamera)
+            {
+                HouseOutside.SetActive(false);
+            }
         }
     }
+    
 
     private void OnTriggerExit2D(Collider2D col)
     {
         if (col.CompareTag("Player"))
         {
-
             Vector2 exitDirection = (col.transform.position - _coll.bounds.center).normalized;
             if (CustomInspectorObjects.SwapCameras && CustomInspectorObjects.cameraOnLeft != null &&
                 CustomInspectorObjects.cameraOnRight != null)
@@ -41,6 +62,11 @@ public class CameraControlTrigger : MonoBehaviour
             if (CustomInspectorObjects.PanCameraOnContact)
             {
                 CameraManager.Instance.PanCameraOnContact(CustomInspectorObjects.panDistance, CustomInspectorObjects.panDistance, CustomInspectorObjects.panDirection, true );
+            }
+
+            if (HouseOutside != null)
+            {
+                HouseOutside.SetActive(true);
             }
         }
     }

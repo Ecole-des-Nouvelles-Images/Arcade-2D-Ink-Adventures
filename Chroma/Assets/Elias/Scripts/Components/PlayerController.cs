@@ -33,7 +33,7 @@ namespace Elias.Scripts.Components
         [Header("Camera")] [SerializeField] private GameObject _cameraFollowGO;
 
         [HideInInspector] public bool IsFacingRight;
-        private Animator _anim;
+        public Animator _anim;
 
         private Light2D _playerLight;
         private CameraFollowObject _cameraFollowObject;
@@ -41,7 +41,6 @@ namespace Elias.Scripts.Components
         private Collider2D _coll;
         private float _fallSpeedYDampingChangeThreshold;
         private RaycastHit2D _groundHit;
-
 
         private bool _isFalling;
         private bool _isGrounded;
@@ -63,10 +62,19 @@ namespace Elias.Scripts.Components
         private Coroutine _resetTriggerCoroutine;
         private readonly float idleThreshold = 5f;
 
+        [HideInInspector] public bool canMove;
+        private float _jumpCooldown = 0.5f; 
+        [HideInInspector] public bool canJump;
+
         private float idleTimer;
+        
+        public static PlayerController Instance;
+
 
         private void Awake() {
             _playerLight = GetComponent<Light2D>();
+            Instance = this;
+            DontDestroyOnLoad(this.gameObject);
         }
 
 
@@ -80,13 +88,17 @@ namespace Elias.Scripts.Components
             _cameraFollowObject = _cameraFollowGO.GetComponent<CameraFollowObject>();
             StartDirectionCheck();
             _fallSpeedYDampingChangeThreshold = CameraManager.Instance._fallSpeedYDampingChangeThreshold;
+            canMove = true;
         }
 
         private void Update()
         {
-            Jump();
-            if (!_isGrounded)
+            if (canMove)
             {
+                if (canJump)
+                {
+                    Jump();
+                }
             }
             
             GrabBox();
@@ -100,7 +112,7 @@ namespace Elias.Scripts.Components
                 CameraManager.Instance.LerpedFromPlayerFalling = false;
                 CameraManager.Instance.LerpYDamping(false);
             }
-
+            
             _anim.SetBool("IsWalking", _moveInputx != 0);
 
             _anim.SetBool("IsJumping", _isJumping);
@@ -119,12 +131,21 @@ namespace Elias.Scripts.Components
                 idleTimer = 0;
                 _anim.SetBool("IsDancing", false);
             }
+
+            if (!canMove)
+            { 
+                _anim.SetBool("IsWalking", false);
+            }
+            
         }
 
         private void FixedUpdate()
         {
-            Climb();
-            Move();
+            if (canMove)
+            {
+                Climb();
+                Move();
+            }
         }
 
         #region Jump Function
@@ -136,6 +157,8 @@ namespace Elias.Scripts.Components
                 _isJumping = true;
                 _jumpTimeCounter = _jumpTime;
                 _rb.velocity = new Vector2(_rb.velocity.x, _jumpForce);
+                canJump = false; 
+                StartCoroutine(JumpCooldown());
             }
 
             if (InputManager.instance.JumpBeingHeld)
@@ -167,6 +190,12 @@ namespace Elias.Scripts.Components
             if (!_isJumping && CheckForLand())
                 //            _anim.SetTrigger("land");
                 _resetTriggerCoroutine = StartCoroutine(Reset());
+        }
+        
+        IEnumerator JumpCooldown()
+        {
+            yield return new WaitForSeconds(_jumpCooldown);
+            canJump = true; 
         }
 
         #endregion
@@ -248,9 +277,9 @@ namespace Elias.Scripts.Components
                 _movableBox = other.gameObject;
             }
 
-            if (other.CompareTag("Movable,Ground")) _isGrounded = true;
+            if (other.CompareTag("Movable,Ground")) _isGrounded = true; canJump = true;
 
-            if (other.CompareTag("Ground")) _isGrounded = true;
+            if (other.CompareTag("Ground")) _isGrounded = true; canJump = true;
         }
 
 
@@ -262,6 +291,7 @@ namespace Elias.Scripts.Components
         private void OnCollisionExit2D(Collision2D other)
         {
             if (Tags.CompareTags("Ground", other.gameObject)) _isGrounded = false;
+            canJump = false;
         }
 
         private void GrabBox()
