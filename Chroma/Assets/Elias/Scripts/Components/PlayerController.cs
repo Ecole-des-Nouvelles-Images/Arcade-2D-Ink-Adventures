@@ -153,13 +153,12 @@ namespace Elias.Scripts.Components
 
         private void Jump()
         {
-            if (InputManager.instance.JumpJustPressed && (_isGrounded || IsClimbing))
+            if (InputManager.instance.JumpJustPressed && _isGrounded || IsClimbing)
             {
                 _isJumping = true;
                 _jumpTimeCounter = _jumpTime;
                 _rb.velocity = new Vector2(_rb.velocity.x, _jumpForce);
                 canJump = false; 
-                StartCoroutine(JumpCooldown());
             }
 
             if (InputManager.instance.JumpBeingHeld)
@@ -193,11 +192,6 @@ namespace Elias.Scripts.Components
                 _resetTriggerCoroutine = StartCoroutine(Reset());
         }
         
-        IEnumerator JumpCooldown()
-        {
-            yield return new WaitForSeconds(_jumpCooldown);
-            canJump = true; 
-        }
 
         #endregion
 
@@ -282,8 +276,7 @@ namespace Elias.Scripts.Components
 
             if (other.CompareTag("Ground")) _isGrounded = true; canJump = true;
         }
-
-
+        
         private void OnTriggerExit2D(Collider2D other)
         {
             if (Tags.CompareTags("Movable", other.gameObject)) _canMoveBox = false;

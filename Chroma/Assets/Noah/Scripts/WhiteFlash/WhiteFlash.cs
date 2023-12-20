@@ -17,7 +17,6 @@ namespace Noah.Scripts.WhiteFlash
         [SerializeField] private float cooldownDuration = 2.0f; // Cooldown duration before flash
         
         
-
         private Light2D _light2D;
         private bool _isFlashing = false;
 

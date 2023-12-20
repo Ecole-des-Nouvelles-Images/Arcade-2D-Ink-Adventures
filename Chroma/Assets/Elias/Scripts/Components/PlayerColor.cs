@@ -1,13 +1,19 @@
 using System.Collections.Generic;
 using Elias.Scripts.Helper;
+using Microsoft.Unity.VisualStudio.Editor;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 using UnityEngine.Rendering.Universal;
+using UnityEngine.UI;
+using Image = UnityEngine.UI.Image;
+
 
 namespace Elias.Scripts.Components
 {
     public class PlayerColor : MonoBehaviour {
         
         public List<Color> switchableColors = new List<Color>();
+        [SerializeField] private Image _uiBulbImage;
 
         private Light2D _playerLight;
         private List<PropBehavior> _propColorColliders = new List<PropBehavior>();
@@ -15,9 +21,13 @@ namespace Elias.Scripts.Components
         private void Awake() {
             _playerLight = GetComponent<Light2D>();
         }
-
-        private void Update() {
+        
+        private void Update() 
+        {
             InputSwitchColor();
+            if (_uiBulbImage != null) {
+                _uiBulbImage.color = _playerLight.color;
+            }
         }
 
         private void OnTriggerEnter2D(Collider2D other)
