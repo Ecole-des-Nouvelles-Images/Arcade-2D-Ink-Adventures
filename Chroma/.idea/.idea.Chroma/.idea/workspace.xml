@@ -34,34 +34,17 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectColorInfo">{
-  &quot;customColor&quot;: &quot;&quot;,
-  &quot;associatedIndex&quot;: 1
-}</component>
   <component name="ProjectId" id="2Yo2GfLuCRo1JsB8w4zI45iRK6q" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "WebServerToolWindowFactoryState": "false",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "settings.editor.selected.configurable": "preferences.build.unityPlugin",
-    "vue.rearranger.settings.migration": "true"
-  },
-  "keyToStringList": {
-    "rider.external.source.directories": [
-      "C:\\Users\\g.perucca\\AppData\\Roaming\\JetBrains\\Rider2023.2\\resharper-host\\DecompilerCache",
-      "C:\\Users\\g.perucca\\AppData\\Roaming\\JetBrains\\Rider2023.2\\resharper-host\\SourcesCache",
-      "C:\\Users\\g.perucca\\AppData\\Local\\Symbols\\src"
-    ]
-  }
-}]]></component>
-  <component name="RunManager" selected="Attach to Unity Player.Unity.exe (Sandbox2D)">
+  <component name="PropertiesComponent">
+    <property name="Discover.Launch.Via.Unity" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
     <configuration name="Start Unity" type="RunUnityExe" factoryName="Unity Executable">
       <option name="EXE_PATH" value="C:\Program Files\Unity\Hub\Editor\2022.3.10f1\Editor\Unity.exe" />
       <option name="PROGRAM_PARAMETERS" value="-projectPath C:\Users\e.prevost\aaTRAVAIL\aaPROJETS\Ink-Adventures\Chroma -debugCodeOptimization" />
@@ -106,19 +89,6 @@
       </option>
       <method v="2" />
     </configuration>
-    <configuration name="Unity.exe (Sandbox2D)" type="UnityPlayer" factoryName="UnityAttachToPlayer" temporary="true">
-      <option name="host" value="127.0.0.1" />
-      <option name="pid" value="23376" />
-      <option name="playerId" value="Editor(Unity.exe-Sandbox2D)" />
-      <option name="port" value="56376" />
-      <option name="projectName" value="Sandbox2D" />
-      <method v="2" />
-    </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Attach to Unity Player.Unity.exe (Sandbox2D)" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -149,8 +119,6 @@
       <workItem from="1702978362428" duration="4151000" />
       <workItem from="1703012413954" duration="17000" />
       <workItem from="1703012448886" duration="179000" />
-      <workItem from="1703067173959" duration="192000" />
-      <workItem from="1703067510599" duration="367000" />
     </task>
     <servers />
   </component>
@@ -170,12 +138,9 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-  </component>
-  <component name="XSLT-Support.FileAssociations.UIState">
-    <expand />
-    <select />
   </component>
 </project>
