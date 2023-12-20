@@ -47,7 +47,7 @@ namespace Elias.Scripts.Components
             {
                 case PropBehaviorType.Collider:
                     _spriteRenderer.color = new Color(propColor.r, propColor.g, propColor.b, isMatching ? _startOpacity : disabledOpacity);
-                    _boxCollider2D.isTrigger = !isMatching;
+                   _boxCollider2D.isTrigger = !isMatching;
                     break;
                 case PropBehaviorType.Interactable:
                     _spriteRenderer.color = new Color(propColor.r, propColor.g, propColor.b, isMatching ? _startOpacity : disabledOpacity);
