@@ -42,6 +42,7 @@ namespace Elias.Scripts.Components
         {
             Color propColor = _spriteRenderer.color;
             bool isMatching = ColorHelpers.Match(propColor, _playerLight.color);
+            gameObject.tag = !isMatching ? "Untagged" : "Ground";
 
             switch (propBehaviorType)
             {

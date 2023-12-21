@@ -4,6 +4,7 @@ using Elias.Scripts.Helper;
 using Noah.Scripts.Camera;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 namespace Elias.Scripts.Components
@@ -87,6 +88,8 @@ namespace Elias.Scripts.Components
         public float jumpVolume = 0.5f;
         public float lampVolume = 0.3f;
 
+        public ParticleSystem feetParticleSystem;
+
         private void Awake() {
             _playerLight = GetComponent<Light2D>();
             Instance = this;
@@ -139,6 +142,12 @@ namespace Elias.Scripts.Components
             if (_moveInputx != 0 && _isGrounded && !audioSource.isPlaying)
             {
                 PlayRandomFootstep();
+                feetParticleSystem.Play();
+            }
+
+            else
+            {
+                feetParticleSystem.Stop();
             }
 
             _anim.SetBool("IsJumping", _isJumping);
