@@ -24,6 +24,7 @@ namespace Elias.Scripts.Components
         private GameObject _playerGameObject;
         private Light2D _playerLight;
         private float _startOpacity;
+        private string _originalTag;
 
         private void Awake()
         {
@@ -34,6 +35,7 @@ namespace Elias.Scripts.Components
 
         private void Start()
         {
+            _originalTag = gameObject.tag;
             _playerGameObject = GameObject.FindGameObjectWithTag("Player");
             _playerLight = _playerGameObject.GetComponent<Light2D>();
         }
@@ -42,7 +44,7 @@ namespace Elias.Scripts.Components
         {
             Color propColor = _spriteRenderer.color;
             bool isMatching = ColorHelpers.Match(propColor, _playerLight.color);
-            gameObject.tag = !isMatching ? "Untagged" : "Ground";
+            gameObject.tag = !isMatching ? "Untagged" : _originalTag;
 
             switch (propBehaviorType)
             {

@@ -4,15 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="327f0f78-c56b-4abd-91d6-6122790d9453" name="Changes" comment="" />
+    <list default="true" id="327f0f78-c56b-4abd-91d6-6122790d9453" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/Assets/Elias/Scripts/Components/PropBehavior.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Elias/Scripts/Components/PropBehavior.cs" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/3b24cc7fa9794ed8ab04312c53e6dedd172c00/f4/4b4acfb8/SpriteRenderer.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Elias/Scripts/Components/TriggerForestSound.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Noah/Scripts/Camera/CameraControlTrigger.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Noah/Scripts/Camera/CameraFollowObject.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Noah/Scripts/Camera/CameraManager.cs" root0="FORCE_HIGHLIGHTING" />
@@ -82,7 +82,7 @@
       <method v="2" />
     </configuration>
     <configuration name="UnitTests (batch mode)" type="RunUnityExe" factoryName="Unity Executable">
-      <option name="EXE_PATH" value="C:\Program Files\Unity\Hub\Editor\2022.3.10f1\Editor\Unity.exe" />
+      <option name="EXE_PATH" value="C:\aa ENI logiciels\unity\2022.3.10f1\Editor\Unity.exe" />
       <option name="PROGRAM_PARAMETERS" value="-runTests -batchmode -projectPath C:\Users\NOAH\Ink-Adventures\Chroma -testResults Logs/results.xml -testPlatform EditMode -debugCodeOptimization" />
       <option name="WORKING_DIRECTORY" value="C:\Users\NOAH\Ink-Adventures\Chroma" />
       <option name="PASS_PARENT_ENVS" value="1" />
@@ -143,6 +143,7 @@
       <workItem from="1703060496414" duration="18528000" />
       <workItem from="1703103921611" duration="5102000" />
       <workItem from="1703152627349" duration="10148000" />
+      <workItem from="1703181408807" duration="315000" />
     </task>
     <servers />
   </component>
