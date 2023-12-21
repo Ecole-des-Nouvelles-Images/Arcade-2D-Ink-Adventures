@@ -1226,6 +1226,56 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 5.7, y: 5.19}
   m_EdgeRadius: 0
+--- !u!1 &628251326 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7875569393046035226, guid: ea76b31929e69e7498a1f9a9ba0e7621, type: 3}
+  m_PrefabInstance: {fileID: 1223742773}
+  m_PrefabAsset: {fileID: 0}
+--- !u!61 &628251332
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 628251326}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 5.676553}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 3.3, y: 10.51}
+    newSize: {x: 3.3, y: 10.51}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 3.3, y: 20.291462}
+  m_EdgeRadius: 0
 --- !u!1 &765771086
 GameObject:
   m_ObjectHideFlags: 0
@@ -15096,6 +15146,10 @@ PrefabInstance:
       value: 20.893913
       objectReference: {fileID: 0}
     - target: {fileID: 796768237948668646, guid: ea76b31929e69e7498a1f9a9ba0e7621, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 796768237948668646, guid: ea76b31929e69e7498a1f9a9ba0e7621, type: 3}
       propertyPath: m_Offset.y
       value: 5.191956
       objectReference: {fileID: 0}
@@ -15105,7 +15159,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1855080460129267429, guid: ea76b31929e69e7498a1f9a9ba0e7621, type: 3}
       propertyPath: m_Layer
-      value: 9
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4253251645330566913, guid: ea76b31929e69e7498a1f9a9ba0e7621, type: 3}
+      propertyPath: propBehaviorType
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4845361788221149851, guid: ea76b31929e69e7498a1f9a9ba0e7621, type: 3}
       propertyPath: m_Color.b
@@ -15201,7 +15259,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7875569393046035226, guid: ea76b31929e69e7498a1f9a9ba0e7621, type: 3}
       propertyPath: m_Layer
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8198549065874929561, guid: ea76b31929e69e7498a1f9a9ba0e7621, type: 3}
       propertyPath: m_Color.b
@@ -15233,7 +15291,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8466849465280599476, guid: ea76b31929e69e7498a1f9a9ba0e7621, type: 3}
       propertyPath: m_Size.y
-      value: 2.344411
+      value: 2.0273685
       objectReference: {fileID: 0}
     - target: {fileID: 8466849465280599476, guid: ea76b31929e69e7498a1f9a9ba0e7621, type: 3}
       propertyPath: m_Offset.x
@@ -15241,16 +15299,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8466849465280599476, guid: ea76b31929e69e7498a1f9a9ba0e7621, type: 3}
       propertyPath: m_Offset.y
-      value: -2.028874
+      value: -21.056633
       objectReference: {fileID: 0}
     - target: {fileID: 9011616962991630566, guid: ea76b31929e69e7498a1f9a9ba0e7621, type: 3}
       propertyPath: m_Layer
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 796768237948668646, guid: ea76b31929e69e7498a1f9a9ba0e7621, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7875569393046035226, guid: ea76b31929e69e7498a1f9a9ba0e7621, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 628251332}
   m_SourcePrefab: {fileID: 100100000, guid: ea76b31929e69e7498a1f9a9ba0e7621, type: 3}
 --- !u!4 &1250315333 stripped
 Transform:

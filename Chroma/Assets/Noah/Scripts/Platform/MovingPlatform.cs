@@ -18,7 +18,6 @@ public class MovingPlatform : MonoBehaviour
     private int _direction = 1;
     
     private Vector3 _targetPos;
-    private PlayerController _playerController;
     private Rigidbody2D _rb;
     private Vector2 _moveDirection;
 
@@ -87,8 +86,8 @@ public class MovingPlatform : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            PlayerController.instance.IsOnPlatform = true;
-            PlayerController.instance.PlatformRb = _rb;
+            Elias.Scripts.Components.PlayerController.Instance.IsOnPlatform = true;
+            Elias.Scripts.Components.PlayerController.Instance.PlatformRb = _rb;
         }
     }
     
@@ -96,7 +95,7 @@ public class MovingPlatform : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            PlayerController.instance.IsOnPlatform = false;
+            Elias.Scripts.Components.PlayerController.Instance.IsOnPlatform = false;
         }
     }
     

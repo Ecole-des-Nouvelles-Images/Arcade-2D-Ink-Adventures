@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6907080977166848643}
-  m_Layer: 11
+  m_Layer: 8
   m_Name: ladder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 796768237948668646}
   - component: {fileID: 4253251645330566913}
   - component: {fileID: 3980765190477367892}
-  m_Layer: 11
+  m_Layer: 8
   m_Name: Prop_Ladder (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -204,7 +204,7 @@ GameObject:
   - component: {fileID: 8466849465280599476}
   - component: {fileID: 7114588321975264247}
   - component: {fileID: 4788913236697298665}
-  m_Layer: 11
+  m_Layer: 8
   m_Name: Prop_Ladder (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
