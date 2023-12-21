@@ -6,14 +6,14 @@ namespace Noah.Scripts.Player
 {
     public class GameController : MonoBehaviour
     {
-        public static GameController Instance;
+        public static GameController instance;
         [SerializeField] private float respawnTime = 0.1f;
         private Vector2 _checkpointPos;
         private Rigidbody2D _playerRb;
 
         private void Awake()
         {
-            Instance = this;
+            instance = this;
             DontDestroyOnLoad(this.gameObject);
         }
 

@@ -26,6 +26,7 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField] private SceneField _persistentGameplay;
     [SerializeField] private SceneField _levelScene;
 
+    [SerializeField] private Animator transitionAnim;
 
     private List<AsyncOperation> _scenesToLoad = new List<AsyncOperation>();
     private void Awake()

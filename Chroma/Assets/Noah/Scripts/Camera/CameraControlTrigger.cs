@@ -17,6 +17,10 @@ public class CameraControlTrigger : MonoBehaviour
     private void Start()
     {
         _coll = GetComponent<Collider2D>();
+        if (HouseOutside != null)
+        {
+            HouseOutside.SetActive(false);
+        }
     }
 
     private void Update()

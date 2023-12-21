@@ -54,7 +54,6 @@ public class MovingObstacle : MonoBehaviour
 
         _pointIndex += _direction;
         _targetPos = wayPoints[_pointIndex].transform.position;
-        StartCoroutine(WaitNextPoint());
     }
 
     IEnumerator WaitNextPoint()
