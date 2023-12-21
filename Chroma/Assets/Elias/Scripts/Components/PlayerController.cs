@@ -76,13 +76,16 @@ namespace Elias.Scripts.Components
 
         public AudioClip[] cityFootstepSounds;
         public AudioClip[] forestFootstepSounds;
+        public AudioClip[] lampSounds;
         public AudioClip jumpSound;
         private AudioSource audioSource;
         private int lastFootstepIndex = -1;
+        private int lastLampIndex = -1;
         public bool isInCity = true;
 
         public float footstepVolume = 0.3f;
         public float jumpVolume = 0.5f;
+        public float lampVolume = 0.3f;
 
         private void Awake() {
             _playerLight = GetComponent<Light2D>();
@@ -105,6 +108,7 @@ namespace Elias.Scripts.Components
             
             audioSource = GetComponent<AudioSource>();
             audioSource.volume = footstepVolume;
+            audioSource.volume = lampVolume;
             
         }
 
@@ -487,6 +491,18 @@ namespace Elias.Scripts.Components
                 lastFootstepIndex = randomIndex;
             }
         }
+        
+        public void PlayRandomLampSound()
+        {
+            int randomIndex = GetRandomLampIndex();
+
+            if (randomIndex != -1)
+            {
+                audioSource.clip = lampSounds[randomIndex];
+                audioSource.Play();
+                lastLampIndex = randomIndex;
+            }
+        }
 
         void JumpSound()
         {
@@ -521,5 +537,26 @@ namespace Elias.Scripts.Components
             return randomIndex;
         }
         
+        int GetRandomLampIndex()
+        {
+            if (lampSounds.Length == 0)
+            {
+                Debug.LogWarning("No lamp sounds assigned.");
+                return -1;
+            }
+
+            int randomIndex = Random.Range(0, lampSounds.Length);
+
+            // Ensure the next sound is different from the last one
+            if (lampSounds.Length > 1)
+            {
+                while (randomIndex == lastLampIndex)
+                {
+                    randomIndex = Random.Range(0, lampSounds.Length);
+                }
+            }
+
+            return randomIndex;
+        }
     }
 }

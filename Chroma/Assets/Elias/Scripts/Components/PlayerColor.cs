@@ -79,6 +79,7 @@ namespace Elias.Scripts.Components
                 if (ColorHelpers.Match(propSpriteRenderer.color, color)) return;
             }
             _playerLight.color = color;
+            PlayerController.Instance.PlayRandomLampSound();
         }
     }
 }

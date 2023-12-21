@@ -41324,10 +41324,16 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 0eef241ea2daef542b2ff44f685ed79c, type: 3}
   - {fileID: 8300000, guid: f77e75478e6763346a8a958a51b933df, type: 3}
   - {fileID: 8300000, guid: 02b06e3d33237094499aaf913b632387, type: 3}
+  lampSounds:
+  - {fileID: 8300000, guid: 44a8427cea224f6449f62ad47f112baa, type: 3}
+  - {fileID: 8300000, guid: 89955da1077b4544eb631397f7c26221, type: 3}
+  - {fileID: 8300000, guid: f89b589d5c720c74382b530eb098b6b0, type: 3}
+  - {fileID: 8300000, guid: 660e2cc38251f9c4da81b1f19fa7e1f7, type: 3}
   jumpSound: {fileID: 8300000, guid: b68d0370527444446ad20f6ea22346e9, type: 3}
   isInCity: 1
   footstepVolume: 0.5
   jumpVolume: 1
+  lampVolume: 0.5
 --- !u!114 &1868945320
 MonoBehaviour:
   m_ObjectHideFlags: 0
