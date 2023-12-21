@@ -5,34 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="327f0f78-c56b-4abd-91d6-6122790d9453" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Assets/Cyrielle/Backgrounds.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Cyrielle/Backgrounds.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Cyrielle/Backgrounds/City.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Cyrielle/Backgrounds/City.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Cyrielle/Backgrounds/City/Background_City_01.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Cyrielle/Backgrounds/City/Background_City_01.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Cyrielle/Backgrounds/City/Background_City_02.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Cyrielle/Backgrounds/City/Background_City_02.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Cyrielle/Backgrounds/City/Batiment.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Cyrielle/Backgrounds/City/Batiment.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Cyrielle/Backgrounds/City/Batiment/Clean_Maison-01.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Cyrielle/Backgrounds/City/Batiment/Clean_Maison-01.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Cyrielle/Backgrounds/City/Batiment/Clean_Maison-02.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Cyrielle/Backgrounds/City/Batiment/Clean_Maison-02.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Cyrielle/Backgrounds/City/Batiment/Clean_Maison-03.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Cyrielle/Backgrounds/City/Batiment/Clean_Maison-03.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Cyrielle/Backgrounds/City/Batiment/Environment_Building_01.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Cyrielle/Backgrounds/City/Batiment/Environment_Building_01.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Cyrielle/Backgrounds/City/Batiment/Environment_Building_02.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Cyrielle/Backgrounds/City/Batiment/Environment_Building_02.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Cyrielle/Backgrounds/City/Batiment/Environment_Building_03.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Cyrielle/Backgrounds/City/Batiment/Environment_Building_03.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Cyrielle/Backgrounds/City/Batiment/Environment_ChromaHouse_01.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Cyrielle/Backgrounds/City/Batiment/Environment_ChromaHouse_01.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Cyrielle/Backgrounds/DestroyedCity.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Cyrielle/Backgrounds/DestroyedCity.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Cyrielle/Backgrounds/DestroyedCity/Background_DestroyedCity_01.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Cyrielle/Backgrounds/DestroyedCity/Background_DestroyedCity_01.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Cyrielle/Backgrounds/DestroyedCity/Background_DestroyedCity_02.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Cyrielle/Backgrounds/DestroyedCity/Background_DestroyedCity_02.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Cyrielle/Backgrounds/Fond .png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Cyrielle/Backgrounds/Fond .png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Cyrielle/Backgrounds/Forest.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Cyrielle/Backgrounds/Forest.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Cyrielle/Backgrounds/Forest/Background_Forest_01.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Cyrielle/Backgrounds/Forest/Background_Forest_01.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Cyrielle/Backgrounds/Forest/Background_Forest_02.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Cyrielle/Backgrounds/Forest/Background_Forest_02.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Cyrielle/Backgrounds/Script.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Cyrielle/Backgrounds/Script.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Cyrielle/Backgrounds/Script/Parallax.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Cyrielle/Backgrounds/Script/Parallax.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Cyrielle/Backgrounds/Transition.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Cyrielle/Backgrounds/Transition.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Cyrielle/Backgrounds/Transition/Background_Trans_01.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Cyrielle/Backgrounds/Transition/Background_Trans_01.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Cyrielle/Backgrounds/Transition/Background_Trans_02.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Cyrielle/Backgrounds/Transition/Background_Trans_02.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Cyrielle/Backgrounds/Transition/Background_Trans_03 1.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Cyrielle/Backgrounds/Transition/Background_Trans_03 1.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Cyrielle/Backgrounds/Transition/Background_Trans_03.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Cyrielle/Backgrounds/Transition/Background_Trans_03.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Cyrielle/Backgrounds/Transition/Background_Trans_04 1.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Cyrielle/Backgrounds/Transition/Background_Trans_04 1.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Cyrielle/Backgrounds/Transition/Background_Trans_04.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Cyrielle/Backgrounds/Transition/Background_Trans_04.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Chroma/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Chroma/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Elias/Scenes/Niveau3.unity" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Elias/Scenes/Niveau3.unity.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Giulia/Scenes/TuezMoi.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Giulia/Scenes/TuezMoi.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Noah/Scene/PersistentGameplayNOAH.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Noah/Scene/PersistentGameplayNOAH.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Noah/Scripts/Camera/CameraControlTrigger.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Noah/Scripts/Camera/CameraControlTrigger.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,7 +18,6 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Assets/Cyrielle/Backgrounds/Script/Parallax.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Noah/Scripts/Camera/CameraControlTrigger.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Noah/Scripts/Camera/CameraFollowObject.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Noah/Scripts/Camera/CameraManager.cs" root0="FORCE_HIGHLIGHTING" />
