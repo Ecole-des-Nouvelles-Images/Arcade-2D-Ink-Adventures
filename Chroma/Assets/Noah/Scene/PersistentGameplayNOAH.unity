@@ -4548,7 +4548,7 @@ GameObject:
   - component: {fileID: 191440903}
   m_Layer: 0
   m_Name: LightHouse
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11433,6 +11433,7 @@ GameObject:
   - component: {fileID: 489065845}
   - component: {fileID: 489065848}
   - component: {fileID: 489065849}
+  - component: {fileID: 489065850}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -11483,7 +11484,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 4.95
+  orthographic size: 5.4
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -11493,7 +11494,7 @@ Camera:
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 1
-  m_AllowMSAA: 1
+  m_AllowMSAA: 0
   m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
   m_OcclusionCulling: 1
@@ -11592,6 +11593,30 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &489065850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 489065844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c88f5cead0c0b2a4eb05b5900433f8d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ComponentVersion: 1
+  m_AssetsPPU: 100
+  m_RefResolutionX: 1920
+  m_RefResolutionY: 1080
+  m_CropFrame: 0
+  m_GridSnapping: 0
+  m_FilterMode: 0
+  m_UpscaleRT: 0
+  m_PixelSnapping: 0
+  m_CropFrameX: 0
+  m_CropFrameY: 0
+  m_StretchFill: 0
 --- !u!1 &499084660
 GameObject:
   m_ObjectHideFlags: 0
@@ -36610,6 +36635,8 @@ MonoBehaviour:
   maxIntensity: 10
   maxRadius: 10
   cooldownDuration: 3
+  _playerBodySprite: {fileID: 0}
+  _newPlayerBodyColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!4 &1715515141
 Transform:
   m_ObjectHideFlags: 0
