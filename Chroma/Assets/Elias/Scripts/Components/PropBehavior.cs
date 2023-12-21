@@ -21,7 +21,6 @@ namespace Elias.Scripts.Components
 
         private SpriteRenderer _spriteRenderer;
         private BoxCollider2D _boxCollider2D;
-        private GameObject _playerGameObject;
         private Light2D _playerLight;
         private float _startOpacity;
 
@@ -34,8 +33,7 @@ namespace Elias.Scripts.Components
 
         private void Start()
         {
-            _playerGameObject = GameObject.FindGameObjectWithTag("Player");
-            _playerLight = _playerGameObject.GetComponent<Light2D>();
+            _playerLight = PlayerController.Instance.GetComponent<Light2D>();
         }
 
         private void Update()

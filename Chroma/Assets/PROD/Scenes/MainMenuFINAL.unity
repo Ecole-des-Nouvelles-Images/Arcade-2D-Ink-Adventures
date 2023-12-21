@@ -23923,12 +23923,11 @@ MonoBehaviour:
   _gamepadMenuFirst: {fileID: 2003466177}
   _creditsMenuFirst: {fileID: 1322649245}
   _persistentGameplay:
-    m_SceneAsset: {fileID: 102900000, guid: 177a9a02b032d2548b75da9ddfe305de, type: 3}
-    m_SceneName: PersistentGameplayFINAL
+    m_SceneAsset: {fileID: 102900000, guid: b0272b7878b01024ea7ff979cd8e1683, type: 3}
+    m_SceneName: PersistentGameplayNOAH V2
   _levelScene:
-    m_SceneAsset: {fileID: 102900000, guid: 275c96ee6e103cc47a833451dba68fbf, type: 3}
-    m_SceneName: Niveau 1 1
-  transitionAnim: {fileID: 0}
+    m_SceneAsset: {fileID: 102900000, guid: 19ac90ad579914443a8e3903a02bb9aa, type: 3}
+    m_SceneName: Niveau 1
 --- !u!1 &1461299019
 GameObject:
   m_ObjectHideFlags: 0

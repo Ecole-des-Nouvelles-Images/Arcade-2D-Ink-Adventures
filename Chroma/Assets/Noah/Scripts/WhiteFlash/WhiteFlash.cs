@@ -11,10 +11,13 @@ namespace Noah.Scripts.WhiteFlash
         [SerializeField] private SceneField _levelScene;
         [SerializeField] private GameObject _canvasToHide;
         
-        [SerializeField] private float flashSpeed = 1.0f; // Adjust the speed of the flash
-        [SerializeField] private float maxIntensity = 5.0f; // Adjust the maximum intensity of the flash
-        [SerializeField] private float maxRadius = 10.0f; // Adjust the maximum radius of the light
-        [SerializeField] private float cooldownDuration = 2.0f; // Cooldown duration before flash
+        [SerializeField] private float flashSpeed = 10.0f; // Adjust the speed of the flash
+        [SerializeField] private float maxIntensity = 300.0f; // Adjust the maximum intensity of the flash
+        [SerializeField] private float maxRadius = 70f; // Adjust the maximum radius of the light
+        [SerializeField] private float cooldownDuration = 3f; // Cooldown duration before flash
+
+        [SerializeField] private SpriteRenderer _playerBodySprite;
+        [SerializeField] private Color _newPlayerBodyColor;
         
         
         private Light2D _light2D;
@@ -45,6 +48,7 @@ namespace Noah.Scripts.WhiteFlash
         {
             if (_isFlashing)
             {
+                _playerBodySprite.color = _newPlayerBodyColor;
                 // Increase the intensity over time until it reaches maxIntensity
                 if (_light2D.intensity < maxIntensity)
                 {
@@ -56,6 +60,10 @@ namespace Noah.Scripts.WhiteFlash
                 if (_light2D.pointLightOuterRadius < maxRadius)
                 {
                     _light2D.pointLightOuterRadius += flashSpeed * Time.deltaTime;
+                    if (_light2D.pointLightOuterRadius >= maxRadius)
+                    {
+                        flashSpeed = flashSpeed * 2;
+                    }
                 }
                 
                 if (_light2D.intensity >= maxIntensity && _light2D.pointLightOuterRadius >= maxRadius)
