@@ -40,10 +40,12 @@ public class CustomizeMenuManager : MonoBehaviour
             PlayerController.Instance._anim.SetBool("IsWalking", false);
             PlayerController.Instance.canMove = false;
             PlayerController.Instance.canJump = false;
+            PlayerController.Instance.audioSource.mute = true;
         }
         else
         {
             PlayerController.Instance.canMove = true;
+            PlayerController.Instance.audioSource.mute = false;
         }
     }
 

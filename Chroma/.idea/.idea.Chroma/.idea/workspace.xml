@@ -5,7 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="327f0f78-c56b-4abd-91d6-6122790d9453" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Assets/Elias/Scripts/Components/PropBehavior.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Elias/Scripts/Components/PropBehavior.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Chroma/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Chroma/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Elias/Scripts/Components/PlayerController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Elias/Scripts/Components/PlayerController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Noah/Scene/PersistentGameplayNOAH.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Noah/Scene/PersistentGameplayNOAH.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Noah/Scripts/Camera/CameraControlTrigger.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Noah/Scripts/Camera/CameraControlTrigger.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Noah/Scripts/Camera/CameraManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Noah/Scripts/Camera/CameraManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Noah/Scripts/Menu/CustomizeMenuManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Noah/Scripts/Menu/CustomizeMenuManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Noah/Scripts/Menu/MainMenuManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Noah/Scripts/Menu/MainMenuManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Noah/Scripts/WhiteFlash/WhiteFlash.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Noah/Scripts/WhiteFlash/WhiteFlash.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/PROD/Scenes/Chroma'sHome.unity" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/PROD/Scenes/Chroma'sHome.unity.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/PROD/Scenes/Niveau 1.unity" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/PROD/Scenes/Niveau 1.unity.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/PROD/Scenes/Niveau2Final.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/PROD/Scenes/Niveau2Final.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/PROD/Scenes/PersistentGameplayFINAL.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/PROD/Scenes/PersistentGameplayFINAL.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/PROD/Scenes/PersistentGameplayFINAL.unity.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/PROD/Scenes/PersistentGameplayFINAL.unity.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/PROD/Sounds/Music/Menu_v2.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/PROD/Sounds/Music/Menu_v2.mp3.meta" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,7 +98,7 @@
       <method v="2" />
     </configuration>
     <configuration name="UnitTests (batch mode)" type="RunUnityExe" factoryName="Unity Executable">
-      <option name="EXE_PATH" value="C:\aa ENI logiciels\unity\2022.3.10f1\Editor\Unity.exe" />
+      <option name="EXE_PATH" value="C:\Program Files\Unity\Hub\Editor\2022.3.10f1\Editor\Unity.exe" />
       <option name="PROGRAM_PARAMETERS" value="-runTests -batchmode -projectPath C:\Users\NOAH\Ink-Adventures\Chroma -testResults Logs/results.xml -testPlatform EditMode -debugCodeOptimization" />
       <option name="WORKING_DIRECTORY" value="C:\Users\NOAH\Ink-Adventures\Chroma" />
       <option name="PASS_PARENT_ENVS" value="1" />
@@ -144,6 +160,7 @@
       <workItem from="1703103921611" duration="5102000" />
       <workItem from="1703152627349" duration="10148000" />
       <workItem from="1703181408807" duration="315000" />
+      <workItem from="1703187499631" duration="2147000" />
     </task>
     <servers />
   </component>

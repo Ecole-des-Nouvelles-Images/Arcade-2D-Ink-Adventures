@@ -26,10 +26,7 @@ namespace Elias.Scripts.Components
         private GameObject _leftLeg;
 
         [SerializeField] private GameObject _rightLeg;
-
-        [Header("Ground Check")] [SerializeField]
-        private float extraHeight = 0.25f;
-
+        
         [SerializeField] private LayerMask _whatIsGround;
 
         [Header("Camera")] [SerializeField] private GameObject _cameraFollowGO;
@@ -79,7 +76,7 @@ namespace Elias.Scripts.Components
         public AudioClip[] forestFootstepSounds;
         public AudioClip[] lampSounds;
         public AudioClip jumpSound;
-        private AudioSource audioSource;
+        [HideInInspector] public AudioSource audioSource;
         private int lastFootstepIndex = -1;
         private int lastLampIndex = -1;
         public bool isInCity = true;

@@ -79,7 +79,8 @@ namespace Noah.Scripts.WhiteFlash
                 PlayerController.Instance._anim.SetBool("IsWalking", false);
                 PlayerController.Instance.canMove = false;
                 PlayerController.Instance.canJump = false;
-                
+                PlayerController.Instance.audioSource.mute = true;
+
             }
 
             // Decrease cooldown timer

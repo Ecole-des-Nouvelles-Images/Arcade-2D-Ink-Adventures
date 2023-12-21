@@ -10865,6 +10865,7 @@ GameObject:
   m_Component:
   - component: {fileID: 253599965}
   - component: {fileID: 253599967}
+  - component: {fileID: 253599968}
   m_Layer: 0
   m_Name: LockedPositionCAM(Secret)
   m_TagString: Untagged
@@ -10881,7 +10882,7 @@ Transform:
   m_GameObject: {fileID: 253599964}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.5, y: 0.55, z: -20}
+  m_LocalPosition: {x: -0.11000061, y: 0.94, z: -20}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -10927,6 +10928,18 @@ MonoBehaviour:
         m_Calls: []
   m_LegacyBlendHint: 0
   m_ComponentOwner: {fileID: 1701625392}
+--- !u!114 &253599968
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 253599964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a8a05de0ac134f4f9d01bef6b9da077, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &255820007
 GameObject:
   m_ObjectHideFlags: 0
@@ -16312,7 +16325,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 4.99
+  orthographic size: 5.4
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -16337,7 +16350,7 @@ Transform:
   m_GameObject: {fileID: 489065844}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.5, y: 0.55, z: -20}
+  m_LocalPosition: {x: -0.11000061, y: 0.94, z: -20}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -22833,6 +22846,7 @@ GameObject:
   - component: {fileID: 769793791}
   - component: {fileID: 769793789}
   - component: {fileID: 769793790}
+  - component: {fileID: 769793792}
   m_Layer: 0
   m_Name: NoXFollowCAM(TightRooms)
   m_TagString: Untagged
@@ -22910,6 +22924,18 @@ Transform:
   - {fileID: 171477202}
   m_Father: {fileID: 686085633}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &769793792
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 769793788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a8a05de0ac134f4f9d01bef6b9da077, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &782961231
 GameObject:
   m_ObjectHideFlags: 0
@@ -26423,7 +26449,7 @@ AudioSource:
   m_GameObject: {fileID: 1001726600}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -6175175753228165497, guid: 8500674fc90c1f64a8f00bd2f56d5e95, type: 2}
   m_audioClip: {fileID: 8300000, guid: 1f49ed7dbf5b5404fb3eea6a38f3df5f, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.3
@@ -29696,6 +29722,7 @@ GameObject:
   - component: {fileID: 1197612576}
   - component: {fileID: 1197612578}
   - component: {fileID: 1197612577}
+  - component: {fileID: 1197612579}
   m_Layer: 0
   m_Name: NoYFollowCAM(TightRooms)
   m_TagString: Untagged
@@ -29773,6 +29800,18 @@ MonoBehaviour:
         m_Calls: []
   m_LegacyBlendHint: 0
   m_ComponentOwner: {fileID: 162016483}
+--- !u!114 &1197612579
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1197612575}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a8a05de0ac134f4f9d01bef6b9da077, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1197745222
 GameObject:
   m_ObjectHideFlags: 0
@@ -32783,7 +32822,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1196516611}
         m_TargetAssemblyTypeName: SoundMixerManager, Assembly-CSharp
         m_MethodName: SetMasterVolume
         m_Mode: 0
@@ -39873,7 +39912,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1196516611}
         m_TargetAssemblyTypeName: SoundMixerManager, Assembly-CSharp
         m_MethodName: SetSoundFXVolume
         m_Mode: 0
@@ -40094,7 +40133,7 @@ Transform:
   m_GameObject: {fileID: 1664989140}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.5, y: 0.55, z: -10}
+  m_LocalPosition: {x: -1.11, y: 0.94, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -42815,11 +42854,11 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1001726601}
   - {fileID: 11750992}
+  - {fileID: 1146635011}
   - {fileID: 1196516610}
   - {fileID: 1949066624}
-  - {fileID: 1146635011}
+  - {fileID: 1001726601}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1770536589
@@ -45792,7 +45831,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1196516611}
         m_TargetAssemblyTypeName: SoundMixerManager, Assembly-CSharp
         m_MethodName: SetMusicVolume
         m_Mode: 0
@@ -47282,6 +47321,7 @@ GameObject:
   - component: {fileID: 1910353114}
   - component: {fileID: 1910353113}
   - component: {fileID: 1910353115}
+  - component: {fileID: 1910353116}
   m_Layer: 0
   m_Name: CenterPlayerFollowCAMERA(OpenRooms)
   m_TagString: Untagged
@@ -47359,6 +47399,18 @@ MonoBehaviour:
   m_BoundingShape2D: {fileID: 242066339}
   m_Damping: 1
   m_MaxWindowSize: -1
+--- !u!114 &1910353116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1910353112}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a8a05de0ac134f4f9d01bef6b9da077, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1916916331
 GameObject:
   m_ObjectHideFlags: 0
@@ -48221,8 +48273,8 @@ AudioSource:
   m_GameObject: {fileID: 1949066623}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 5964368792346113127, guid: 8500674fc90c1f64a8f00bd2f56d5e95, type: 2}
-  m_audioClip: {fileID: 8300000, guid: b9484909558c50e449e0f5e0572d669b, type: 3}
+  OutputAudioMixerGroup: {fileID: -298470243159609483, guid: 8500674fc90c1f64a8f00bd2f56d5e95, type: 2}
+  m_audioClip: {fileID: 8300000, guid: affb2bbfe2697c540bf65a370d2f0687, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
