@@ -12,6 +12,7 @@ namespace Elias.Scripts.Components
         private Light2D _playerLight;
         private List<PropBehavior> _propColorColliders = new List<PropBehavior>();
 
+
         private void Awake() {
             _playerLight = GetComponent<Light2D>();
         }
@@ -71,8 +72,39 @@ namespace Elias.Scripts.Components
         {
             if (!switchableColors.Contains(defaultColor)) return;
             Color color = defaultColor;
-            if (secondKey) color = colorIfBothPressed; 
-            if (thirdKey) color = colorIfThirdPressed;
+
+            if (secondKey)
+            {
+                if (colorIfBothPressed == Color.magenta && switchableColors.Contains(Color.red) && switchableColors.Contains(Color.blue))
+                {
+                    color = colorIfBothPressed;
+                }
+                else if (colorIfBothPressed == Color.cyan && switchableColors.Contains(Color.green) && switchableColors.Contains(Color.blue))
+                {
+                    color = colorIfBothPressed;
+                }
+                else if (colorIfBothPressed == Color.yellow && switchableColors.Contains(Color.red) && switchableColors.Contains(Color.green))
+                {
+                    color = colorIfBothPressed;
+                }
+            }
+            else if (thirdKey)
+            {
+                if (colorIfThirdPressed == Color.magenta && switchableColors.Contains(Color.red) && switchableColors.Contains(Color.blue))
+                {
+                    color = colorIfThirdPressed;
+                }
+                else if (colorIfThirdPressed == Color.cyan && switchableColors.Contains(Color.green) && switchableColors.Contains(Color.blue))
+                {
+                    color = colorIfThirdPressed;
+                }
+                else if (colorIfThirdPressed == Color.yellow && switchableColors.Contains(Color.red) && switchableColors.Contains(Color.green))
+                {
+                    color = colorIfThirdPressed;
+                }
+            }
+
+
             foreach (PropBehavior propColorCollider in _propColorColliders)
             {
                 SpriteRenderer propSpriteRenderer = propColorCollider.GetComponent<SpriteRenderer>();
@@ -81,5 +113,8 @@ namespace Elias.Scripts.Components
             _playerLight.color = color;
             PlayerController.Instance.PlayRandomLampSound();
         }
+
+
+
     }
 }
