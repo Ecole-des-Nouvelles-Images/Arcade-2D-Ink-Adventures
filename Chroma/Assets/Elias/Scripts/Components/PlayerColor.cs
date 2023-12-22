@@ -2,6 +2,8 @@ using System.Collections.Generic;
 using Elias.Scripts.Helper;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
+using Unity.UI;
+using UnityEngine.UI;
 
 namespace Elias.Scripts.Components
 {
@@ -9,8 +11,12 @@ namespace Elias.Scripts.Components
         
         public List<Color> switchableColors = new List<Color>();
 
+        [SerializeField]
+        private Image _UIBulb;
+
         private Light2D _playerLight;
         private List<PropBehavior> _propColorColliders = new List<PropBehavior>();
+        
 
         private void Awake() {
             _playerLight = GetComponent<Light2D>();
@@ -18,6 +24,7 @@ namespace Elias.Scripts.Components
 
         private void Update() {
             InputSwitchColor();
+            _UIBulb.color = _playerLight.color;
         }
 
         private void OnTriggerEnter2D(Collider2D other)
@@ -71,8 +78,39 @@ namespace Elias.Scripts.Components
         {
             if (!switchableColors.Contains(defaultColor)) return;
             Color color = defaultColor;
-            if (secondKey) color = colorIfBothPressed; 
-            if (thirdKey) color = colorIfThirdPressed;
+
+            if (secondKey)
+            {
+                if (colorIfBothPressed == Color.magenta && switchableColors.Contains(Color.red) && switchableColors.Contains(Color.blue))
+                {
+                    color = colorIfBothPressed;
+                }
+                else if (colorIfBothPressed == Color.cyan && switchableColors.Contains(Color.green) && switchableColors.Contains(Color.blue))
+                {
+                    color = colorIfBothPressed;
+                }
+                else if (colorIfBothPressed == Color.yellow && switchableColors.Contains(Color.red) && switchableColors.Contains(Color.green))
+                {
+                    color = colorIfBothPressed;
+                }
+            }
+            else if (thirdKey)
+            {
+                if (colorIfThirdPressed == Color.magenta && switchableColors.Contains(Color.red) && switchableColors.Contains(Color.blue))
+                {
+                    color = colorIfThirdPressed;
+                }
+                else if (colorIfThirdPressed == Color.cyan && switchableColors.Contains(Color.green) && switchableColors.Contains(Color.blue))
+                {
+                    color = colorIfThirdPressed;
+                }
+                else if (colorIfThirdPressed == Color.yellow && switchableColors.Contains(Color.red) && switchableColors.Contains(Color.green))
+                {
+                    color = colorIfThirdPressed;
+                }
+            }
+
+
             foreach (PropBehavior propColorCollider in _propColorColliders)
             {
                 SpriteRenderer propSpriteRenderer = propColorCollider.GetComponent<SpriteRenderer>();
