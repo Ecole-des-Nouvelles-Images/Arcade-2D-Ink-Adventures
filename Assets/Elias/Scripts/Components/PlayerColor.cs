@@ -12,13 +12,12 @@ namespace Elias.Scripts.Components
         [SerializeField]
         private Image _UIBulb;
 
-        private Light2D _playerLight;
+        public Light2D _playerLight;
         private List<PropBehavior> _propColorColliders = new List<PropBehavior>();
 
         
 
         private void Awake() {
-            _playerLight = GetComponent<Light2D>();
         }
         
 

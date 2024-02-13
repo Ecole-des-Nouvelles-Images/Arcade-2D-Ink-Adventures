@@ -86,6 +86,10 @@ namespace Elias.Scripts.Components
         public float lampVolume = 0.3f;
 
         public ParticleSystem feetParticleSystem;
+        
+        public Transform GroundCheckPoint;
+        public float GroundCheckRadius = 0.2f;
+        public LayerMask GroundCheckLayerMask;
 
         private void Awake() {
             _playerLight = GetComponent<Light2D>();
@@ -122,8 +126,6 @@ namespace Elias.Scripts.Components
                 }
             }
             
-            GrabBox();
-            ReleaseBox();
             if (_rb.velocity.y < _fallSpeedYDampingChangeThreshold && !CameraManager.Instance.IsLerpingYDamping &&
                 !CameraManager.Instance.LerpedFromPlayerFalling) CameraManager.Instance.LerpYDamping(true);
 
@@ -173,6 +175,8 @@ namespace Elias.Scripts.Components
             {
                 particuleSystemON = true;
             }
+            
+            _isGrounded =Physics2D.CircleCast(GroundCheckPoint.position, GroundCheckRadius, Vector2.up,0, GroundCheckLayerMask);
             
         }
 
@@ -262,26 +266,7 @@ namespace Elias.Scripts.Components
         }
 
         #endregion
-
-        /*private void DrawGroundCheck()
-        {
-            Color rayColor;
-
-            if (_isGrounded)
-                rayColor = Color.green;
-
-            else
-                rayColor = Color.red;
-
-            Debug.DrawRay(_coll.bounds.center + new Vector3(_coll.bounds.extents.x, 0),
-                Vector2.down * (_coll.bounds.extents.y + extraHeight), rayColor);
-            Debug.DrawRay(_coll.bounds.center - new Vector3(_coll.bounds.extents.x, 0),
-                Vector2.down * (_coll.bounds.extents.y + extraHeight), rayColor);
-            Debug.DrawRay(
-                _coll.bounds.center - new Vector3(_coll.bounds.extents.x, _coll.bounds.extents.y + extraHeight),
-                Vector2.right * (_coll.bounds.extents.x * 2), rayColor);
-        }*/
-
+        
         #region Movement Functions
 
         private void Move()
@@ -311,24 +296,13 @@ namespace Elias.Scripts.Components
         #endregion
 
         #region Ground/Landed + Push/Pull Functions
-
+        
+        
         private void OnTriggerStay2D(Collider2D other)
         {
-            if (Tags.CompareTags("Movable", other.gameObject))
-            {
-                _canMoveBox = true;
-                _movableBox = other.gameObject;
-            }
-
             if (other.CompareTag("Movable,Ground")) _isGrounded = true; canJump = true;
 
             if (other.CompareTag("Ground")) _isGrounded = true; canJump = true;
-        }
-
-
-        private void OnTriggerExit2D(Collider2D other)
-        {
-            if (Tags.CompareTags("Movable", other.gameObject)) _canMoveBox = false;
         }
 
         private void OnCollisionExit2D(Collision2D other)
@@ -336,88 +310,7 @@ namespace Elias.Scripts.Components
             if (Tags.CompareTags("Ground", other.gameObject)) _isGrounded = false;
             canJump = false;
         }
-
-        private void GrabBox()
-        {
-            if (_isGrounded)
-            {
-                if (InputManager.instance.PushPullBeingHeld && _canMoveBox && _movableBox != null)
-                {
-                    _movableRigidbody2D = _movableBox.GetComponent<Rigidbody2D>();
-
-                    if (_movableRigidbody2D != null)
-                    {
-                        // Freeze all constraints
-                        _movableRigidbody2D.constraints = ~RigidbodyConstraints2D.FreezeAll;
-
-                        // Freeze rotation on the Z-axis
-                        _movableRigidbody2D.constraints |= RigidbodyConstraints2D.FreezeRotation;
-
-                        _relativeJoint2D.enabled = true;
-                        _relativeJoint2D.connectedBody = _movableRigidbody2D;
-
-                        // Determine if pushing or pulling
-                        if (_movableRigidbody2D.velocity.x > 0)
-                        {
-                            // Play pushing animation
-                            if (IsFacingRight)
-                            {
-                                _anim.SetBool("IsPulling", false);
-                                _anim.SetBool("IsPushing", true);
-                            }
-                            else
-                            {
-                                _anim.SetBool("IsPushing", false);
-                                _anim.SetBool("IsPulling", true);
-                            }
-                        }
-                        else if (_movableRigidbody2D.velocity.x < 0)
-                        {
-                            if (IsFacingRight)
-                            {
-                                _anim.SetBool("IsPushing", false);
-                                _anim.SetBool("IsPulling", true);
-                            }
-                            else
-                            {
-                                _anim.SetBool("IsPulling", false);
-                                _anim.SetBool("IsPushing", true);
-                            }
-                        }
-                    }
-                }
-            }
-            else if (!_isGrounded)
-            {
-                if (_relativeJoint2D != null)
-                {
-                    _relativeJoint2D.enabled = false;
-                    _relativeJoint2D.connectedBody = null;
-                }
-            }
-        }
-
-        private void ReleaseBox()
-        {
-            if (InputManager.instance.PushPullReleased && _movableBox != null)
-            {
-                _movableRigidbody2D = _movableBox.GetComponent<Rigidbody2D>();
-                if (_movableRigidbody2D != null)
-                {
-                    _movableRigidbody2D.constraints = ~RigidbodyConstraints2D.FreezeAll;
-                    _movableRigidbody2D.constraints = ~RigidbodyConstraints2D.FreezePositionY;
-
-                    if (_relativeJoint2D != null)
-                    {
-                        _relativeJoint2D.enabled = false;
-                        _relativeJoint2D.connectedBody = null;
-                    }
-                }
-
-                _anim.SetBool("IsPushing", false);
-                _anim.SetBool("IsPulling", false);
-            }
-        }
+        
 
 
         private bool CheckForLand()
@@ -563,6 +456,13 @@ namespace Elias.Scripts.Components
             }
 
             return randomIndex;
+        }
+        
+        public void OnDrawGizmos() {
+            if (GroundCheckPoint) {
+                Gizmos.color = Color.blue;
+                Gizmos.DrawSphere(GroundCheckPoint.position, GroundCheckRadius );
+            }
         }
     }
 }

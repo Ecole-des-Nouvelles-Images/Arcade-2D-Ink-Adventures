@@ -9999,7 +9999,7 @@ GameObject:
   - component: {fileID: 1207649842}
   - component: {fileID: 1207649841}
   - component: {fileID: 1207649840}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Tilemap
   m_TagString: Ground
   m_Icon: {fileID: 0}
